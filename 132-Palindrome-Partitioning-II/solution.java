@@ -17,11 +17,16 @@ public class Solution {
         
         return isPalindrome;
     }
+    private void i(int i){
+        int i=0;
+        System.out.println(i);
+    }
     public int minCut(String s) {
         if(s==null||s.length()==0){
             return 0;
         }
         
+        i(5);
         boolean test[][] = isPalindrome(s);
         
         int f[] = new int[s.length()+1];
