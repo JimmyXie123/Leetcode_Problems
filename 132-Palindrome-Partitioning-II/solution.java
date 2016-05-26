@@ -17,25 +17,22 @@ public class Solution {
         
         return isPalindrome;
     }
-    private void i(int i){
-        //int i=0;
-        System.out.println(i);
-    }
+  
     public int minCut(String s) {
         if(s==null||s.length()==0){
             return 0;
         }
         
-        i(5);
         boolean test[][] = isPalindrome(s);
         
         int f[] = new int[s.length()+1];
-        for(int i=0; i<f.length; i++){
-            f[i] = i;
+        f[0] = 0;
+        for(int i=1; i<f.length; i++){
+            f[i] = i-1;
         }
         
-        int best = Integer.MAX_VALUE;
-        for(int i=1; i<f.length; i++){
+        //int best = Integer.MAX_VALUE;
+        for(int i=1; i<=f.length; i++){
             for(int j=0; j<i; j++){
                 if(test[j][i-1]){
                     f[i] = Math.min(f[i], f[j]+1);
@@ -43,7 +40,7 @@ public class Solution {
             }
         }
         
-        return f[s.length()]-1;
+        return f[s.length()];
         
         
     }
