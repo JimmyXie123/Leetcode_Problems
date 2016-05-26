@@ -26,8 +26,8 @@ public class Solution {
         boolean test[][] = isPalindrome(s);
         
         int f[] = new int[s.length()+1];
-        f[0] = 0;
-        for(int i=1; i<f.length; i++){
+        
+        for(int i=0; i<f.length; i++){
             f[i] = i-1;
         }
         
