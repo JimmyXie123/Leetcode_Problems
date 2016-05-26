@@ -32,7 +32,7 @@ public class Solution {
         int best = Integer.MAX_VALUE;
         for(int i=1; i<f.length; i++){
             for(int j=0; j<i; j++){
-                if(isPalindrome[j][i-1]){
+                if(test[j][i-1]){
                     f[i] = Math.min(f[i], f[j]+1);
                 }
             }
