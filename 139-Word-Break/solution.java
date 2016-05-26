@@ -19,8 +19,7 @@ public class Solution {
             }
         }
         
-        System.out.println(f[4]);
-        System.out.println(s.substring(0,3));
+       
         return f[s.length()];
     }
 }
