@@ -18,7 +18,7 @@ public class Solution {
         return isPalindrome;
     }
     private void i(int i){
-        int i=0;
+        //int i=0;
         System.out.println(i);
     }
     public int minCut(String s) {
