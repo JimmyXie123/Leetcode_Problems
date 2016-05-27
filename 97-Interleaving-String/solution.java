@@ -2,7 +2,7 @@ public class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
         int length1 = s1.length();
         int length2 = s2.length();
-        boolean result[][] = new int[length1+1][length2+1];
+        boolean result[][] = new boolean[length1+1][length2+1];
     
         for(int i=0; i<length1+1; i++){
             result[i][0] = s1.substring(0, i).equals(s3.substring(0, i));
