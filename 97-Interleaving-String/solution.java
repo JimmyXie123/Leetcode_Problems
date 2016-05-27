@@ -18,15 +18,16 @@ public class Solution {
         
         for(int i=1; i<length1+1; i++){
             for(int j=1; j<length2+1; j++){
-                /*if(s1.charAt(i-1)==s3.charAt(i+j-1)){
+                if(s1.charAt(i-1)==s3.charAt(i+j-1)){
                     result[i][j] = result[i-1][j];
                     if(result[i][j]==true){
                         continue;
                     }
-                }else if(s2.charAt(j-1)==s3.charAt(i+j-1)){
+                }
+                if(s2.charAt(j-1)==s3.charAt(i+j-1)){
                     result[i][j] = result[i][j-1];
-                }*/
-                result[i][j] = (result[i][j-1]&&(s2.charAt(j-1)==s3.charAt(i+j-1)))||(result[i-1][j]&&(s1.charAt(i-1)==s3.charAt(i+j-1)));
+                }
+                /*result[i][j] = (result[i][j-1]&&(s2.charAt(j-1)==s3.charAt(i+j-1)))||(result[i-1][j]&&(s1.charAt(i-1)==s3.charAt(i+j-1)));*/
             }
         }
         
