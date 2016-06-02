@@ -29,11 +29,11 @@ public class Solution {
             }
             result.add(temp);
         }
-        List<List<Integer>> final = new ArrayList();
+        List<List<Integer>> best = new ArrayList();
         for(int i=result.size()-1; i>=0; i--){
-            final.add(result.get(i));
+            best.add(result.get(i));
         }
-        return final;
+        return best;
         
     }
 }
