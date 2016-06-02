@@ -10,27 +10,31 @@
 public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList();
-        String str = new String();
-        int flag = 0;
-        traverse(root, str, result, flag);
+        if(root==null){
+            return result;
+        }
+        String str = root.val;
+        //int flag = 0;
+        traverse(root.left, str, result);
+        traverse(root.right, str, result);
         return result;
     }
     
-    private void traverse(TreeNode node, String str, List<String> result, int flag){
+    private void traverse(TreeNode node, String str, List<String> result){
         if(node==null){
             return;
         }
-        if(flag==1){
+        //if(flag==1){
             str = str+"->"+node.val;
-        }else{
-            str = str+node.val;
-            flag = 1;
-        }
+        //}else{
+        //  str = str+node.val;
+        //    flag = 1;
+        //}
         if(node.left==null&&node.right==null){
             result.add(new String(str));
         }
-        traverse(node.left, str, result, flag);
-        traverse(node.right, str, result, flag);
+        traverse(node.left, str, result);
+        traverse(node.right, str, result);
         str = str.substring(0, str.length());
     }
 }
