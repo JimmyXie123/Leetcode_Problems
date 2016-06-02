@@ -29,13 +29,15 @@ public class Solution {
                     queue.offer(node.right);
                 }
             }
-            if(flag==1){
+            if(order==1){
                 List<Integer> reverse = new ArrayList();
                 for(int i=temp.size()-1; i>=0; i++){
                     reverse.add(temp.get(i));
                 }
                 temp =reverse;
-                flag=0;
+                order=0;
+            }else{
+                order=1;
             }
             result.add(temp);
         }
