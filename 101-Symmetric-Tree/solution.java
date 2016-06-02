@@ -22,7 +22,7 @@ public class Solution {
             return false;
         }else{
             if(node1.val==node2.val){
-                return check(node1.left, node2.right)&&chech(node1.right, node2.left);
+                return check(node1.left, node2.right)&&check(node1.right, node2.left);
             }else{
                 return false;
             }
