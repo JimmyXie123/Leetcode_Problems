@@ -12,9 +12,14 @@ public class Solution {
         if (root == null) {
             return 0;
         }
-        return getMin(root);
+        
+        if(Math.min(minDepth(root.left), minDepth(root.right))>0){
+            return Math.min(minDepth(root.left), minDepth(root.right))+1;
+        }else{
+            return Math.max(minDepth(root.left), minDepth(root.right))+1;
+        }
     }
-
+/*
     public int getMin(TreeNode root){
         if (root == null) {
             return Integer.MAX_VALUE;
@@ -26,6 +31,6 @@ public class Solution {
 
         return Math.min(getMin(root.left), getMin(root.right)) + 1;
     }
-    
+*/  
     
 }
