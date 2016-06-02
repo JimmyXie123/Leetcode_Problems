@@ -31,7 +31,7 @@ public class Solution {
             }
             if(order==1){
                 List<Integer> reverse = new ArrayList();
-                for(int i=temp.size()-1; i>=0; i++){
+                for(int i=temp.size()-1; i>=0; i--){
                     reverse.add(temp.get(i));
                 }
                 temp =reverse;
