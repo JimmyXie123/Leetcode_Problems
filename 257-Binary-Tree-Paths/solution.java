@@ -13,7 +13,7 @@ public class Solution {
         if(root==null){
             return result;
         }
-        String str = root.val;
+        String str = String.valueOf(node.val);
         //int flag = 0;
         traverse(root.left, str, result);
         traverse(root.right, str, result);
