@@ -29,8 +29,8 @@ public class Solution {
         if(node.left==null&&node.right==null){
             result.add(new String(str));
         }
-        traverse(node.left, str, result);
-        traverse(node.right, str, result);
+        traverse(node.left, str, result, flag);
+        traverse(node.right, str, result, flag);
         str = str.substring(0, str.length());
     }
 }
