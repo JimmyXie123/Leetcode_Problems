@@ -12,25 +12,22 @@ public class Solution {
         if (root == null) {
             return 0;
         }
-        
+        return getMin(root);
+        /*
         if(Math.min(minDepth(root.left), minDepth(root.right))>0){
-            return Math.min(minDepth(root.left), minDepth(root.right))+1;
+            return Math.min(minDepth(root.left), minDepth(root.right))+1;   想想为什么会time limited
         }else{
             return Math.max(minDepth(root.left), minDepth(root.right))+1;
-        }
+        }*/  
     }
-/*
-    public int getMin(TreeNode root){
-        if (root == null) {
+    
+    private int getMin(TreeNode node){
+        if(node==null){
             return Integer.MAX_VALUE;
         }
-
-        if (root.left == null && root.right == null) {
+        if(node.left==null&&node.right==null){
             return 1;
         }
-
-        return Math.min(getMin(root.left), getMin(root.right)) + 1;
+        return Math.min(getMin(node.left), getMin(node.right))+1;
     }
-*/  
-    
 }
