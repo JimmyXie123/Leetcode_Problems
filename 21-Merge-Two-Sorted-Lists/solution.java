@@ -26,8 +26,8 @@ public class Solution {
             result = result.next;
         }
         while(l1==null&&l2!=null){
-            result.next = l1;
-            l1 = l1.next;
+            result.next = l2;
+            l2 = l2.next;
             result = result.next;
         }
         return dummy.next;
