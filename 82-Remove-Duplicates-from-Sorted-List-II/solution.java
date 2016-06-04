@@ -12,13 +12,13 @@ public class Solution {
         dummy.next = head;
         ListNode temp = dummy;
         while(temp.next!=null&&temp.next.next!=null){
-            if(temp.next.val==temp.next.next.val){
+            if(temp.next.val == temp.next.next.val){
                 int dup = temp.next.val;
                 while(temp.next!=null&&temp.next.val==dup){
                     temp.next = temp.next.next;
                 }
             }else{
-                temp = temp.next;
+                temp = temp.next;   
             }
         }
         
