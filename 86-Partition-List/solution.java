@@ -26,7 +26,15 @@ public class Solution {
                 head = head.next;
             }
         }
-        pointer1.next=dummy_big.next;
+        while(dummy_small.next!=null){
+            System.out.prinltn(dummy_small.next.val);
+            dummy_small = dummy_small.next;
+        }
+        while(dummy_big.next!=null){
+            System.out.prinltn(dummy_big.next.val);
+            dummy_big = dummy_big.next;
+        }
+        pointer1.next = dummy_big.next;
         return dummy_small.next;
     }
 }
