@@ -13,7 +13,7 @@ public class Solution {
         dummy_small.next = head;
         dummy_big.next = head;
         ListNode pointer1 = dummy_small;
-        ListNode pointer2 = dummy_big;
+        //ListNode pointer2 = dummy_big;
         head = dummy_big;
         while(head.next!=null){
             if(head.next.val<x){
@@ -21,19 +21,12 @@ public class Solution {
                 pointer1 = pointer1.next;
                 head.next = head.next.next;
             }else{
-                pointer2.next = head.next;
-                pointer2 = pointer2.next;
+                //pointer2.next = head.next;
+                //pointer2 = pointer2.next;
                 head = head.next;
             }
         }
-        while(dummy_small.next!=null){
-            System.out.prinltn(dummy_small.next.val);
-            dummy_small = dummy_small.next;
-        }
-        while(dummy_big.next!=null){
-            System.out.prinltn(dummy_big.next.val);
-            dummy_big = dummy_big.next;
-        }
+       
         pointer1.next = dummy_big.next;
         return dummy_small.next;
     }
