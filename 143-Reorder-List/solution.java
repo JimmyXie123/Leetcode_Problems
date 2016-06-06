@@ -11,11 +11,11 @@ public class Solution {
         if(head==null){
             return;
         }
+        ListNode front = head;
         ListNode mid = findMiddle(head);
         ListNode back = reverse(mid.next);
         mid.next = null;
-        ListNode result = merge(head, back);
-        return result;
+        head = merge(front, back);
     }
     
     private ListNode findMiddle(ListNode head){
