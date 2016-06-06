@@ -13,7 +13,7 @@ public class Solution {
         mid.next = null;
         head = sortList(head);
         back_part = sortList(back_part);
-        merge(head, back_part);
+        head = merge(head, back_part);
         return head;
     }
     
@@ -30,7 +30,7 @@ public class Solution {
         return slow;
     }
     
-    private void merge(ListNode node1, ListNode node2){
+    private ListNode merge(ListNode node1, ListNode node2){
         ListNode dummy = new ListNode(0);
         ListNode pointer = dummy;
         while(node1!=null&&node2!=null){
