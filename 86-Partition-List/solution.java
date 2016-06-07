@@ -24,6 +24,7 @@ public class Solution {
                 head = head.next;
             }
         }
+        rightTail.next = null;
         leftTail.next = rightDummy.next; 
         return leftDummy.next;
     }
