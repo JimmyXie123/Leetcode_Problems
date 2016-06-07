@@ -17,7 +17,7 @@ public class Solution {
         ListNode rightDummy = new ListNode(0), rightTail = rightDummy;
         ListNode mid = findMiddle(head);
         
-        while(!head=null){
+        while(head!=null){
             if(head.val<mid.next.val){
                 leftTail.next = head;
                 leftTail = leftTail.next;
