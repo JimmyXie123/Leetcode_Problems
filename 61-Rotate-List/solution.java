@@ -36,7 +36,7 @@ public class Solution {
         }
         if(temp!=null){
             dummy.next = head;
-            pointer.next = temp_dummy.next;
+            pointer.next = temp_dummynext;
         }
         head.next = null;
         
