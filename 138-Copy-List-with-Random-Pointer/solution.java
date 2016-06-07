@@ -27,10 +27,12 @@ public class Solution {
     
     private RandomListNode splitList(RandomListNode node){
         RandomListNode newHead = node.next;
-        while(node.next!=null){
-            if(node.next.next.next!=null){
-                node.next.next = node.next.next.next.next;
+        while(node!=null){
+            //RandomListNode temp = node.next;
+            if(node.next.next!=null){
+                node.next.next = node.next.next.next;
             }
+            node = node.next.next;
         }
         return newHead;
     }
