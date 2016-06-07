@@ -56,7 +56,7 @@ public class Solution {
         if(node==null){
             return node;
         }
-        while(!node.next=null){
+        while(node.next!=null){
             node = node.next;
         }
         return node;
