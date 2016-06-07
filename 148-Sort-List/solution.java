@@ -35,7 +35,7 @@ public class Solution {
         
         leftTail.next = null;
         rightTail.next = null;
-        midTail.next = null;
+        middleTail.next = null;
         
         ListNode left = sortList(Dummy.left);
         ListNode right = sortList(Dummy.right);
