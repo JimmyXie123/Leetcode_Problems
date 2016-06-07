@@ -45,11 +45,11 @@ public class Solution {
     }
     
     private ListNode concat(ListNode node1, ListNode node2, ListNode node3){
-        ListNode leftTail = getTail(node1);
-        ListNode midTail = getTail(node2);
-        leftTail.next = node2;
-        midTail.next = node3;
-        return node1;
+       ListNode dummy = new ListNode(0), tail = dummy;
+        tail.next = node1, tail = getTail(tail);
+        tail.next = node2, tail = getTail(tail);
+        tail.next = node3, tail = getTail(tail);
+        return dummy.next;
     }
     
     private ListNode getTail(ListNode node){
