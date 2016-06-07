@@ -18,7 +18,7 @@ public class Solution {
     }
     
     private void CopyRandom(RandomListNode node){
-        while(node.next!=null){
+        while(node!=null){
             if(node.next.random!=null){
                 node.next.random = node.random.next;
             }
