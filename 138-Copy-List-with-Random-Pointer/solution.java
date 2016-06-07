@@ -30,10 +30,12 @@ public class Solution {
         RandomListNode newHead = node.next;
         while(node!=null){
             //RandomListNode temp = node.next;
+            
             if(node.next.next!=null){
+                RandomListNode pair = node.next.next;
                 node.next.next = node.next.next.next;
             }
-            node = node.next.next;
+            node = pair;
         }
         return newHead;
     }
