@@ -62,7 +62,7 @@ public class Solution {
         return node;
     }
     
-    private listNode findMiddle(ListNode head){
+    private ListNode findMiddle(ListNode head){
         ListNode slow = head, fast = head.next;
         while(fast!=null&&fast.next!=null){
             fast = fast.next.next;
