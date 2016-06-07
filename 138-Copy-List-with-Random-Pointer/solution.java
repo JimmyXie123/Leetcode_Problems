@@ -13,6 +13,7 @@ public class Solution {
             temp.next = node.next;
             temp.random = node.random;
             node.next = temp;
+            node = temp.next;
         }
     }
     
