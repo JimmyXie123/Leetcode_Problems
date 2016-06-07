@@ -28,7 +28,7 @@ public class Solution {
                 head = head.next;
             }else{
                 middleTail.next = head.next;
-                middleTail = midTail.next;
+                middleTail = middleTail.next;
                 head = head.next;
             }
         }
