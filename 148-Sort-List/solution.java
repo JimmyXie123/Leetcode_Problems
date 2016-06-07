@@ -37,8 +37,8 @@ public class Solution {
         rightTail.next = null;
         middleTail.next = null;
         
-        ListNode left = sortList(Dummy.left);
-        ListNode right = sortList(Dummy.right);
+        ListNode left = sortList(leftDummy.next);
+        ListNode right = sortList(rightDummy.next);
         return concat(left, middleDummy, right);
         
         
