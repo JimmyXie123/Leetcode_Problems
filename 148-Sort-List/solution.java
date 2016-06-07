@@ -18,11 +18,11 @@ public class Solution {
         ListNode mid = findMiddle(head);
         
         while(head!=null){
-            if(head.val<mid.next.val){
+            if(head.val<mid.val){
                 leftTail.next = head;
                 leftTail = leftTail.next;
                 head = head.next;
-            }else if(head.val>mid.next.val){
+            }else if(head.val>mid.val){
                 rightTail.next = head;
                 rightTail = rightTail.next;
                 head = head.next;
@@ -39,16 +39,16 @@ public class Solution {
         
         ListNode left = sortList(leftDummy.next);
         ListNode right = sortList(rightDummy.next);
-        return concat(left, middleDummy, right);
+        return concat(left, middleDummy.next, right);
         
         
     }
     
     private ListNode concat(ListNode node1, ListNode node2, ListNode node3){
        ListNode dummy = new ListNode(0), tail = dummy;
-        tail.next = node1, tail = getTail(tail);
-        tail.next = node2, tail = getTail(tail);
-        tail.next = node3, tail = getTail(tail);
+        tail.next = node1; tail = getTail(tail);
+        tail.next = node2; tail = getTail(tail);
+        tail.next = node3; tail = getTail(tail);
         return dummy.next;
     }
     
