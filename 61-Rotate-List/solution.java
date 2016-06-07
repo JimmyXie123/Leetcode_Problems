@@ -8,40 +8,30 @@
  */
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        int size = getSize(head);
-        int position;
-        
-        if(size>k){
-            position = k;
-        }else{
-            position = k-size;
-            while(position>size){
-                position = position-size;
-            }
+        if(head==null){
+            return head;
         }
+        int size = getSize(head);
+        int n = k%size;
         
-        int leftLength = size-position;
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         head = dummy;
-        for(int i=0; i<leftLength; i++){
+        ListNode tail = dummy;
+        
+        for(int i=0; i<n; i++){
             head = head.next;
         }
         
-        
-        ListNode temp = head.next, pointer = head;
-        ListNode temp_dummynext = dummy.next;
-        while(pointer.next!=null){
-            pointer = pointer.next;
+        while(head.next!=null){
+            head = head.next;
+            tail = tail.next;
         }
-        if(temp!=null){
-            dummy.next = head;
-            pointer.next = temp_dummynext;
-        }
-        head.next = null;
         
+        head.next = dummy.next;
+        dummy.next = tail.next;
+        tail.next = null;
         return dummy.next;
-        
     }
     private int getSize(ListNode node){
         int size = 0;
