@@ -12,9 +12,9 @@ public class Solution {
             return head;
         }
         
-        ListNode leftDummy = new ListNode(0), ListNode leftTail = leftDummy;
-        ListNode middleDummy = new ListNode(0), ListNode middleTail = middleDummy;
-        ListNode rightDummy = new ListNode(0), ListNode rightTail = rightDummy;
+        ListNode leftDummy = new ListNode(0), leftTail = leftDummy;
+        ListNode middleDummy = new ListNode(0), middleTail = middleDummy;
+        ListNode rightDummy = new ListNode(0), rightTail = rightDummy;
         ListNode mid = findMiddle(head);
         
         while(!head){
