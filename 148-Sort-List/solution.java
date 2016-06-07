@@ -11,52 +11,63 @@ public class Solution {
         if(head==null||head.next==null){
             return head;
         }
+        
+        ListNode leftDummy = new ListNode(0), ListNode leftTail = leftDummy;
+        ListNode middleDummy = new ListNode(0), ListNode middleTail = middleDummy;
+        ListNode rightDummy = new ListNode(0), ListNode rightTail = rightDummy;
         ListNode mid = findMiddle(head);
-        ListNode back_part = mid.next;
-        mid.next = null;
-        head = sortList(head);
-        back_part = sortList(back_part);
-        head = merge(head, back_part);
-        return head;
+        
+        while(!head){
+            if(head.val<mid.next.val){
+                leftTail.next = head;
+                leftTail = leftTail.next;
+                head = head.next;
+            }else if(head.val>mid.next.val){
+                rightTail.next = head;
+                rightTail = rightTail.next;
+                head = head.next;
+            }else{
+                midTail.next = head.next;
+                midTail = midTail.next;
+                head = head.next;
+            }
+        }
+        
+        leftTail.next = null;
+        rightTail.next = null;
+        midTail.next = null;
+        
+        ListNode left = sortList(Dummy.left);
+        ListNode right = sortList(Dummy.right);
+        return concat(left, middleDummy, right);
+        
+        
     }
     
-    private ListNode findMiddle(ListNode node){
+    private ListNode concat(ListNode node1, ListNode node2, ListNode node3){
+        ListNode leftTail = getTail(node1);
+        ListNode midTail = getTail(node2);
+        leftTail.next = node2;
+        midTail.next = node3;
+        return node1;
+    }
+    
+    private ListNode getTail(ListNode node){
         if(node==null){
             return node;
         }
-        ListNode slow = node;
-        ListNode fast = node.next;
-        while(fast!=null&&fast.next!=null){
-            slow = slow.next;
-            fast = fast.next.next;
+        while(!node.next=null){
+            node = node.next;
         }
-        return slow;
+        return node;
     }
     
-    private ListNode merge(ListNode node1, ListNode node2){
-        ListNode dummy = new ListNode(0);
-        ListNode pointer = dummy;
-        while(node1!=null&&node2!=null){
-            if(node1.val<node2.val){
-                pointer.next = node1;
-                pointer = pointer.next;
-                node1 = node1.next;
-            }else{
-                pointer.next = node2;
-                pointer = pointer.next;
-                node2 = node2.next;
-            }
+    private void findMiddle(ListNode head){
+        ListNode slow = head, fast = head.next;
+        while(fast!=null&&fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
         }
-        while(node1!=null&&node2==null){
-            pointer.next = node1;
-            pointer = pointer.next;
-            node1 = node1.next;
-        }
-        while(node2!=null&&node1==null){
-            pointer.next = node2;
-            pointer = pointer.next;
-            node2 = node2.next;
-        }
-        return dummy.next;
+        return slow;
     }
 }
