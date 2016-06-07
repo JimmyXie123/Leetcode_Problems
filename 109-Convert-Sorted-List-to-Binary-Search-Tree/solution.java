@@ -18,8 +18,8 @@
 public class Solution {
     ListNode current;
     private int getSize(ListNode node){
-        int size = 0
-        if(node!=null){
+        int size = 0;
+        while(node!=null){
             size++;
             node = node.next;
         }
@@ -28,6 +28,7 @@ public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
         int size = getSize(head);
         current = head;
+        //System.out.println(size);
         TreeNode result = helper(size);
         return result;
         
