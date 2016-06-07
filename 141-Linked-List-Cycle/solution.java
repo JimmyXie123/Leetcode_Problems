@@ -11,7 +11,7 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        HashSet<ListNode> result = new HashSet();
+        Set<ListNode> result = new HashSet();
         while(head!=null){
             if(result.contains(head)){
                 return true;
