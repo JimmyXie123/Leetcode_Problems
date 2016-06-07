@@ -29,13 +29,12 @@ public class Solution {
     private RandomListNode splitList(RandomListNode node){
         RandomListNode newHead = node.next;
         while(node!=null){
-            //RandomListNode temp = node.next;
-            
-            if(node.next.next!=null){
-                RandomListNode pair = node.next.next;
-                node.next.next = node.next.next.next;
+            RandomListNode temp = node.next;
+            node.next = temp.next;
+            if(temp.next!=null){
+                temp.next = temp.next.next;
             }
-            node = pair;
+            node = node.next;
         }
         return newHead;
     }
