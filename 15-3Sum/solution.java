@@ -1,4 +1,5 @@
 public class Solution {
+/*
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList();
         HashMap<Integer, int[]> map = new HashMap();
@@ -36,4 +37,43 @@ public class Solution {
         
         
     }
+*/  
+public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
+    final int length = num.length;
+    ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    HashMap<Integer, int[]> hashMap = new HashMap<Integer, int[]>();
+
+    // if length is less than 3, return empty result set
+    if (length < 3) return result;
+
+    Arrays.sort(num);
+
+    for (int i = 0; i < length - 2; i++) {
+        if (num[i] > 0) break;
+        hashMap.clear();
+
+        if (i == 0 || num[i] > num[i - 1]) {
+            for (int j = i + 1; j < length; j++) {
+                if (hashMap.containsKey(num[j])) { // found target
+                    ArrayList<Integer> elem = new ArrayList<Integer>(3);
+
+                    elem.add(hashMap.get(num[j])[0]);
+                    elem.add(hashMap.get(num[j])[1]);
+                    elem.add(num[j]);
+
+                    result.add(elem);
+
+                    // remove duplicated elements
+                    while (j < (length - 1) && num[j] == num[j + 1]) j++;
+                } else {
+                    int[] temp = new int[2];
+                    temp[0] = num[i];
+                    temp[1] = num[j];
+                    hashMap.put(0 - (num[i] + num[j]), temp);
+                }
+            }
+        }
+    }
+    return result;
+}
 }
