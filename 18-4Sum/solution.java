@@ -13,32 +13,34 @@ public class Solution {
                 if(j>i+1&&nums[j]==nums[j-1]){
                     continue;
                 }
-                    int left = j+1;
-                    int right = nums.length-1;
-                    while(left<right){
-                        int sum = nums[i]+nums[j]+nums[left]+nums[right];
-                        if(sum==target){
-                            List<Integer> elem = new ArrayList();
-                            elem.add(nums[i]);
-                            elem.add(nums[j]);
-                            elem.add(nums[left]);
-                            elem.add(nums[right]);
-                            result.add(elem);
-                            while(left<right&&nums[left]==nums[left+1]){
-                                left++;
-                            }
-                            while(right>left&&nums[right]==nums[right-1]){
-                                right--;
-                            }
-                        }else if(sum>target){
-                            right--;
-                        }else{
+                int left = j+1;
+                int right = nums.length-1;
+                    
+                while(left<right){
+                    int sum = nums[i]+nums[j]+nums[left]+nums[right];
+                    if(sum==target){
+                        List<Integer> elem = new ArrayList();
+                        elem.add(nums[i]);
+                        elem.add(nums[j]);
+                        elem.add(nums[left]);
+                        elem.add(nums[right]);
+                        result.add(elem);
+                        while(left<right&&nums[left]==nums[left+1]){
                             left++;
                         }
+                        while(right>left&&nums[right]==nums[right-1]){
+                            right--;
+                        }
+                    }else if(sum>target){
+                        right--;
+                    }else{
+                        left++;
                     }
                 }
+                    
             }
         }
+        
         
         return result;
     }
