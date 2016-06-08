@@ -23,7 +23,7 @@ public class Solution {
                     path.add(temp[1]);
                     path.add(nums[j]);
                     result.add(path);
-                    while (j < (nums.length - 1) && num[j] == num[j + 1]) j++;
+                    while (j < (nums.length - 1) && nums[j] == nums[j + 1]) j++;
                 }else{
                     int[] temp = new int[2];
                     temp[0] = nums[i];
