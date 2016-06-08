@@ -9,20 +9,21 @@ public class Solution {
         }
         Arrays.sort(nums);
         for(int i=0; i<nums.length-2; i++){
+            if (num[i] > 0) break;
             if(i>=1&&nums[i]==nums[i-1]){
                 continue;
             }
             map.clear();
             for(int j=i+1; j<nums.length; j++){
-                System.out.println(j);
+                //System.out.println(j);
                 if(map.containsKey(0-nums[j])){
                     int[] temp = map.get(-nums[j]);
-                    map.remove(-nums[j]);
                     List<Integer> path = new ArrayList();
                     path.add(temp[0]);
                     path.add(temp[1]);
                     path.add(nums[j]);
                     result.add(path);
+                    while (j < (nums.length - 1) && num[j] == num[j + 1]) j++;
                 }else{
                     int[] temp = new int[2];
                     temp[0] = nums[i];
