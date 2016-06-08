@@ -1,6 +1,9 @@
 public class Solution {
     public void sortColors(int[] nums) {
         //int[] result = new int[nums.length];
+        if(nums.size<2){
+            return;
+        }
         int mid = nums.length/2;
         int[] left = new int[nums.length/2];
         int[] right = new int[nums.length-nums.length/2];
@@ -17,6 +20,9 @@ public class Solution {
     }
     
     private int[] merge(int[] left, int[] right){
+        if(left.length<=0||right.length){
+            return
+        }
         int[] result = new int[left.length+right.length];
         int i=0, j=0, l=0;
         while(i<left.length&&j<right.length){
