@@ -4,7 +4,7 @@ public class Solution {
             return target;
         }
         int depth = Integer.MAX_VALUE;
-        int result;
+        int result = target;
         Arrays.sort(nums);
         for(int i=0; i<nums.length; i++){
             if(i>0&&nums[i]==nums[i-1]){
@@ -15,6 +15,7 @@ public class Solution {
             while(left<right){
                 int sum = nums[i] + nums[left] + nums[right];
                 if(depth>Math.abs(sum-target)){
+                    depth = Math.abs(sum-target);
                     result = sum;
                 }
                 if(sum>target){
