@@ -11,9 +11,12 @@ public class Solution {
             if(i>=1&&nums[i]==nums[i-1]){
                 break;
             }
+            map.clear();
             for(int j=i+1; j<nums.length; j++){
+                System.out.println(j);
                 if(map.containsKey(0-nums[j])){
                     int[] temp = map.get(-nums[j]);
+                    map.remove(-nums[j]);
                     List<Integer> path = new ArrayList();
                     path.add(temp[0]);
                     path.add(temp[1]);
