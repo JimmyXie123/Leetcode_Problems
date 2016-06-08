@@ -19,9 +19,9 @@ public class Solution {
             head = head.next;
             tail = tail.next;
         }
-        if(tail.next!=null){
-            tail.next = tail.next.next;
-        }
+        
+        tail.next = tail.next.next;
+        
         return dummy.next;
         
     }
