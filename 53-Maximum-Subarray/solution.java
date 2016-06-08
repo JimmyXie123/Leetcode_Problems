@@ -3,20 +3,14 @@ public class Solution {
         if(nums==null||nums.length==0){
             return 0;
         }
-        int[] sum = new int[nums.length];
-        int max = Integer.MIN_VALUE, minSum;
-        sum[0] = nums[0];
-        min = sum[0];
-        for(int i=1; i<nums.length; i++){
-            sum[i] = sum[i-1] + nums[i];
+        int sum = 0;
+        int max=Integer.MIN_VALUE, minSum=0;
+        for(int i=0; i<nums.length; i++){
+            sum = sum + nums[i];
             max = Math.max(max, sum[i]-minSum);
             minSum = Math.min(sum[i], minSum);
         }
-        if(nums.length==1){
-            return nums[0];
-        }else{
-            return max;
-        }
+        return max;
         
     }
 }
