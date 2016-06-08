@@ -9,7 +9,7 @@ public class Solution {
         }
         Arrays.sort(nums);
         for(int i=0; i<nums.length-2; i++){
-            if (num[i] > 0) break;
+            if (nums[i] > 0) break;
             if(i>=1&&nums[i]==nums[i-1]){
                 continue;
             }
