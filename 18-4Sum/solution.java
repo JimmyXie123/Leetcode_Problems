@@ -26,10 +26,12 @@ public class Solution {
                         elem.add(nums[left]);
                         elem.add(nums[right]);
                         result.add(elem);
-                        while(left<right&&nums[left]==nums[left+1]){
+                        left++;
+                        right--;
+                        while(left<right&&nums[left]==nums[left-1]){
                             left++;
                         }
-                        while(right>left&&nums[right]==nums[right-1]){
+                        while(right>left&&nums[right]==nums[right+1]){
                             right--;
                         }
                     }else if(sum>target){
