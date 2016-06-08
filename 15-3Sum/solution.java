@@ -40,7 +40,7 @@ public class Solution {
 */  
 public List<List<Integer>> threeSum(int[] num) {
     final int length = num.length;
-    ArrayList<List<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();
     HashMap<Integer, int[]> hashMap = new HashMap<Integer, int[]>();
 
     // if length is less than 3, return empty result set
