@@ -4,25 +4,19 @@ public class Solution {
             return 0;
         }
         int[] sum = new int[nums.length];
-        int max = Integer.MIN_VALUE;
+        int max = Integer.MIN_VALUE, minSum;
         sum[0] = nums[0];
+        min = sum[0];
         for(int i=1; i<nums.length; i++){
             sum[i] = sum[i-1] + nums[i];
-            for(int j=-1; j<i; j++){
-                int temp;
-                if(j==-1){
-                    temp = sum[i];
-                }else{
-                    temp = sum[i] - sum[j];
-                }
-                
-                if(temp>max){
-                    max = temp;
-                }
-            }
+            max = Math.max(max, sum[i]-minSum);
+            minSum = Math.min(sum[i], minSum);
         }
-        
-        return max;
+        if(nums.length==1){
+            return nums[0];
+        }else{
+            return max;
+        }
         
     }
 }
