@@ -1,7 +1,7 @@
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
         if(nums==null||nums.length<3){
-            return null;
+            return target;
         }
         int depth = Integer.MAX_VALUE;
         int result;
