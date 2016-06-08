@@ -7,8 +7,8 @@ public class Solution {
         int max=Integer.MIN_VALUE, minSum=0;
         for(int i=0; i<nums.length; i++){
             sum = sum + nums[i];
-            max = Math.max(max, sum[i]-minSum);
-            minSum = Math.min(sum[i], minSum);
+            max = Math.max(max, sum-minSum);
+            minSum = Math.min(sum, minSum);
         }
         return max;
         
