@@ -1,11 +1,10 @@
 public class Solution {
     public void sortColors(int[] nums) {
-        //int[] result = new int[nums.length];
+/*
         if(nums.length<2){
             return;
         }
         int mid = nums.length/2;
-        //System.out.println(mid);
         int[] left = new int[mid];
         int[] right = new int[nums.length-mid];
         for(int i=0; i<mid; i++){
@@ -16,35 +15,36 @@ public class Solution {
         }
         
         sortColors(left);
-        /*
-        if(left.length == 3){
-            System.out.println();
-            for(int i:left){
-                System.out.println(i);
-            }
-        }
-        */
         sortColors(right);
-        /*
-        if(right.length == 3){
-            System.out.println();
-            for(int i:right){
-                System.out.println(i);
-            }
-        }*/
         merge(left, right, nums);
-        /*
-        if(nums.length == 3){
-            System.out.println();
-            for(int i:result){
-                System.out.println(i);
+*/
+        if(nums==null||nums.length<2){
+            return;
+        }
+        int pl = 0;
+        int pr = nums.length-1;
+        int i=0;
+        while(i<pl){
+            if(a[i]==2){
+                swap(nums, i, pr);
+                pr--;
+            }else if(a[i]==1){
+                i++;
+            }else{
+                swap(nums, i, pl);
+                i++;
+                pl++;
             }
         }
-        */
-        
-        
     }
     
+    private void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    /*
     private void merge(int[] left, int[] right, int[] result){
         //System.out.println("到了吗");
         int i=0, j=0, l=0;
@@ -76,5 +76,5 @@ public class Solution {
             i++;
         }
         
-    }
+    }*/
 }
