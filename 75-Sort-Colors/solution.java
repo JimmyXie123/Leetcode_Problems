@@ -24,11 +24,11 @@ public class Solution {
         int pl = 0;
         int pr = nums.length-1;
         int i=0;
-        while(i<pl){
-            if(a[i]==2){
+        while(i<=pr){
+            if(nums[i]==2){
                 swap(nums, i, pr);
                 pr--;
-            }else if(a[i]==1){
+            }else if(nums[i]==1){
                 i++;
             }else{
                 swap(nums, i, pl);
