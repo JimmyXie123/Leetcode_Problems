@@ -10,10 +10,10 @@ public class Solution {
     }
     public double findKth(int[] A, int A_start, int[] B, int B_start, int k){
         if(A_start>=A.length){
-            return B[start+k-1];
+            return B[B_start+k-1];
         }
         if(B_start>=B.length){
-            return A[start+k-1];
+            return A[A_start+k-1];
         }
         if(k==1){
             return Math.min(A[A_start], B[B_start]);
