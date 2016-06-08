@@ -6,8 +6,11 @@ public class Solution {
         if(nums==null){
             return result;
         }
-        //Arrays.sort(nums);
-        for(int i=0; i<nums.length; i++){
+        Arrays.sort(nums);
+        for(int i=0; i<nums.length-2; i++){
+            if(i>=1&&nums[i]==nums[i-1]){
+                break;
+            }
             for(int j=i+1; j<nums.length; j++){
                 if(map.containsKey(0-nums[j])){
                     int[] temp = map.get(-nums[j]);
