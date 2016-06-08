@@ -1,5 +1,5 @@
 public class Solution {
-/*
+
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList();
         HashMap<Integer, int[]> map = new HashMap();
@@ -10,7 +10,7 @@ public class Solution {
         Arrays.sort(nums);
         for(int i=0; i<nums.length-2; i++){
             if(i>=1&&nums[i]==nums[i-1]){
-                break;
+                continue;
             }
             map.clear();
             for(int j=i+1; j<nums.length; j++){
@@ -37,7 +37,7 @@ public class Solution {
         
         
     }
-*/  
+/*  
 public List<List<Integer>> threeSum(int[] num) {
     final int length = num.length;
     ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -75,5 +75,5 @@ public List<List<Integer>> threeSum(int[] num) {
         }
     }
     return result;
-}
+}*/
 }
