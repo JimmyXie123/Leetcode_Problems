@@ -11,10 +11,11 @@ public class Solution {
                 sum[i] = sum[i] + nums[j];
             }
             for(int j=-1; j<i; j++){
+                int temp;
                 if(j==-1){
-                    int temp = sum[i];
+                    temp = sum[i];
                 }else{
-                    int temp = sum[i] - sum[j];
+                    temp = sum[i] - sum[j];
                 }
                 
                 if(temp>max){
