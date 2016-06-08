@@ -12,7 +12,7 @@ public class Solution {
             }
             for(int j=-1; j<i; j++){
                 if(j==-1){
-                    int sum = sum[i]
+                    int sum = sum[i];
                 }else{
                     int sum = sum[i] - sum[j];
                 }
