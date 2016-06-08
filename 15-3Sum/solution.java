@@ -38,7 +38,7 @@ public class Solution {
         
     }
 */  
-public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
+public List<List<Integer>> threeSum(int[] num) {
     final int length = num.length;
     ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
     HashMap<Integer, int[]> hashMap = new HashMap<Integer, int[]>();
