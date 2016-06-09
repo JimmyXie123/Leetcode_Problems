@@ -4,7 +4,7 @@ public class Solution {
         if(numRows==0){
             return result;
         }
-        List<Integer> temp;
+        List<Integer> temp = null;
         int i=1;
         while(i<=numRows){
             List<Integer> elem = new ArrayList();
