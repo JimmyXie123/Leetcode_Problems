@@ -21,14 +21,14 @@ public class Solution {
         
         int[] pair1;
         int[] pair2;
-        for(int j=0; j<options.length(); j++){
+        for(int j=0; j<options.size(); j++){
             if(options.get(j)>pair1[0]){
                 pair1[0] = options.get(j);
                 pair1[1] = j;
              }
         }
         options.remove(pair1[1]);
-        for(int k=0; k<options.length(); k++){
+        for(int k=0; k<options.size(); k++){
             if(options.get(k)>pair2[0]){
                 pair2[0] = options.get(k);
                 pair2[1] = k;
