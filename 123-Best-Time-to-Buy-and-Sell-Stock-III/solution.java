@@ -21,17 +21,17 @@ public class Solution {
         
         int[] pair1;
         int[] pair2;
-        for(int i=0; i<options.length(); i++){
-            if(options.get(i)>pair1[0]){
-                pair1[0] = options.get(i);
-                pair1[1] = i;
+        for(int j=0; j<options.length(); j++){
+            if(options.get(j)>pair1[0]){
+                pair1[0] = options.get(j);
+                pair1[1] = j;
              }
         }
         options.remove(pair1[1]);
-        for(int i=0; i<options.length(); i++){
-            if(options.get(i)>pair2[0]){
-                pair2[0] = options.get(i);
-                pair2[1] = i;
+        for(int k=0; k<options.length(); k++){
+            if(options.get(k)>pair2[0]){
+                pair2[0] = options.get(k);
+                pair2[1] = k;
              }
         }
         return (pair1[0] + pair2[0]);
