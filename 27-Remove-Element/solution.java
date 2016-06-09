@@ -6,7 +6,7 @@ public class Solution {
         int slow = 0;
         int fast = 0;
         int size = nums.length;
-        while(fast<size){
+        while(fast<nums.length){
             if(nums[fast]==val){
                 fast++;
                 size--;
@@ -16,6 +16,7 @@ public class Solution {
                 fast++;
             }
         }
-        return size-1;
+        System.out.println(size);
+        return size;
     }
 }
