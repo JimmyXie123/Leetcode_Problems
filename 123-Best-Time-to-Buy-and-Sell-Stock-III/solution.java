@@ -19,8 +19,8 @@ public class Solution {
             sum = 0;
         }
         
-        int[] pair1;
-        int[] pair2;
+        int[] pair1=new int[2];
+        int[] pair2=new int[2];
         for(int j=0; j<options.size(); j++){
             if(options.get(j)>pair1[0]){
                 pair1[0] = options.get(j);
