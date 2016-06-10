@@ -19,6 +19,7 @@ public class MinStack {
     }
     
     public void pop() {
+        minStack.pop();
         stack.pop();
     }
     
