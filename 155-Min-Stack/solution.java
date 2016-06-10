@@ -1,10 +1,12 @@
 public class MinStack {
     Stack<Integer> stack;
     Stack<Integer> minStack;
+    Integer min;
     /** initialize your data structure here. */
     public MinStack() {
         stack = new Stack();
-        minStack = new Stack();
+        //minStack = new Stack();
+        min = null;
     }
     
     public void push(int x) {
@@ -12,12 +14,11 @@ public class MinStack {
         if(minStack.isEmpty()){
             minStack.push(x);
         }else{
-            minStack.push(Math.min(minStack.pop(), x));
+            minStack.push(Math.min(minStack.peek(), x));
         }
     }
     
     public void pop() {
-        minStack.pop();
         stack.pop();
     }
     
