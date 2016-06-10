@@ -11,7 +11,9 @@ class MyQueue {
         while(!stack2.isEmpty()){
             stack1.push(stack2.pop());
         }
-        stack1.pop();
+        if(!stack1.isEmpty()){
+            stack1.pop();
+        }
         while(!stack1.isEmpty()){
             stack2.push(stack1.pop());
         }
