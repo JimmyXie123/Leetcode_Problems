@@ -1,6 +1,6 @@
 public class MinStack {
     Stack<Integer> stack;
-    minStack<Integer> minStack; 
+    Stack<Integer> minStack; 
     /** initialize your data structure here. */
     public MinStack() {
         stack = new Stack();
