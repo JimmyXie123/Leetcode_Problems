@@ -24,7 +24,10 @@ class MyQueue {
         while(!stack2.isEmpty()){
             stack1.push(stack2.pop());
         }
-        Integer result = stack1.pop();
+        Integer result = null;
+        if(!stack1.isEmpty()){
+            result = stack1.pop();
+        }
         while(!stack1.isEmpty()){
             stack2.push(stack1.pop());
         }
