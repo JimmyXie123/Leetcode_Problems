@@ -26,7 +26,9 @@ class MyQueue {
         }
         Integer result = null;
         if(!stack1.isEmpty()){
-            result = stack1.pop();
+            result = stack1.peek();
+        }else{
+            return 0;
         }
         while(!stack1.isEmpty()){
             stack2.push(stack1.pop());
