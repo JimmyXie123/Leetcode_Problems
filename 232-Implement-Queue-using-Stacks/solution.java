@@ -22,11 +22,11 @@ class MyQueue {
         while(!stack2.isEmpty()){
             stack1.push(stack2.pop());
         }
-        result = stack1.pop();
+        Integer result = stack1.pop();
         while(!stack1.isEmpty()){
             stack2.push(stack1.pop());
         }
-        return result;
+        return result.intValue();
     }
 
     // Return whether the queue is empty.
