@@ -17,6 +17,7 @@ public class MinStack {
     }
     
     public void pop() {
+        minStack.pop();
         stack.pop();
     }
     
@@ -25,7 +26,7 @@ public class MinStack {
     }
     
     public int getMin() {
-        return minStack.pop();
+        return minStack.peek();
     }
 }
 
