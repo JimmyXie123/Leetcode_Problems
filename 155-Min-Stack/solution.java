@@ -8,6 +8,7 @@ public class MinStack {
     }
     
     public void push(int x) {
+        stack.push(x);
         if(minStack.isEmpty()){
             minStack.push(x);
         }else{
@@ -24,7 +25,7 @@ public class MinStack {
     }
     
     public int getMin() {
-        return minStack.peek();
+        return minStack.pop();
     }
 }
 
