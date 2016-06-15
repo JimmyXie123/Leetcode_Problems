@@ -39,7 +39,7 @@ public class Solution {
             int curt = (i==heights.length) ? -1:heights[i];
             while(!stack.isEmpty()&&curt<=heights[stack.peek()]){
                 int h = heights[stack.pop()];
-                int w = (stack.isEmpty)? i:i-stack.peek()-1;
+                int w = (stack.isEmpty())? i:i-stack.peek()-1;
                 max = Math.max(max, w*h);
             }
             stack.push(i);
