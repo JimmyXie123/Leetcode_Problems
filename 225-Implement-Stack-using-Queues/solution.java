@@ -27,10 +27,7 @@ class MyStack {
     // Get the top element.
     public int top() {
         moveItems();
-        int result = 0;
-        if(queue1.size()!=0){
-            result = queue1.poll().intValue();
-        }
+        int result = queue1.poll();
         queue2.offer(result);
         swap();
         return result;
