@@ -14,7 +14,7 @@ class MyStack {
     }
     
     public void push(int x) {
-        queue1.push(x);                      
+        queue1.offer(x);                      
     }
 
     // Removes the element on top of the stack.
@@ -29,8 +29,9 @@ class MyStack {
         moveItems();
         int result = 0;
         if(queue1.size()!=0){
-            queue1.poll().intValue();
+            result = queue1.poll().intValue();
         }
+        queue2.offer(result);
         swap();
         return result;
     }
