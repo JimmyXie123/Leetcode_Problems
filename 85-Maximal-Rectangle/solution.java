@@ -16,7 +16,7 @@ public class Solution {
             Stack<Integer> stack = new Stack();
             for(int j=0; j<=matrix[i].length; j++){
                 int curt = (j==matrix[i].length)?-1:height(matrix, i, j);
-                System.out.println(curt);
+                //System.out.println(curt);
                 while(!stack.isEmpty()&&curt<=height(matrix, i, stack.peek())){
                     int h = height(matrix, i, stack.pop().intValue());
                     int w = (stack.isEmpty())?j:j-stack.peek()-1;
