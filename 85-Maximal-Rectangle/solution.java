@@ -15,13 +15,14 @@ public class Solution {
         for(int i=0; i<matrix.length; i++){
             Stack<Integer> stack = new Stack();
             for(int j=0; j<=matrix[i].length; j++){
-                System.out.println(height(matrix,i,j));
                 int curt = (j==matrix[i].length)?-1:height(matrix, i, j);
+                System.out.println(curt);
                 while(!stack.isEmpty()&&curt<=height(matrix, i, stack.peek())){
                     int h = height(matrix, i, stack.pop().intValue());
                     int w = (stack.isEmpty())?j:j-stack.peek()-1;
                     max = Math.max(max, w*h);
-                }   
+                }
+                stack.push(j);
             }
         }
         return max;
