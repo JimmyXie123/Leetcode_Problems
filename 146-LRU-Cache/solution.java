@@ -14,7 +14,7 @@ public class LRUCache {
     Node head = new Node(-1);
     //Node tail = new Node(-1);
     int capacity;
-    Hashtable<Integer, Node> hash = new HashTable(capacity);
+    Hashtable<Integer, Node> hash = new Hashtable(capacity);
     
     public LRUCache(int capacity) {
         this.capacity = capacity;
@@ -23,8 +23,8 @@ public class LRUCache {
     }
     
     public int get(int key) {
-        if(hash.contains(key)){
-            System.out.println("How are u doing");
+        if(hash.containsKey(key)){
+            System.out.println("How are u doing123");
             Node temp = head;
             Node insert = null;
             while(temp.next!=null){
@@ -64,6 +64,7 @@ public class LRUCache {
             insert.next = head.next;
             head.next = insert;
             hash.put(key, insert);
+             System.out.println("How are u doing3");
         }
     }
 }
