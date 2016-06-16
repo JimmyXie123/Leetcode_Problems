@@ -1,17 +1,17 @@
 import java.util.Hashtable;
 public class LRUCache {
     private class Node{
-        //int key;
+        int key;
         int value;
         //Node prev;
         Node next;
         public Node(int value){
-            //this.key = key;
+            this.key = key;
             this.value = value;
         }
     }
     
-    Node head = new Node(-1);
+    Node head = new Node(-1, -1);
     //Node tail = new Node(-1);
     int capacity;
     Hashtable<Integer, Node> hash;
@@ -55,15 +55,15 @@ public class LRUCache {
             while(temp.next!=null&&temp.next.next!=null){
                 temp = temp.next;
             }
-            hash.remove(key);
+            hash.remove(temp.next.key);
             temp.next = null;
-            Node insert = new Node(value);
+            Node insert = new Node(key, value);
             insert.next = head.next;
             head.next = insert;
             hash.put(key, insert);
         }else{
             System.out.println("How are u doing3");
-            Node insert = new Node(value);
+            Node insert = new Node(key, value);
             insert.next = head.next;
             head.next = insert;
             hash.put(key, insert);
