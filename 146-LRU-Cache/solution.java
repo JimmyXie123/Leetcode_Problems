@@ -45,8 +45,10 @@ public class LRUCache {
             if(hash.size()==capacity){
                 System.out.println("123"+" "+key);
                 Node temp = head.next;
-                head.next = head.next.next;
-                head.next.prev = head;
+                head.next = temp.next;
+                temp.next.prev = head;
+                //head.next = head.next.next;
+                //head.next.prev = head;
                 hash.remove(temp.key);
             }
             System.out.println("key="+key);
