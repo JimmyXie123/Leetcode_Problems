@@ -43,7 +43,7 @@ public class LRUCache {
     
     public void set(int key, int value) {
         if(get(key)!=-1){
-            hash.get(key) = new Node(value);
+            hash.get(key).value = value;
         }else if(hash.size()==capacity){
             temp = head;
             while(temp.next!=null&&temp.next.next!=null){
