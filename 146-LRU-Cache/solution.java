@@ -62,12 +62,12 @@ public class LRUCache {
             head.next = insert;
             hash.put(key, insert);
         }else{
-            //System.out.println("How are u doing3");
+            System.out.println("How are u doing3");
             Node insert = new Node(value);
             insert.next = head.next;
             head.next = insert;
             hash.put(key, insert);
-             //System.out.println("How are u doing3");
+            System.out.println("How are u doing3");
         }
     }
 }
