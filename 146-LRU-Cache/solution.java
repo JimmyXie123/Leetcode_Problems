@@ -31,8 +31,9 @@ public class LRUCache {
                 if(temp.next==hash.get(key)){
                     insert = temp.next;
                     temp.next = temp.next.next;
+                }else{
+                    temp = temp.next;
                 }
-                temp = temp.next;
             }
             temp.next = insert;
             insert.next = null;
