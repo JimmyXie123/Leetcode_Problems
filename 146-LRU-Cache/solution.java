@@ -1,3 +1,4 @@
+import java.util.Hashtable;
 public class LRUCache {
     private class Node{
         //int key;
