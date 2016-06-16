@@ -14,10 +14,11 @@ public class LRUCache {
     Node head = new Node(-1);
     //Node tail = new Node(-1);
     int capacity;
-    Hashtable<Integer, Node> hash = new Hashtable(capacity);
+    Hashtable<Integer, Node> hash;
     
     public LRUCache(int capacity) {
         this.capacity = capacity;
+        hash = new Hashtable(capacity);
         head.next = null;
         //tail.next = head;
     }
@@ -61,12 +62,12 @@ public class LRUCache {
             head.next = insert;
             hash.put(key, insert);
         }else{
-            System.out.println("How are u doing3");
+            //System.out.println("How are u doing3");
             Node insert = new Node(value);
             insert.next = head.next;
             head.next = insert;
             hash.put(key, insert);
-             System.out.println("How are u doing3");
+             //System.out.println("How are u doing3");
         }
     }
 }
