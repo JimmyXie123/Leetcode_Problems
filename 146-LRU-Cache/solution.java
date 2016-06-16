@@ -32,7 +32,7 @@ public class LRUCache {
             current.prev.next = current.next;
             current.next.prev = current.prev;
             moveToTail(current);
-            System.out.println(hash.get(key).value);
+            
             return hash.get(key).value;
         }else{
             return -1;
@@ -41,7 +41,7 @@ public class LRUCache {
     
     public void set(int key, int value) {
         if(get(key)!=-1){
-            System.out.println(key+"111111111");
+            
             hash.get(key).value = value;
         }else{
             if(hash.size()==capacity){
@@ -52,7 +52,7 @@ public class LRUCache {
                 head.next.prev = head;
                 hash.remove(temp.key);
             }
-            System.out.println("key="+key);
+            
             Node insert = new Node(key, value);
             /*Node temp = tail.prev;
             tail.prev = insert;
