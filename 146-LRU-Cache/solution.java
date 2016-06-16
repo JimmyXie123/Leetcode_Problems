@@ -48,7 +48,7 @@ public class LRUCache {
                 System.out.println("123"+" "+key);
                 System.out.println(hash.get(2).key);
                 System.out.println("head"+head.next.key);
-                System.out.println("tail"+tail.next.key);
+                System.out.println("tail"+tail.prev.key);
                 Node temp = head.next;
                 //head.next = temp.next;
                 //temp.next.prev = head;
