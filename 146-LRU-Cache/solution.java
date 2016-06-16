@@ -54,6 +54,7 @@ public class LRUCache {
             while(temp.next!=null&&temp.next.next!=null){
                 temp = temp.next;
             }
+            hash.remove(key);
             temp.next = null;
             Node insert = new Node(value);
             insert.next = head.next;
