@@ -12,10 +12,10 @@ public class LRUCache {
     
     Node head = new Node(-1);
     //Node tail = new Node(-1);
-    HashTable<Integer, Node> hash;
+    Hashtable<Integer, Node> hash;
     
     public LRUCache(int capacity) {
-        hash = new HashTable(capacity);
+        hash = new Hashtable(capacity);
         head.next = null;
         //tail.next = head;
     }
