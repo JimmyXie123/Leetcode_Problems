@@ -46,10 +46,10 @@ public class LRUCache {
         }else{
             if(hash.size()==capacity){
                 Node temp = head.next;
-                //head.next = temp.next;
-                //temp.next.prev = head;
-                head.next = head.next.next;
-                head.next.prev = head;
+                head.next = temp.next;
+                temp.next.prev = head;
+                //head.next = head.next.next;
+                //head.next.prev = head;
                 hash.remove(temp.key);
             }
             
