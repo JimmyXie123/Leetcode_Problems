@@ -8,8 +8,8 @@ public class LRUCache {
         public Node(int key, int value){
             this.key = key;
             this.value = value;
-            this.prev = null;
             this.next = null;
+            this.prev = null;
         }
     }
     
@@ -54,12 +54,12 @@ public class LRUCache {
             }
             
             Node insert = new Node(key, value);
-            /*Node temp = tail.prev;
+            Node temp = tail.prev;
             tail.prev = insert;
             temp.next = insert;
             insert.next = tail;
-            insert.prev = temp;*/
-            moveToTail(insert);
+            insert.prev = temp;
+            //moveToTail(insert);
             hash.put(key, insert);
         }
     }
