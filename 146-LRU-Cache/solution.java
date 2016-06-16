@@ -48,7 +48,7 @@ public class LRUCache {
             }
             Node insert = new Node(key, value);
             moveToTail(insert);
-            hash.put(key,value);
+            hash.put(key,insert);
         }
     }
     
