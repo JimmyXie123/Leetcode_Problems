@@ -40,8 +40,8 @@ public class LRUCache {
             hash.get(key).value = value;
         }else{
             if(hash.size()==capacity){
-                tail.prev = tail.prev.prev;
                 tail.prev.prev.next = tail;
+                tail.prev = tail.prev.prev;
             }
             
             Node insert = new Node(key, value);
