@@ -21,7 +21,7 @@ public class LRUCache {
         this.capacity = capacity;
         hash = new Hashtable(capacity);
         head.next = tail;
-        head.next = null;
+        head.prev = null;
         tail.prev = head;
         tail.next = null;
     }
@@ -40,8 +40,10 @@ public class LRUCache {
             hash.get(key).value = value;
         }else{
             if(hash.size()==capacity){
-                tail.prev.prev.next = tail;
-                tail.prev = tail.prev.prev;
+                Node temp = head.next;
+                head.next = head.next.next;
+                head.next.prev = head;
+                hash.remove(temp.key);
             }
             
             Node insert = new Node(key, value);
