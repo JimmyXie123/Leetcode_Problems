@@ -1,66 +1,62 @@
+import java.util.Hashtable;
 public class LRUCache {
     private class Node{
-        Node prev;
-        Node next;
         int key;
         int value;
-
-        public Node(int key, int value) {
+        Node next;
+        Node prev;
+        public Node(int key, int value){
             this.key = key;
             this.value = value;
-            this.prev = null;
-            this.next = null;
         }
     }
-
-    private int capacity;
-    private HashMap<Integer, Node> hs = new HashMap<Integer, Node>();
-    private Node head = new Node(-1, -1);
-    private Node tail = new Node(-1, -1);
-
+    
+    Node head = new Node(-1, -1);
+    Node tail = new Node(-1, -1);
+    
+    int capacity;
+    Hashtable<Integer, Node> hash;
+    
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        tail.prev = head;
+        hash = new Hashtable(capacity);
         head.next = tail;
+        head.next = null;
+        tail.prev = head;
+        tail.next = null;
     }
-
+    
     public int get(int key) {
-        if( !hs.containsKey(key)) {
+        if(hash.containsKey(key)){
+            moveToTail(hash.get(key));
+            return hash.get(key).value;
+        }else{
             return -1;
         }
-
-        // remove current
-        Node current = hs.get(key);
+    }
+    
+    public void set(int key, int value) {
+        if(get(key)!=-1){
+            hash.get(key).value = value;
+        }else{
+            if(hash.size()==capacity){
+                tail.prev = tail.prev.prev;
+                tail.prev.prev.next = tail;
+            }
+            
+            Node insert = new Node(key, value);
+            head.next.prev = insert;
+            insert.next = head.next;
+            head.next =insert;
+            insert.prev = head; 
+            hash.put(key, insert);
+        }
+    }
+    
+    private void moveToTail(Node current){
         current.prev.next = current.next;
         current.next.prev = current.prev;
-
-        // move current to tail
-        move_to_tail(current);
-
-        return hs.get(key).value;
-    }
-
-    public void set(int key, int value) {
-        if( get(key) != -1) {
-            hs.get(key).value = value;
-            return;
-        }
-
-        if (hs.size() == capacity) {
-            hs.remove(head.next.key);
-            head.next = head.next.next;
-            head.next.prev = head;
-        }
-
-        Node insert = new Node(key, value);
-        hs.put(key, insert);
-        move_to_tail(insert);
-    }
-
-    private void move_to_tail(Node current) {
-        current.prev = tail.prev;
-        tail.prev = current;
-        current.prev.next = current;
         current.next = tail;
+        current.prev = tail.prev;
     }
 }
