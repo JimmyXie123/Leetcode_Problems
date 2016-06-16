@@ -5,7 +5,7 @@ public class LRUCache {
         int value;
         //Node prev;
         Node next;
-        public Node(int value){
+        public Node(int key, int value){
             this.key = key;
             this.value = value;
         }
@@ -36,8 +36,8 @@ public class LRUCache {
                     temp = temp.next;
                 }
             }
-            temp.next = insert;
-            insert.next = null;
+            insert.next = head.next;
+            head.next = insert;
             //temp.next = new Node(hash.get(key).value);
             return hash.get(key).value;
         }else{
