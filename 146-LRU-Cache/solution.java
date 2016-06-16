@@ -23,9 +23,7 @@ public class LRUCache {
         this.capacity = capacity;
         hash = new Hashtable(capacity);
         head.next = tail;
-        head.prev = null;
         tail.prev = head;
-        tail.next = null;
     }
     
     public int get(int key) {
