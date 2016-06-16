@@ -13,6 +13,7 @@ public class LRUCache {
     
     Node head = new Node(-1);
     //Node tail = new Node(-1);
+    int capacity;
     Hashtable<Integer, Node> hash;
     
     public LRUCache(int capacity) {
