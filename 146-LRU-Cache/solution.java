@@ -49,7 +49,7 @@ public class LRUCache {
                 head.next.prev = head;
                 hash.remove(temp.key);
             }
-            System.out.prinltn("key="+key);
+            System.out.println("key="+key);
             Node insert = new Node(key, value);
             head.next.prev = insert;
             insert.next = head.next;
