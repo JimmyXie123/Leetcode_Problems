@@ -36,9 +36,12 @@ public class LRUCache {
     }
     
     public void set(int key, int value) {
-        if(get(key)!=-1){
+        if(hash.containsKey(key)){
             Node current = hash.get(key);
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
             current.value = value;
+            moveToTail(current);
         }else{
             if(hash.size()==capacity){
                 Node temp = head.next;
