@@ -1,68 +1,66 @@
-import java.util.Hashtable;
 public class LRUCache {
     private class Node{
+        Node prev;
+        Node next;
         int key;
         int value;
-        //Node prev;
-        Node next;
-        public Node(int key, int value){
+
+        public Node(int key, int value) {
             this.key = key;
             this.value = value;
+            this.prev = null;
+            this.next = null;
         }
     }
-    
-    Node head = new Node(-1, -1);
-    //Node tail = new Node(-1);
-    int capacity;
-    Hashtable<Integer, Node> hash;
-    
+
+    private int capacity;
+    private HashMap<Integer, Node> hs = new HashMap<Integer, Node>();
+    private Node head = new Node(-1, -1);
+    private Node tail = new Node(-1, -1);
+
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        hash = new Hashtable(capacity);
-        head.next = null;
-        //tail.next = head;
+        tail.prev = head;
+        head.next = tail;
     }
-    
+
     public int get(int key) {
-        if(hash.containsKey(key)){
-            Node temp = head;
-            Node insert = null;
-            while(temp.next!=null){
-                if(temp.next==hash.get(key)){
-                    insert = temp.next;
-                    temp.next = temp.next.next;
-                }else{
-                    temp = temp.next;
-                }
-            }
-            insert.next = head.next;
-            head.next = insert;
-            //temp.next = new Node(hash.get(key).value);
-            return hash.get(key).value;
-        }else{
+        if( !hs.containsKey(key)) {
             return -1;
         }
+
+        // remove current
+        Node current = hs.get(key);
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+
+        // move current to tail
+        move_to_tail(current);
+
+        return hs.get(key).value;
     }
-    
+
     public void set(int key, int value) {
-        if(get(key)!=-1){
-            hash.get(key).value = value;
-        }else if(hash.size()==capacity){
-            Node temp = head;
-            while(temp.next!=null&&temp.next.next!=null){
-                temp = temp.next;
-            }
-            hash.remove(temp.next.key);
-            temp.next = null;
-            Node insert = new Node(key, value);
-            insert.next = head.next;
-            head.next = insert;
-            hash.put(key, insert);
-        }else{
-            Node insert = new Node(key, value);
-            insert.next = head.next;
-            head.next = insert;
-            hash.put(key, insert);
+        if( get(key) != -1) {
+            hs.get(key).value = value;
+            return;
         }
+
+        if (hs.size() == capacity) {
+            hs.remove(head.next.key);
+            head.next = head.next.next;
+            head.next.prev = head;
+        }
+
+        Node insert = new Node(key, value);
+        hs.put(key, insert);
+        move_to_tail(insert);
+    }
+
+    private void move_to_tail(Node current) {
+        current.prev = tail.prev;
+        tail.prev = current;
+        current.prev.next = current;
+        current.next = tail;
     }
 }
