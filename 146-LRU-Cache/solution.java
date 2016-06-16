@@ -1,27 +1,24 @@
-import java.util.Hashtable;
 public class LRUCache {
     private class Node{
         int key;
         int value;
-        Node next;
         Node prev;
+        Node next;
         public Node(int key, int value){
             this.key = key;
             this.value = value;
-            this.next = null;
             this.prev = null;
+            this.next = null;
         }
     }
     
     Node head = new Node(-1, -1);
     Node tail = new Node(-1, -1);
-    
-    int capacity;
-    Hashtable<Integer, Node> hash;
+    private int capacity;
+    private HashMap<Integer, Node> hash = new HashMap();
     
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        hash = new Hashtable(capacity);
         head.next = tail;
         tail.prev = head;
     }
@@ -29,45 +26,37 @@ public class LRUCache {
     public int get(int key) {
         if(hash.containsKey(key)){
             Node current = hash.get(key);
-            moveToTail(current);
-            
-            return hash.get(key).value;
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+            return current.value;
         }else{
             return -1;
         }
     }
     
     public void set(int key, int value) {
-        if(get(key)!=-1){
-            
-            hash.get(key).value = value;
+        if(hash.containsKey(key)){
+            Node current = hash.get(key);
+            current.value = value;
+            moveToTail(current);
         }else{
             if(hash.size()==capacity){
                 Node temp = head.next;
-                head.next = temp.next;
-                temp.next.prev = head;
-                //head.next = head.next.next;
-                //head.next.prev = head;
+                head.next = head.next.next;
+                head.next.prev = head;
                 hash.remove(temp.key);
             }
-            
+            System.out.prinltn("123");
             Node insert = new Node(key, value);
-            Node temp = tail.prev;
-            tail.prev = insert;
-            temp.next = insert;
-            insert.next = tail;
-            insert.prev = temp;
-            //moveToTail(insert);
-            hash.put(key, insert);
+            moveToTail(insert);
         }
     }
     
     private void moveToTail(Node current){
-        current.prev.next = current.next;
-        current.next.prev = current.prev;
-        current.next = tail;
-        current.prev = tail.prev;
-        tail.prev.next = current;
+        Node temp = tail.prev;
         tail.prev = current;
+        temp.next = current;
+        current.prev = temp;
+        current.next = tail;
     }
 }
