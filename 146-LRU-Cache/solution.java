@@ -46,9 +46,9 @@ public class LRUCache {
                 head.next.prev = head;
                 hash.remove(temp.key);
             }
-            System.out.prinltn("123");
             Node insert = new Node(key, value);
             moveToTail(insert);
+            hash.put(key,value);
         }
     }
     
