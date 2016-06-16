@@ -53,10 +53,11 @@ public class LRUCache {
             }
             System.out.println("key="+key);
             Node insert = new Node(key, value);
-            tail.prev.prev.next = insert;
-            insert.prev = tail.prev.prev;
+            Node temp = tail.prev;
             tail.prev = insert;
+            temp.next = insert;
             insert.next = tail;
+            insert.prev = temp;
             hash.put(key, insert);
         }
     }
