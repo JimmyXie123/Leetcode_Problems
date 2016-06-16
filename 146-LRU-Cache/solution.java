@@ -45,18 +45,18 @@ public class LRUCache {
             if(hash.size()==capacity){
                 System.out.println("123"+" "+key);
                 Node temp = head.next;
-                head.next = temp.next;
-                temp.next.prev = head;
-                //head.next = head.next.next;
-                //head.next.prev = head;
+                //head.next = temp.next;
+                //temp.next.prev = head;
+                head.next = head.next.next;
+                head.next.prev = head;
                 hash.remove(temp.key);
             }
             System.out.println("key="+key);
             Node insert = new Node(key, value);
-            head.next.prev = insert;
-            insert.next = head.next;
-            head.next =insert;
-            insert.prev = head; 
+            tail.prev.prev.next = insert;
+            insert.prev = tail.prev.prev;
+            tail.prev = insert;
+            insert.next = tail;
             hash.put(key, insert);
         }
     }
