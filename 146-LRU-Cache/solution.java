@@ -29,6 +29,7 @@ public class LRUCache {
     public int get(int key) {
         if(hash.containsKey(key)){
             moveToTail(hash.get(key));
+            System.out.println(hash.get(key).value);
             return hash.get(key).value;
         }else{
             return -1;
