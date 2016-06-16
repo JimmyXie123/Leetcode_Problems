@@ -32,6 +32,7 @@ public class LRUCache {
             System.out.println(hash.get(key).value);
             return hash.get(key).value;
         }else{
+            System.out.println("how are u");
             return -1;
         }
     }
