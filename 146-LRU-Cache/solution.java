@@ -37,6 +37,7 @@ public class LRUCache {
     
     public void set(int key, int value) {
         if(get(key)!=-1){
+            System.out.println(key+"111111111");
             hash.get(key).value = value;
         }else{
             System.out.println("123"+" "+key);
