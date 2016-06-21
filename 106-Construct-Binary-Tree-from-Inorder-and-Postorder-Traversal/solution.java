@@ -19,7 +19,7 @@ public class Solution {
     
     private TreeNode myBuildTree(int[] inorder, int instart, int inend, int[] postorder, int poststart, int postend){
         if(instart>inend){
-            return;
+            return null;
         }
         
         int pos = findPosition(inorder, instart, inend, postorder[postend]);
