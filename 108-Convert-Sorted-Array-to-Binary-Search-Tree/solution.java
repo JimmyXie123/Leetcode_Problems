@@ -27,7 +27,7 @@ public class Solution {
         
         TreeNode root;
         root.left = helper(size/2);
-        root = new TreeNode(nums[pos++]);
+        root = new TreeNode(current[pos++]);
         root.right = helper(size-1-size/2);
         
         return root;
