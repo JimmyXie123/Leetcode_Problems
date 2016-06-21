@@ -10,12 +10,17 @@ public class Solution {
     }
     
     private void helper(int[] candidates, int pos, int sum, List<List<Integer>> result, List<Integer> path){
+        if(sum<0){
+            return;
+        }
         if(sum==0){
             result.add(new ArrayList(path));
-            return;
         }
         
         for(int i=pos; i<candidates.length; i++){
+            //if(i!=0&&candidates[i]==candidates[i-1]){
+              //  continue;
+            //}
             path.add(candidates[i]);
             helper(candidates, i, sum-candidates[i], result, path);
             path.remove(path.size()-1);
