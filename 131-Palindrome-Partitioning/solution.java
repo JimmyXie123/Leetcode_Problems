@@ -24,19 +24,15 @@ public class Solution {
     }
     
     private void helper(String s, int pos, List<String> path, List<List<String>> result){
-        int size = 0;
-        for(int i=0; i<result.size(); i++){
-                size += result.get(i).size();
-        }
-        if(size == s.length()){
-            result.add(new List(path));
+        if(pos == s.length()){
+            result.add(new ArrayList(path));
         }
         
-        for(int i = pos+1; i<s.length(); i++){
+        for(int i = pos+1; i<=s.length(); i++){
             String prefix = s.substring(pos, i);
             if(isPalindrome(prefix)){
                 path.add(prefix);
-                helper(s, i+1, path, result);
+                helper(s, i, path, result);
                 path.remove(path.size()-1);
             }
         }
