@@ -13,10 +13,10 @@ public class Solution {
         }
         TreeLinkNode parent = root;
         TreeLinkNode next = parent.left;
-        while(parent!=null&&next!=null){
+        while(next!=null){
             TreeLinkNode prev = null;
             while(parent!=null){
-                if(prev!=null){
+                if(prev==null){
                     prev = parent.left;
                 }else{
                     prev.next = parent.left;
