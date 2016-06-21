@@ -12,6 +12,7 @@ public class Solution {
     private void helper(int[] candidates, int pos, int sum, List<List<Integer>> result, List<Integer> path){
         if(sum==0){
             result.add(new ArrayList(path));
+            return;
         }
         
         for(int i=pos; i<candidates.length; i++){
