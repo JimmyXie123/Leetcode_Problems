@@ -26,7 +26,8 @@ public class Solution {
             last.right = node;
         }
         last = node;
+        TreeNode right = node.right;  //------------important
         traverse(node.left);
-        traverse(node.right);
+        traverse(right);
     }
 }
