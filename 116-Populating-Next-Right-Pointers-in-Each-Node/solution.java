@@ -30,5 +30,4 @@ public class Solution {
             next = next.left;
         }
     }
-    
 }
