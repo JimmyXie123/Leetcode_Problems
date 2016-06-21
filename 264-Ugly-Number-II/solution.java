@@ -6,9 +6,9 @@ public class Solution {
         PriorityQueue<Long> ugly = new PriorityQueue<Long>();
         HashSet<Long> set = new HashSet();
         Long[] prime = new Long[3];
-        prime[0] = new Long[2];
-        prime[1] = new Long[3];
-        prime[2] = new Long[5];
+        prime[0] = new Long(2);
+        prime[1] = new Long(3);
+        prime[2] = new Long(5);
         for(int i=0; i<3; i++){
             set.add(prime[i]);
             ugly.add(prime[i]);
