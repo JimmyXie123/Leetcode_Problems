@@ -17,7 +17,7 @@ public class Solution {
         return -1;
     }
     
-    private void myBuildTree(int[] inorder, int instart, int inend, int[] postorder, int poststart, int postend){
+    private TreeNode myBuildTree(int[] inorder, int instart, int inend, int[] postorder, int poststart, int postend){
         if(instart>inend){
             return;
         }
