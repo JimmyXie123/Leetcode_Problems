@@ -26,7 +26,9 @@ public class Solution {
             last.right = node;
         }
         last = node;
-        TreeNode right = node.right;  //------------important
+        TreeNode right = node.right;  /*------------important!!!!!!!!!!!!!!-------
+                                        走完node之后，node变成last，last在下一轮中left，right指针就变了，左指针不再需要，
+                                        而右指针还需在用--------------*/
         traverse(node.left);
         traverse(right);
     }
