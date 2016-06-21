@@ -42,7 +42,7 @@ public class Solution {
                 }
                 parent = parent.next;
             }
-            parent = parent.next;
+            parent = next;
         }
     }
 }
