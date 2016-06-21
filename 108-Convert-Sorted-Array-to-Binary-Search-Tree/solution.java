@@ -25,11 +25,11 @@ public class Solution {
             return null;
         }
         
-        TreeNode root;
-        root.left = helper(size/2);
-        root = new TreeNode(current[pos++]);
-        root.right = helper(size-1-size/2);
-        
+        TreeNode left = helper(size/2);
+        TreeNode root = new TreeNode(current[pos++]);
+        TreeNode right = helper(size-1-size/2);
+        root.left = left;
+        root.right = right;
         return root;
     }
     
