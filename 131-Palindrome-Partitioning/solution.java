@@ -24,11 +24,7 @@ public class Solution {
     }
     
     private void helper(String s, int pos, List<String> path, List<List<String>> result){
-        int size = 0;
-        for(int i=0; i<path.size(); i++){
-                size += path.get(i).length();
-        }
-        if(size == s.length()){
+        if(pos==s.length()){
             result.add(new ArrayList(path));
         }
         
