@@ -18,9 +18,9 @@ public class Solution {
         }
         
         for(int i=pos; i<candidates.length; i++){
-            //if(i!=0&&candidates[i]==candidates[i-1]){
-              //  continue;
-            //}
+            if(i!=0&&candidates[i]==candidates[i-1]){
+                continue;
+            }
             path.add(candidates[i]);
             helper(candidates, i, sum-candidates[i], result, path);
             path.remove(path.size()-1);
