@@ -7,7 +7,7 @@ public class Solution {
         
         int[] inDegree = new int[numCourses];
         for(int i=0; i<m; i++){
-            inDegree[[prerequisites][0]]++;
+            inDegree[prerequisites[i][0]]++;
         }
         
         
