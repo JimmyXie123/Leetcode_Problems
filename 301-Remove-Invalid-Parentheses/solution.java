@@ -11,7 +11,7 @@ public class Solution {
             if(s.charAt(i)==par[1]) stack--;
             if(stack>=0) continue;
             for(int j=last_j; j<=i; j++){
-                if((j==last_j||s.charAtCj-1)!=par[1])&&s.charAt(j)==par[1]){
+                if((j==last_j||s.charAtCj-1)!=par[1])&&(s.charAt(j)==par[1])){
                     remove(s.substring(0, j)+s.substring(j+1, s.length), ans, i, j, par);
                 }
             }
