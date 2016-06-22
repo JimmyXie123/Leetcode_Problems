@@ -15,10 +15,10 @@ public class Solution {
                     remove(s.substring(0, j)+s.substring(j+1, s.length()), ans, i, j, par);
                 }
             }
+            return;
         }
-        
+        String reverse = new StringBuilder(s).reverse().toString();
         if(par[0]=='('){
-            String reverse = new StringBuilder(s).reverse().toString();
             remove(reverse, ans, 0, 0, new char[]{')', '('});
         }else{
             ans.add(reverse);
