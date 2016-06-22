@@ -13,6 +13,8 @@ public class Solution {
         }
         n = board[0].length;
         
+        
+        
         char[][] temp = new char[m+2][n+2];
         
         for(int i=0; i<m+2; i++){
@@ -22,19 +24,33 @@ public class Solution {
                 }else{
                     temp[i][j] = board[i-1][j-1];
                 }
+                //System.out.print(temp[i][j]);
             }
+            //System.out.println();
         }
         
         for(int i=0; i<m+2; i++){
             for(int j=0; j<n+2; j++){
-               b5(board, i, j);
+               b5(temp, i, j);
+               //System.out.print(temp[i][j]);
             }
+            //System.out.println();
         }
         
         for(int i=0; i<m+2; i++){
             for(int j=0; j<n+2; j++){
-                remove(board, i, j);
+                
+                //if(temp[i][j]=='0'){
+                    System.out.println(temp[i][j]);
+                //}
+                System.out.println(temp[i][j]==0);
+                if(temp[i][j].equal('0')){
+                    System.out.println("123");
+                    temp[i][j] = 'X';
+                }
+                
             }
+            System.out.println();
         }
         
         for(int i=0; i<m; i++){
@@ -49,21 +65,23 @@ public class Solution {
         
     }
     
-    private void b5(char[][] board, int i, int j){
-        if(board[i][j]!='5'){
+    private void b5(char[][] temp, int i, int j){
+        if(temp[i][j]!='5'){
             return;
         }
         for(int k=0; k<4; k++){
             int nextX = i+dX[k];
             int nextY = j+dX[k];
-            if(nextX>=0&&nextX<m&&nextY>=0&&nextY<n){
-                if(board[nextX][nextY]=='0'){
-                    board[i][j] = '5';
+            if(nextX>=0&&nextX<m+2&&nextY>=0&&nextY<n+2){
+                if(temp[nextX][nextY]=='0'){
+                    temp[i][j] = '5';
+                    b5(temp, nextX, nextY);
                 }
             }
         }
     }
     
+    /*
     private void remove(char[][] board, int i, int j){
         if(board[i][j]!='0'){
             return;
@@ -77,6 +95,6 @@ public class Solution {
             }
         }
         
-    }
+    }*/
     
 }
