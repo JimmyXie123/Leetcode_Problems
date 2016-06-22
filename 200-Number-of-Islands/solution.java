@@ -7,7 +7,7 @@ public class Solution {
         for(int i=0; i<4; i++){
             int nextX = x+dx[i];
             int nextY = y+dy[i];
-            if(nextX>=0 && nextX<n && nextY>=0&& nextY<m){
+            if(nextX>=0 && nextX<m && nextY>=0&& nextY<n){
                 if(grid[nextX][nextY]=='1'){
                     removeIsland(grid, nextX, nextY);
                 }
