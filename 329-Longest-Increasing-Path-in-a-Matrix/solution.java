@@ -16,21 +16,21 @@ public class Solution {
         int max = 1;
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
-                max = Math.max(dfs(matrix, i, j), max);
+                max = Math.max(dfs(matrix, i, j), max, cache);
             }
         }
         
         return max;
     }
     
-    private int dfs(int[][] matrix, int i, int j){
+    private int dfs(int[][] matrix, int i, int j, int[][] cache){
         if(cache[i][j]!=0) return cache[i][j]; 
         int max = 1;
         for(int k=0; k<4; k++){
             int nextX = i+dX[k];
             int nextY = j+dY[k];
             if(nextX>=0 && nextX<m && nextY>=0 && nextY<n && matrix[i][j]<matrix[nextX][nextY]){
-                max = Math.max(max, 1+dfs(matrix, nextX, nextY));
+                max = Math.max(max, 1+dfs(matrix, nextX, nextY, cache));
             }
         }
         cache[i][j] = max;
