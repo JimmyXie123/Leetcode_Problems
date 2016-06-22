@@ -1,7 +1,7 @@
 public class Solution {
     public List<String> removeInvalidParentheses(String s) {
         List<String> ans = new ArrayList();
-        remove(s, ans, 0, 0, new char[]{"(", ")"});
+        remove(s, ans, 0, 0, new char[]{'(', ')'});
         return ans;
     }
     
@@ -18,7 +18,7 @@ public class Solution {
         }
         
         String reverse = new StringBuilder(s).reverse().toString();
-        remove(reverse, ans, 0, 0, new char[]{")", "("});
+        remove(reverse, ans, 0, 0, new char[]{')', '('});
         ans.add(reverse);
     }
 }
