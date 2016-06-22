@@ -12,6 +12,7 @@ public class Solution {
         int n = prerequisites.length;
         
         HashMap<Integer, Integer> map = new HashMap();
+        HashSet<Integer> source = new HashSet();
         for(int i=0; i<m; i++){
             for(int j=0; j<n-1; j++){
                 if(!map.containsKey(prerequisites[i][j])){
@@ -25,7 +26,8 @@ public class Solution {
         int index = 0;
         Queue<Integer> queue = new LinkedList();
         for(int i=0; i<m; i++){
-            if(!map.containsKey(prerequisites[i][n-1])){
+            if((!map.containsKey(prerequisites[i][n-1])) && (!source.contains(prerequisites[i][n-1]))){
+                source.add(prerequisites[i][n-1]);
                 result[index++] = prerequisites[i][n-1];
                 queue.offer(prerequisites[i][n-1]);
             }
