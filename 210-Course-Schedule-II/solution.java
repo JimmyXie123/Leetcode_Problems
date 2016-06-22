@@ -39,6 +39,7 @@ public class Solution {
                         map.put(prerequisites[i][j], map.get(prerequisites[i][j])-1);
                         if(map.get(prerequisites[i][j])==0){
                             result[index++] = prerequisites[i][j];
+                            queue.offer(prerequisites[i][j]);
                         }
                     }
                 }
