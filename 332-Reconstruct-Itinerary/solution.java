@@ -5,7 +5,7 @@ public class Solution {
             return ans;
         }
         
-        HashMap<String, PriorityQueue<String>> map = new PriorityQueue();
+        HashMap<String, PriorityQueue<String>> map = new HashMap();
         for(int i=0; i<tickets.length; i++){
             if(map.containsKey(tickets[i][0])){
                 map.get(tickets[i][0]).add(tickets[i][1]);
