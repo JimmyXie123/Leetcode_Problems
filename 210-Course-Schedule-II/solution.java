@@ -26,7 +26,7 @@ public class Solution {
         Queue<Integer> queue = new LinkedList();
         for(int i=0; i<m; i++){
             if(!map.containsKey(prerequisites[i][n-1])){
-                result[index++] = prerequisites;
+                result[index++] = prerequisites[i][n-1];
                 queue.offer(prerequisites[i][n-1]);
             }
         }
