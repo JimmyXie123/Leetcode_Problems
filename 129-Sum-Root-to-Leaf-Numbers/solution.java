@@ -18,8 +18,11 @@ public class Solution {
     }
     
     private void helper(TreeNode node, int sum){
+        if(node==null){
+            return;
+        }
         if(node.left==null&&node.right==null){
-            result += sum + node.val;
+            result += sum*10 + node.val;
             return;
         }else{
             int pass = sum*10+node.val;
