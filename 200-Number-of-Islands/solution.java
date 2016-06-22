@@ -2,7 +2,7 @@ public class Solution {
     private int[] dx = {1, 0, 0, -1};
     private int[] dy = {0, 1, -1, 0};
     private void removeIsland(char[][] grid, int x, int y){
-        grid[x][y]=='0';
+        grid[x][y]='0';
         for(int i=0; i<4; i++){
             int nextX = x+dx[i];
             int nextY = y+dy[i];
