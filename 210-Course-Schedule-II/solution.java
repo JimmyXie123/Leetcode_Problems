@@ -38,6 +38,7 @@ public class Solution {
                     for(int j=0; j<n-1; j++){
                         map.put(prerequisites[i][j], map.get(prerequisites[i][j])-1);
                         if(map.get(prerequisites[i][j])==0){
+                            System.out.println(index);
                             result[index++] = prerequisites[i][j];
                             queue.offer(prerequisites[i][j]);
                         }
