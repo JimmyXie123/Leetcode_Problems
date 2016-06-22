@@ -12,7 +12,7 @@ public class Solution {
             if(stack>=0) continue;
             for(int j=last_j; j<=i; j++){
                 if( (j==last_j||s.charAt(j-1)!=par[1])&&(s.charAt(j)==par[1])){
-                    remove(s.substring(0, j)+s.substring(j+1, s.length), ans, i, j, par);
+                    remove(s.substring(0, j)+s.substring(j+1, s.length()), ans, i, j, par);
                 }
             }
         }
