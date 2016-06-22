@@ -12,6 +12,7 @@ public class Solution {
         }
         n = matrix[0].length;
         
+        int[][] cache = new int[m][n]; 
         int max = 1;
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
@@ -23,16 +24,16 @@ public class Solution {
     }
     
     private int dfs(int[][] matrix, int i, int j){
+        if(cache[i][j]!=0) return cache[i][j]; 
+        int max = 1;
         for(int k=0; k<4; k++){
             int nextX = i+dX[k];
             int nextY = j+dY[k];
-            int max = 1;
             if(nextX>=0 && nextX<m && nextY>=0 && nextY<n && matrix[i][j]<matrix[nextX][nextY]){
                 max = Math.max(max, 1+dfs(matrix, nextX, nextY));
-            }else{
-                return 0;
             }
         }
+        cache[i][j] = max;
         return max;
     }
 }
