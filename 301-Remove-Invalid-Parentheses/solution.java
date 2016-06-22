@@ -17,8 +17,11 @@ public class Solution {
             }
         }
         
-        String reverse = new StringBuilder(s).reverse().toString();
-        remove(reverse, ans, 0, 0, new char[]{')', '('});
-        ans.add(reverse);
+        if(par[0]=='('){
+            String reverse = new StringBuilder(s).reverse().toString();
+            remove(reverse, ans, 0, 0, new char[]{')', '('});
+        }else{
+            ans.add(reverse);
+        }
     }
 }
