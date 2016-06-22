@@ -9,7 +9,7 @@ public class Solution {
         for(int i=0; i<tickets.length; i++){
             
         //--------------注意这里不是if和else---------------
-            if(!map.containsKey(tickest[i][0])){
+            if(!map.containsKey(ticket[i][0])){
                 map.put(tickets[i][0], new PriorityQueue());
             }
             map.get(tickets[i][0]).add(tickets[i][1]);
