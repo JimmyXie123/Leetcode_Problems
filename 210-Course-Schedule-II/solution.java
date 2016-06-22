@@ -1,7 +1,7 @@
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] result = new int[numCourses];
-        int[] tip;
+        int[] tip = new int[0];
         int[] inDegree = new int[numCourses];
         for(int i=0; i<numCourses; i++){
             result[i] = i;
