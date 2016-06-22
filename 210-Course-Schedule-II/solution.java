@@ -1,54 +1,49 @@
 public class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] result = new int[numCourses];
+        int[] tip;
+        int[] inDegree = new int[numCourses];
+        for(int i=0; i<numCourses; i++){
+            result[i] = i;
+        }
+        
         if(prerequisites==null||prerequisites.length==0){
             return result;
         }
         int m = prerequisites.length;
         
-        if(prerequisites[0].length==0){
-            return result;
-        }
-        int n = prerequisites.length;
-        
         HashMap<Integer, Integer> map = new HashMap();
-        HashSet<Integer> source = new HashSet();
         for(int i=0; i<m; i++){
-            for(int j=0; j<n-1; j++){
-                if(!map.containsKey(prerequisites[i][j])){
-                    map.put(prerequisites[i][j], 1);
-                }else{
-                    map.put(prerequisites[i][j], map.get(prerequisites[i][j])+1);
-                }
-            }
+                inDegree[prerequisites[i][0]]++;
         }
         
         int index = 0;
         Queue<Integer> queue = new LinkedList();
-        for(int i=0; i<m; i++){
-            System.out.println("n="+n);
-            if( (!map.containsKey(prerequisites[i][n-1])) && (!source.contains(prerequisites[i][n-1])) ){
-                source.add(prerequisites[i][n-1]);
-                result[index++] = prerequisites[i][n-1];
-                queue.offer(prerequisites[i][n-1]);
+        for(int i=0; i<numCourses; i++){
+            if( inDegree[i]==0 ){
+                result[index++] = i;
+                queue.offer(i);
             }
         }
         
         while(!queue.isEmpty()){
             Integer number =  queue.poll();
             for(int i=0; i<m; i++){
-                if(prerequisites[i][n-1]==number.intValue()){
-                    for(int j=0; j<n-1; j++){
-                        map.put(prerequisites[i][j], map.get(prerequisites[i][j])-1);
-                        if(map.get(prerequisites[i][j])==0){
-                            result[index++] = prerequisites[i][j];
-                            queue.offer(prerequisites[i][j]);
-                        }
+                if(prerequisites[i][1]==number.intValue()){
+                    inDegree[prerequisites[i][0]]--;
+                    if(inDegree[prerequisites[i][0]]==0){
+                        result[index++] = prerequisites[i][0];
+                        queue.offer(prerequisites[i][0]);
                     }
                 }
             }
         }
         
+        for(int i=0; i<numCourses; i++){
+            if(inDegree[i]!=0){
+                return tip;
+            }
+        }
         return result;
         
     }
