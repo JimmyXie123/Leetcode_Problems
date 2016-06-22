@@ -15,7 +15,7 @@ public class Solution {
         }
         
         for(UndirectedGraphNode n:nodes){
-            for(UndirectedGraph w:n.neighbors){
+            for(UndirectedGraphNode w:n.neighbors){
                 UndirectedGraphNode temp = map.get(w);
                 result.get(n).neighbors.add(temp);
             }
