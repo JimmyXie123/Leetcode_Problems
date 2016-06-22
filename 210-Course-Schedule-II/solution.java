@@ -26,7 +26,8 @@ public class Solution {
         int index = 0;
         Queue<Integer> queue = new LinkedList();
         for(int i=0; i<m; i++){
-            if((!map.containsKey(prerequisites[i][n-1])) && (!source.contains(prerequisites[i][n-1]))){
+            System.out.println("n="+n);
+            if( (!map.containsKey(prerequisites[i][n-1])) && (!source.contains(prerequisites[i][n-1])) ){
                 source.add(prerequisites[i][n-1]);
                 result[index++] = prerequisites[i][n-1];
                 queue.offer(prerequisites[i][n-1]);
@@ -40,7 +41,6 @@ public class Solution {
                     for(int j=0; j<n-1; j++){
                         map.put(prerequisites[i][j], map.get(prerequisites[i][j])-1);
                         if(map.get(prerequisites[i][j])==0){
-                            System.out.println(index);
                             result[index++] = prerequisites[i][j];
                             queue.offer(prerequisites[i][j]);
                         }
