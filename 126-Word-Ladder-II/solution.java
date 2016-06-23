@@ -25,7 +25,7 @@ public class Solution {
             for(int i=0; i<size; i++){
                 String crt = queue.poll();
                 for(String next:getWords(crt, wordList)){
-                    graph.get(next).add(srt);
+                    graph.get(next).add(crt);
                     if(!distance.containsKey(next)){
                         distance.put(next, distance.get(crt)+1);
                         queue.offer(next);
