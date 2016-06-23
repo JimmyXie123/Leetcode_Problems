@@ -1,6 +1,6 @@
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        HashSet<Integer, Node> graph = new HashSet();
+        HashMap<Integer, Node> graph = new HashMap();
         for(int i=0; i<n; i++){
             graph.put(i, new Node(i));
         }
