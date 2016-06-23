@@ -1,20 +1,5 @@
 public class Solution {
-    private List<String> draw(List<Integer> cols){
-        List<String> row = new ArrayList();
-        for(int i=0; i<cols.size(); i++){
-            String s = new String();
-            for(int j=0; j<cols.size(); j++){
-                if(j==cols.get(i)){
-                    s += "Q";
-                }else{
-                    s += ".";
-                }
-            }
-            row.add(s);
-        }
-        return row;
-    }
-    
+    int total = 0;
     private boolean isValid(List<Integer> cols, int col){
         int row = cols.size();
         for(int i=0; i<row; i++){
@@ -31,9 +16,9 @@ public class Solution {
         return true;
     }
     
-    private void search(List<List<String>> result, List<Integer> cols, int n){
+    private void search(List<Integer> cols, int n){
         if(cols.size()==n){
-            result.add(draw(cols));
+            total++;
         }
         
         for(int col=0; col<n; col++){
@@ -41,17 +26,16 @@ public class Solution {
                 continue;
             }
             cols.add(col);
-            search(result, cols, n);
+            search(cols, n);
             cols.remove(cols.size()-1);
         }
     }
     
     public int totalNQueens(int n) {
-        List<List<String>> result = new ArrayList();
         if(n<=0){
             return 0;
         }
-        search(result, new ArrayList(), n);
-        return result.size();
+        search(new ArrayList(), n);
+        return total;
     }
 }
