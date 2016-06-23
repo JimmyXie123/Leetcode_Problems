@@ -39,7 +39,7 @@ public class Solution {
     
     private void dfs(List<List<String>> ladders, List<String> path, HashMap<String, ArrayList<String>> graph, String crt, String start){
         path.add(crt);
-        if(crt.equals(end)){
+        if(crt.equals(start)){
             Collections.reverse(path);
             ladders.add(new ArrayList(path));
             Collections.reverse(path);
