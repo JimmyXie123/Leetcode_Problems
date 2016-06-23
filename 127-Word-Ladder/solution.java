@@ -3,18 +3,19 @@ public class Solution {
         if(wordList==null){
             return 0;
         }
+    
         HashSet<String> graph = new HashSet();
         Queue<String> queue = new LinkedList();
         queue.add(beginWord);
         graph.add(beginWord);
         
-        int length = 0;
+        int length = 1;
         while(!queue.isEmpty()){
             int size = queue.size();
             length++;
             for(int i=0; i<size; i++){
                 String word = queue.poll();
-                for(String n:getWords(word, WordList)){
+                for(String n:getWords(word, wordList)){
                     if(graph.contains(n)){
                         continue;
                     }else{
@@ -29,7 +30,7 @@ public class Solution {
             }
         }
         
-        return length;
+        return 0;
         
     }
     
