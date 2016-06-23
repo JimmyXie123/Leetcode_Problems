@@ -10,7 +10,7 @@ public class Solution {
         
         bfs(ladders, graph, distance, beginWord, wordList);
         List<String> path = new ArrayList();
-        dfs(ladders, path, beginWord, endWOrd);
+        dfs(ladders, path, beginWord, endWord);
         return ladders;
         
     }
