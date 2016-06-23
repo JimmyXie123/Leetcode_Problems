@@ -33,7 +33,10 @@ public class Solution {
             }
         }
         
-        return graph.keySet();
+        List<Integer> result = new ArrayList();
+        for(Integer i:graph.keySet()){
+            result.add(i);
+        }
     }
     
 }
