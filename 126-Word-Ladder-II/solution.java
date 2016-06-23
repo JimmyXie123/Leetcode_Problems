@@ -43,7 +43,7 @@ public class Solution {
             ladders.add(new ArrayList(path));
         }else{
             for(String next:graph.get(crt)){
-                dfs(ladders, path, next, end);
+                dfs(ladders, path, graph, next, end);
             }
         }
         path.remove(path.size()-1);
