@@ -18,7 +18,7 @@ public class Solution {
         return min;
     }
     
-    private int helper(List<Integer> nums, int pos, int sum, int count){
+    private void helper(List<Integer> nums, int pos, int sum, int count){
         if(count>min){
             return;
         }
