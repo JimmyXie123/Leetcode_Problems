@@ -37,6 +37,7 @@ public class Solution {
         for(Integer i:graph.keySet()){
             result.add(i);
         }
+        return result;
     }
     
 }
