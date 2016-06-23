@@ -3,6 +3,8 @@ public class Solution {
     int min = Integer.MAX_VALUE;
     public int numSquares(int n) {
         int num = 0;
+        //int[] cache = new int[n];
+        
         while(num*num<=n){
             num++;
         }
@@ -16,7 +18,11 @@ public class Solution {
         return min;
     }
     
-    private void helper(List<Integer> nums, int pos, int sum, int count){
+    private int helper(List<Integer> nums, int pos, int sum, int count){
+        if(count>min){
+            return;
+        }
+        
         if(sum<0){
             return;
         }
@@ -28,7 +34,7 @@ public class Solution {
         
         for(int i= pos; i<nums.size(); i++){
             count++;
-            helper(nums, i, sum-nums.get(i), count);
+            helper(nums, i, sum-nums.get(i), count, cache);
             count--;
         }
     }
