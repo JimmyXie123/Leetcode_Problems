@@ -1,94 +1,78 @@
+//------------DFS会爆栈-----------------
 public class Solution {
-    int[] dX = {-1, 0, 0, 1};
-    int[] dY = {0, -1, 1, 0};
-    int m, n;
+    int[] dX = {-1,0,0,1};
+    int[] dY = {0,-1,1,0};
+    int row, col;
+    private static final char FREE = 'F';
+    private static final char VISITED = 'V';
+    
     public void solve(char[][] board) {
         if(board==null||board.length==0){
             return;
         }
-        m = board.length;
-        
+        row = board.length;
         if(board[0]==null||board[0].length==0){
             return;
         }
-        n = board[0].length;
+        col = board[0].length;
         
+        for(int i=0; i<row; i++){
+            bfs(board, i, 0);
+            bfs(board, i, col-1);
+        }
         
-        char[][] temp = new char[m+2][n+2];
+        for(int j=0; j<col; j++){
+            bfs(board, 0, j);
+            bfs(board, row-1, j);
+        }
         
-        for(int i=0; i<m+2; i++){
-            for(int j=0; j<n+2; j++){
-                if(i==0||j==0||i==m+1||j==n+1){
-                    temp[i][j] = '5';
-                }else{
-                    temp[i][j] = board[i-1][j-1];
+        for(int i=0; i<row; i++){
+            for(int j=0; j<col; j++){
+                if(board[i][j]=='O'){
+                    board[i][j] = 'X';
                 }
-                //System.out.print(temp[i][j]);
-            }
-            //System.out.println();
-        }
-        
-        for(int i=0; i<m+2; i++){
-            for(int j=0; j<n+2; j++){
-               b5(temp, i, j);
-               //System.out.print(temp[i][j]);
-            }
-            //System.out.println();
-        }
-        
-        for(int i=0; i<m+2; i++){
-            for(int j=0; j<n+2; j++){
-                if(temp[i][j] == 'O'){
-                    temp[i][j] = 'X';
-                }
-                
-            }
-            
-        }
-        
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++){
-                if(temp[i+1][j+1]=='5'){
-                    board[i][j]='O';
-                }else{
-                    board[i][j] = temp[i+1][j+1];
+                if(board[i][j]=='F'){
+                    board[i][j] = 'O';
                 }
             }
         }
         
     }
     
-    private void b5(char[][] temp, int i, int j){
-        if(temp[i][j]!='5'){
+    private void bfs(char[][] board, int i, int j){
+        if(board[i][j]!='O'){
             return;
         }
-        for(int k=0; k<4; k++){
-            int nextX = i+dX[k];
-            int nextY = j+dY[k];
-            if(nextX>=0 && nextX<m+2 && nextY>=0&&nextY<n+2){
-                
-                if(temp[nextX][nextY]=='O'){
-                    temp[nextX][nextY] = '5';
-                    b5(temp, nextX, nextY);
+        
+        Queue<Node> queue = new LinkedList();
+        queue.offer(new Node(i, j));
+        while(!queue.isEmpty()){
+            Node temp = queue.poll();
+            board[temp.x][temp.y] = FREE;
+            for(int k=0; k<4; k++){
+                int nextX = temp.x+dX[k];
+                int nextY = temp.y+dY[k];
+                if(nextX>=0 && nextX<row && nextY>=0 && nextY<col){
+                    if(board[nextX][nextY]=='O'){
+                        board[nextX][nextY] = VISITED;
+                        queue.offer(new Node(nextX, nextY));
+                    }
                 }
             }
         }
+        
     }
     
-    /*
-    private void remove(char[][] board, int i, int j){
-        if(board[i][j]!='0'){
-            return;
+    //private List<Character>
+    
+    
+    private class Node{
+        int x;
+        int y;
+        public Node(int x, int y){
+            this.x = x;
+            this.y = y;
         }
-        board[i][j] = 'X';
-        for(int k=0; k<4; k++){
-            int nextX = i+dX[k];
-            int nextY = j+dY[k];
-            if(nextX>=0&&nextX<m&&nextY>=0&&nextY<n){
-                remove(board, nextX, nextY);
-            }
-        }
-        
-    }*/
+    }
     
 }
