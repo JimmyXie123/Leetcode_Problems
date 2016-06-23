@@ -14,7 +14,6 @@ public class Solution {
         n = board[0].length;
         
         
-        
         char[][] temp = new char[m+2][n+2];
         
         for(int i=0; i<m+2; i++){
@@ -39,24 +38,18 @@ public class Solution {
         
         for(int i=0; i<m+2; i++){
             for(int j=0; j<n+2; j++){
-                
-                //if(temp[i][j]=='0'){
-                    System.out.println(temp[i][j]);
-                //}
-                System.out.println(temp[i][j]==0);
-                if(temp[i][j].equal('0')){
-                    System.out.println("123");
+                if(temp[i][j] == 'O'){
                     temp[i][j] = 'X';
                 }
                 
             }
-            System.out.println();
+            
         }
         
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
                 if(temp[i+1][j+1]=='5'){
-                    board[i][j]='0';
+                    board[i][j]='O';
                 }else{
                     board[i][j] = temp[i+1][j+1];
                 }
@@ -71,10 +64,11 @@ public class Solution {
         }
         for(int k=0; k<4; k++){
             int nextX = i+dX[k];
-            int nextY = j+dX[k];
-            if(nextX>=0&&nextX<m+2&&nextY>=0&&nextY<n+2){
-                if(temp[nextX][nextY]=='0'){
-                    temp[i][j] = '5';
+            int nextY = j+dY[k];
+            if(nextX>=0 && nextX<m+2 && nextY>=0&&nextY<n+2){
+                
+                if(temp[nextX][nextY]=='O'){
+                    temp[nextX][nextY] = '5';
                     b5(temp, nextX, nextY);
                 }
             }
