@@ -12,6 +12,7 @@ public class Solution {
             }
             row.add(s);
         }
+        return row;
     }
     
     private boolean isValid(List<Integer> cols, int col){
