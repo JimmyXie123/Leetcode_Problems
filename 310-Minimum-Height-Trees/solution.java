@@ -20,15 +20,17 @@ public class Solution {
         }
         
         while(n>2){
-            
-            Node temp = queue.poll();
-            n--;
-            graph.remove(temp.label);
-            for(Node side:temp.neighbors){
-                side.neighbors.remove(temp);
-                side.degree--;
-                if(side.degree==1){
-                    queue.offer(side);
+            int size = queue.size();
+            for(int i=0; i<size; i++){
+                Node temp = queue.poll();
+                n--;
+                graph.remove(temp.label);
+                for(Node side:temp.neighbors){
+                    side.neighbors.remove(temp);
+                    side.degree--;
+                    if(side.degree==1){
+                        queue.offer(side);
+                    }
                 }
             }
         }
@@ -49,6 +51,6 @@ class Node{
     public Node(int label){
         this.label = label;
         degree = 0;
-        neigbors = new HashSet(); 
+        neighbors = new HashSet(); 
     }
 }
