@@ -49,7 +49,7 @@ public class Solution {
     public int totalNQueens(int n) {
         List<List<String>> result = new ArrayList();
         if(n<=0){
-            return result;
+            return 0;
         }
         search(result, new ArrayList(), n);
         return result.size();
