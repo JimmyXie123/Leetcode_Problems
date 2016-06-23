@@ -23,17 +23,17 @@ public class Solution {
             
             Node temp = queue.poll();
             n--;
+            graph.remove(temp.label);
             for(Node side:temp.neighbors){
                 side.neighbors.remove(temp);
-                graph.remove(temp.label);
                 side.degree--;
                 if(side.degree==1){
                     queue.offer(side);
                 }
             }
-                
-            
         }
+        
+        return graph.keySet();
     }
     
 }
