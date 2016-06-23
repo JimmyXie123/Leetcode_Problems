@@ -34,7 +34,7 @@ public class Solution {
         
         for(int i= pos; i<nums.size(); i++){
             count++;
-            helper(nums, i, sum-nums.get(i), count, cache);
+            helper(nums, i, sum-nums.get(i), count);
             count--;
         }
     }
