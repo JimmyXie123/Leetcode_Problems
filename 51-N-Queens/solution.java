@@ -16,7 +16,7 @@ public class Solution {
     
     private boolean isValid(List<Integer> cols, int col){
         int row = cols.size();
-        for(i=0; i<row; i++){
+        for(int i=0; i<row; i++){
             if(cols.get(i)==col){
                 return false;
             }
