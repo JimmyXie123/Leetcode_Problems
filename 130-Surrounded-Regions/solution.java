@@ -54,7 +54,7 @@ public class Solution {
                 int nextY = temp.y+dY[k];
                 if(nextX>=0 && nextX<row && nextY>=0 && nextY<col){
                     if(board[nextX][nextY]=='O'){
-                        board[nextX][nextY] = VISITED;
+                        //board[nextX][nextY] = VISITED;
                         queue.offer(new Node(nextX, nextY));
                     }
                 }
