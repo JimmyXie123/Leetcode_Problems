@@ -10,7 +10,7 @@ public class Solution {
         
         bfs(ladders, graph, distance, beginWord, wordList);
         List<String> path = new ArrayList();
-        dfs(ladders, path, graph, beginWord, endWord);
+        dfs(ladders, path, graph, endWord, beginWord);
         return ladders;
         
     }
@@ -22,6 +22,7 @@ public class Solution {
         
         while(!queue.isEmpty()){
             int size = queue.size();
+            
             for(int i=0; i<size; i++){
                 String crt = queue.poll();
                 for(String next:getWords(crt, wordList)){
@@ -30,20 +31,23 @@ public class Solution {
                         distance.put(next, distance.get(crt)+1);
                         queue.offer(next);
                     }
-    
                 }
             }
             
         }
     }
     
-    private void dfs(List<List<String>> ladders, List<String> path, HashMap<String, ArrayList<String>> graph, String crt, String end){
+    private void dfs(List<List<String>> ladders, List<String> path, HashMap<String, ArrayList<String>> graph, String crt, String start){
         path.add(crt);
         if(crt.equals(end)){
+            Collections.reverse(path);
             ladders.add(new ArrayList(path));
+            Collections.reverse(path);
         }else{
             for(String next:graph.get(crt)){
-                dfs(ladders, path, graph, next, end);
+                if(distance.containsKey(next)&&distance.get(next)==distance.get(crt)-1){
+                    dfs(ladders, path, graph, next, start);
+                }
             }
         }
         path.remove(path.size()-1);
