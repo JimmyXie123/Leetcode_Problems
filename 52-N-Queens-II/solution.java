@@ -1,5 +1,5 @@
 public class Solution {
-    int total = 0;
+    int total;
     private boolean isValid(List<Integer> cols, int col){
         int row = cols.size();
         for(int i=0; i<row; i++){
@@ -32,6 +32,7 @@ public class Solution {
     }
     
     public int totalNQueens(int n) {
+        total = 0;
         if(n<=0){
             return 0;
         }
