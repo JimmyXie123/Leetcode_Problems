@@ -33,15 +33,9 @@ public class Solution {
             }
             count++;
         }
+        return result;
         
     }
     
-    private void draw(int[][] matrix, List<Integer> result, int pos, int used, int other){
-        int start=0+k, m_or_n-1-k;
-        if(start>end){
-            return;
-        }
-        for(int i=start; i<end; )
-        
-    }
+
 }
