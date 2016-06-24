@@ -28,7 +28,7 @@ public class Solution {
         
     }
     
-    pirvate int judge(int[][] board, int i, int j, int live){
+    private int judge(int[][] board, int i, int j, int live){
         if(board[i][j]==1||board[i][j]==2){
             if(live==2||live==3){
                 return 1;
@@ -50,7 +50,7 @@ public class Solution {
             int nextX = i+dX[k];
             int nextY = j+dY[k];
             if(nextX>=0&&nextX<row&&nextY>=0&&nextY<col){
-                if(board[nextX][nextY]==1){
+                if(board[nextX][nextY]==1||board[nextX][nextY]==2){
                     sum++;
                 }
             }
