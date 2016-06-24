@@ -8,7 +8,6 @@ public class Solution {
             if(nums[i+1]>nums[i]){
                 break;
             }
-            int j;
             for(int j=len-1; j>i-1; j--){
                 if(nums[j]>nums[i]){
                     break;
