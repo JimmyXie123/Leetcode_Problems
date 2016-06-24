@@ -4,10 +4,23 @@ public class Solution {
             return;
         }
         int n = matrix.length;
-        int sep = (n+1)/2;
-        for(int i=0; i<sep; i++){
-            for(int j=0; j<sep; j++){
-                move(matrix, i, j, n);
+        int sep;
+        //if(n%2==1){
+        //    sep = (n+1)/2;
+        //}else{
+        //    sep = n/2;
+        //}
+        if(n%2==0){
+            for(int i=0; i<n/2; i++){
+                for(int j=0; j<n/2; j++){
+                    move(matrix, i, j, n);
+                }
+            }
+        }else{
+            for(int i=0; i<n/2; i++){
+                for(int j=0; j<n/2+1; j++){
+                    move(matrix, i, j, n);
+                }
             }
         }
     }
@@ -15,8 +28,8 @@ public class Solution {
     private void move(int[][] matrix, int i, int j, int n){
         int[][] xy = getXY(i, j, n);
         int temp = matrix[xy[0][3]][xy[1][3]];
-        for(int i=3; i>=1; i--){
-            matrix[xy[0][i]][xy[1][i]] = matrix[xy[0][i-1]][xy[1][i-1]];
+        for(int k=3; k>=1; k--){
+            matrix[xy[0][k]][xy[1][k]] = matrix[xy[0][k-1]][xy[1][k-1]];
         }
         matrix[xy[0][0]][xy[1][0]] = temp;
     }
