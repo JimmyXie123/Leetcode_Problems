@@ -5,24 +5,14 @@ public class Solution {
         }
         int n = matrix.length;
         int sep;
-        //if(n%2==1){
-        //    sep = (n+1)/2;
-        //}else{
-        //    sep = n/2;
-        //}
-        if(n%2==0){
+        //-------------注意n除2余数不同导致的不同------------
+        
             for(int i=0; i<n/2; i++){
-                for(int j=0; j<n/2; j++){
+                for(int j=0; j<(n+1)/2; j++){
                     move(matrix, i, j, n);
                 }
             }
-        }else{
-            for(int i=0; i<n/2; i++){
-                for(int j=0; j<n/2+1; j++){
-                    move(matrix, i, j, n);
-                }
-            }
-        }
+        
     }
     
     private void move(int[][] matrix, int i, int j, int n){
