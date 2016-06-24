@@ -8,9 +8,9 @@ public class Solution {
         int len = nums.length;
         while(fast<len){
             if(nums[slow]!=nums[fast]||(nums[slow]==nums[fast]&&slow!=fast)){
-                if(nums[slow]==nums[fast]&&flag>2){
-                    coninue;
-                }else if(nums[slow]==nums[fast]&&flag<=2){
+                if(nums[slow]==nums[fast]&&flag>=2){
+                    continue;
+                }else if(nums[slow]==nums[fast]&&flag<2){
                     flag++;
                 }else{
                     flag = 1;
