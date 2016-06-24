@@ -6,8 +6,8 @@ public class Solution {
             return result;
         }
         
-        row = matrix.length;
-        col = matrix[0].length;
+        int row = matrix.length;
+        int col = matrix[0].length;
         
         int count=0;
         
