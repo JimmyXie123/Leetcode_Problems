@@ -9,6 +9,7 @@ public class Solution {
         while(fast<len){
             if(nums[slow]!=nums[fast]||(nums[slow]==nums[fast]&&slow!=fast)){
                 if(nums[slow]==nums[fast]&&flag>=2){
+                    fast++;
                     continue;
                 }else if(nums[slow]==nums[fast]&&flag<2){
                     flag++;
