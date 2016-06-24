@@ -6,7 +6,12 @@ public class Solution {
         int i=digits.length-1;
         int advance = 0;
         while(i>=0){
-            digits[i] = digits[i]+1+advance;
+            if(i==digits.length-1){
+                digits[i] = digits[i]+1;
+            }else{
+                digits[i] = digits[i]+advance;
+            }
+            System.out.println("i="+i+" digits[i]="+digits[i]);
             if(digits[i]<10){
                 return digits;
             }else{
@@ -15,8 +20,8 @@ public class Solution {
                 if(i==0){
                     int[] result = new int[digits.length+1];
                     result[0] = 1;
-                    for(int i=0; i<digits.length; i++){
-                        result[i+1] = digits[i];
+                    for(int j=0; j<digits.length; j++){
+                        result[j+1] = digits[j];
                     }
                     return result;
                 }
