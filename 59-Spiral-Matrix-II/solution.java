@@ -1,10 +1,9 @@
 public class Solution {
     public int[][] generateMatrix(int n) {
-        int[][] matrix;
+        int[][] matrix = new int[n][n];
         if(n<=0){
             return matrix;
         }
-        matrix = new int[n][n];
         int end = n*n;
         int pointer = 1;
         int count = 0;
