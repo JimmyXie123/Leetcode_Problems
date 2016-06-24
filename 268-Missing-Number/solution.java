@@ -8,7 +8,7 @@ public class Solution {
             sum += nums[i];
         }
         int real = 0;
-        for(int i=0; i<==nums.length; i++){
+        for(int i=0; i<=nums.length; i++){
             real += i;
         }
         return real-sum;
