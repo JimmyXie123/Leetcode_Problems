@@ -18,7 +18,7 @@ public class Solution {
         }
         
         for(int i=pos; i<candidates.length; i++){
-            if(i!=0&&candidates[i]==candidates[i-1]){
+            if(i!=pos&&candidates[i]==candidates[i-1]){
                 continue;
             }
             path.add(candidates[i]);
