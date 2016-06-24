@@ -4,8 +4,9 @@ public class Solution {
         if(candidates==null){
             return result;
         }
+        Arrays.sort(candidates);
         List<Integer> path = new ArrayList();
-        dfs(result, path, 0, target, nums);
+        dfs(result, path, 0, target, candidates);
         return result;
     }
     
@@ -16,12 +17,12 @@ public class Solution {
         if(sum==0){
             result.add(new ArrayList(path));
         }
-        for(int i=pos+1; i<nums.length; i++){
-            if(i!=pos+1&&nums[i]==nums[i-1]){
+        for(int i=pos; i<nums.length; i++){
+            if(i!=pos&&nums[i]==nums[i-1]){
                 continue;
             }
             path.add(nums[i]);
-            dfs(result, path, i, sum-nums[pos], nums);
+            dfs(result, path, i+1, sum-nums[i], nums);
             path.remove(path.size()-1);
         }
     }
