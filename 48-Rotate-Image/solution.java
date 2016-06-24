@@ -13,7 +13,7 @@ public class Solution {
     }
     
     private void move(int[][] matrix, int i, int j, int n){
-        int[][] xy = getXY(matrix, i, j, n);
+        int[][] xy = getXY(i, j, n);
         int temp = matrix[xy[0][3]][xy[1][3]];
         for(int i=3; i>=1; i--){
             matrix[xy[0][i]][xy[1][i]] = matrix[xy[0][i-1]][xy[1][i-1]];
