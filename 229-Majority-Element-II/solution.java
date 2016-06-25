@@ -23,7 +23,8 @@ public class Solution {
             }
         }
         
-        count1=0, count2=0;
+        count1=0;
+        count2=0;
         for(int i=0; i<nums.length; i++){
             if(candidate1==nums[i]){
                 count1++;
