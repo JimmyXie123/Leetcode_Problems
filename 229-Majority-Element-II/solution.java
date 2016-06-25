@@ -1,5 +1,9 @@
 public class Solution {
     public List<Integer> majorityElement(int[] nums) {
+        List<Integer> result = new ArrayList();
+        if(nums==null){
+            return result;
+        }
         int candidate1, candidate2;
         int count1=0, count2=0;
         for(int i=0; i<nums.length; i++){
@@ -29,12 +33,13 @@ public class Solution {
             }
         }
         
-        List<Integer> result = new ArrayList();
+        
         if(count1>nums.length/3){
             result.add(candidate1);
         }
         if(count2>nums.length/3){
             result.add(candidate2);
         }
+        return result;
     }
 }
