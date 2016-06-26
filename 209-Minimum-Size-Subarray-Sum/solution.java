@@ -11,8 +11,10 @@ public class Solution {
                 if(sum[i]-sum[j]>=s){
                     if(res==0){
                         res = i-j;
+                    }else if(i-j>=res){
+                        continue;
                     }else{
-                        res = Math.min(i-j, res);
+                        res = i-j;
                     }
                 }
             }
