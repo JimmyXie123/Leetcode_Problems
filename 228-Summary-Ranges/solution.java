@@ -8,6 +8,7 @@ public class Solution {
         int fast = 0;
         while(fast<nums.length){
             if(fast!=nums.length-1&&nums[fast]+1==nums[fast+1]){
+                fast++;
                 continue;
             }else{
                 res.add(builder(nums, slow, fast));
