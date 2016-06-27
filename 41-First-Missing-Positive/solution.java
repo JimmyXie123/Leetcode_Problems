@@ -10,7 +10,7 @@ public class Solution {
                     break;
                 }
                 nums[i] = nums[nums[i]-1];
-                nums[nums[i]-1];
+                nums[nums[i]-1] = temp;
             }
             i++;
         }
@@ -19,6 +19,6 @@ public class Solution {
                 return i+1;
             }
         }
-        return 0;
+        return nums.length+1;
     }
 }
