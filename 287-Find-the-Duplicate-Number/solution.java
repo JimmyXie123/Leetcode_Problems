@@ -17,9 +17,10 @@ public class Solution {
                     rightcount++;
                 }
             }
-            if(midcount++){
-                return midcount;
+            if(midcount>1){
+                return mid;
             }else if(leftcount>mid-start){
+                System.out.println("123");
                 end = mid;
             }else if(rightcount>end-start){
                 start = mid;
@@ -31,7 +32,10 @@ public class Solution {
         for(int i=0; i<nums.length; i++){
             if(nums[i]==start){
                 startcount++;
-            }else{
+            }/*else{
+                endcount++;     //----------并不是else，写else注意是不是应该是else if-----------
+            }*/
+            if(nums[i]==end){
                 endcount++;
             }
         }
