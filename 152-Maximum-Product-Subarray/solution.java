@@ -13,7 +13,7 @@ public class Solution {
                 max[i] = min[i-1]*nums[i];
                 min[i] = max[i-1]*nums[i];
             }
-            max = Math.max(result, max);
+            max = Math.max(result, max[i]);
         }
         return result;
     }
