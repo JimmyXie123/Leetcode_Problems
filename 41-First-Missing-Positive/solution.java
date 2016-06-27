@@ -12,7 +12,6 @@ public class Solution {
                 nums[i] = nums[nums[i]-1];
                 nums[nums[i]-1] = temp;
             }
-            i++;
         }
         for(int i=0; i<nums.length; i++){
             if(nums[i]!=i+1){
