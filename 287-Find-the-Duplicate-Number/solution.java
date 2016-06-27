@@ -20,9 +20,8 @@ public class Solution {
             if(midcount>1){
                 return mid;
             }else if(leftcount>mid-start){
-                System.out.println("123");
                 end = mid;
-            }else if(rightcount>end-start){
+            }else if(rightcount>end-mid){
                 start = mid;
             }
             
