@@ -3,14 +3,19 @@ public class Solution {
         if(nums==null){
             return 0;
         }
-        int sum = 0;
         for(int i=0; i<nums.length; i++){
-            sum += nums[i];
+            while(nums[i]!=i&&nums[i]!=nums.length){
+                int temp = nums[nums[i]];
+                nums[nums[i]] = nums[i];
+                nums[i] = temp;
+            }
         }
-        int real = 0;
-        for(int i=0; i<=nums.length; i++){
-            real += i;
+        
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]==nums.length){
+                return i;
+            }
         }
-        return real-sum;
+        return nums.length;
     }
 }
