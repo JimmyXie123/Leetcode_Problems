@@ -54,8 +54,8 @@ public class Solution {
                 int nextY = temp.y+dY[k];
                 if(nextX>=0 && nextX<row && nextY>=0 && nextY<col){
                     if(board[nextX][nextY]=='O'){
-                        board[nextX][nextY] = FREE;
-//--------上句话意义在于，虽然某个队列中的点最终会被free，但是他在队列里头等待的时候，还有其他的点可能访问他，然后他又会被加进队列--------------
+                        //board[nextX][nextY] = VISITED; //board[nextX][nextY] = FREE;
+//--------上句话意义在于，虽然某个队列中的点最终会被free，但是他在队列里头等待的时候，还有其他的点可能访问他，然后他又会被加进队列。其实直接设成FREE就好。--------------
                         queue.offer(new Node(nextX, nextY));
                     }
                 }
@@ -63,9 +63,6 @@ public class Solution {
         }
         
     }
-    
-    //private List<Character>
-    
     
     private class Node{
         int x;
