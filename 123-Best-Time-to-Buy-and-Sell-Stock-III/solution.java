@@ -18,8 +18,9 @@ public class Solution {
         //----------DP from right to left-----------
         int max = prices[len-1];
         right[len-1]=0;
-        for(int i=len-2; i>=0; i++){
+        for(int i=len-2; i>=0; i--){
             max = Math.max(max, prices[i]);
+            System.out.println(len);
             right[i] = Math.max(right[i+1], max-prices[i]); 
         }
         
