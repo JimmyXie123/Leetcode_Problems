@@ -11,7 +11,7 @@ public class Solution {
                 stack.push(i);
                 continue;
             }
-            int curt = (i==height.length)?Integer_MAX_VALUE:height[i];
+            int curt = (i==height.length)?Integer.MAX_VALUE:height[i];
             while(!stack.isEmpty()&&height[stack.peek()]<curt){
                 Integer num = stack.pop();
                 if(num.intValue()==height.length){
