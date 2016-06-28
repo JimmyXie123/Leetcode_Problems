@@ -8,23 +8,24 @@
  * }
  */
 public class Solution {
-    
+    private int curt = 1;
+    private int res = 0;
     public int kthSmallest(TreeNode root, int k) {
-        ArrayList<Integer> res = new ArrayList();
-        helper(root, res, k);
-        return res.get(k-1).intValue();
+        helper(root, k);
+        return res;
     }
     
-    private void helper(TreeNode node, ArrayList<Integer> res, int k){
-        if(res.size()==k){
+    private void helper(TreeNode node, int k){
+        if(curt==k){
+            res = node.val;
             return;
         }
         if(node==null){
             return;
         }
-        helper(node.left, res, k);
-        res.add(node.val);
-        helper(node.right, res, k);
+        curt++;
+        helper(node.left, k);
+        helper(node.right, k);
         
     }
 }
