@@ -12,6 +12,23 @@ public class Solution {
         if(root==null){
             return 0;
         }
-        return countNodes(root.left)+countNodes(root.right)+1;
+        int l = height(root.left);
+        int r = height(root.right);
+        
+        if(l==r){
+            return countNodes(root.right)+(1<<l);
+        }else{
+            return countNodes(root.left)+(1<<r);
+        }
+        
+    }
+    
+    private int height(TreeNode node){
+        int h = 0;
+        while(node!=null){
+            h++;
+            node = node.left;
+        }
+        return h;
     }
 }
