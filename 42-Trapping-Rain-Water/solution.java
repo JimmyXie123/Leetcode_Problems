@@ -6,17 +6,21 @@ public class Solution {
         Stack<Integer> stack = new Stack();
         
         int result = 0;
-        for(int i=0; i<height.length; i++){
+        for(int i=0; i<=height.length; i++){
             if(i==0){
                 stack.push(i);
                 continue;
             }
-            while(!stack.isEmpty()&&height[stack.peek()]<height[i]){
-                stack.pop();
+            int curt = (i==height.length)?Integer_MAX_VALUE:height[i];
+            while(!stack.isEmpty()&&height[stack.peek()]<curt){
+                Integer num = stack.pop();
+                if(num.intValue()==height.length){
+                    break;
+                }
                 int max = 0;
                 if(!stack.isEmpty()){
                     int max_height1 = height[stack.peek()];
-                    int max_height2 = curt;
+                    int max_height2 = height[i];
                     int temp = Math.min(max_height1, max_height2);
                     for(int k=stack.peek()+1; k<i; k++){
                         max = temp-height[k];
