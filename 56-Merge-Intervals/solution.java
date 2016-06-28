@@ -21,7 +21,7 @@ public class Solution {
         });
         Interval last = intervals.get(0);
         for(int i=1; i<intervals.size(); i++){
-            Interval curt = intervalse.get(i);
+            Interval curt = intervals.get(i);
             if(curt.start<=last.end){
                 last.end = Math.max(last.end, curt.end);
             }else{
