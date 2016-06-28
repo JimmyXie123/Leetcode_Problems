@@ -1,39 +1,32 @@
 public class Solution {
     public int maxProfit(int[] prices) {
-        if(prices==null){
+        if(prices==null||prices.length<=1){
             return 0;
         }
-        int i=0;
-        int length = prices.length;
-        List<Integer> options = new ArrayList();
-        while(i<length){
-            while(i<length-1&&prices[i+1]<=prices[i]){
-                i++;
-            }
-            int sum = 0;
-            while(i<length-1&&prices[i+1]>prices[i]){
-                sum += prices[i+1]-prices[i];
-                i++;
-            }
-            options.add(sum);
-            sum = 0;
+        int[] left = new int[prices.length];
+        int[] right = new int[prices.length];
+        
+        //-----------DP from left to right--------------
+        int len = prices.length;
+        int min=prices[0];
+        left[0]=0;
+        for(int i=1; i<len; i++){
+            min = Math.min(min, prices[i]);
+            left[i]=Math.max(left[i-1], prices[i]-min);
         }
         
-        int[] pair1=new int[2];
-        int[] pair2=new int[2];
-        for(int j=0; j<options.size(); j++){
-            if(options.get(j)>pair1[0]){
-                pair1[0] = options.get(j);
-                pair1[1] = j;
-             }
+        int max = prices[len-1];
+        right[len-1]=0;
+        for(int i=len-2; i>=0; i++){
+            max = Math.max(max, prices[i]);
+            right[i] = Math.max(right+1, max-prices[i]); 
         }
-        options.remove(pair1[1]);
-        for(int k=0; k<options.size(); k++){
-            if(options.get(k)>pair2[0]){
-                pair2[0] = options.get(k);
-                pair2[1] = k;
-             }
+        
+        int res = 0;
+        for(int i=0; i<len; i++){
+            res = Math.max(left[i]+right[i], res);
         }
-        return (pair1[0] + pair2[0]);
+        return res;
+        
     }
 }
