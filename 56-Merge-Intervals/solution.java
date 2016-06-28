@@ -13,21 +13,24 @@ public class Solution {
         if(intervals==null||intervals.size()==0){
             return res;
         }
-        int fast = 0;
-        int size = intervals.size();
-        i=0;
-        while(i<size){
-            Interval temp = new Interval();
-            temp.start = intervals.get(i).start;
-            while(fast<size-1&&intervals.get(fast).end>intervals.get(fast+1).start){
-                fast++;
+        
+        Collections.sort(intervals, new Comparator<Interval>(){
+            public int compare(Interval a1, Interval a2){
+                return a1.start-a2.start;   
             }
-            temp.end = intervals.get(fast).end;
-            res.add(temp);
-            fast++;
-            i=fast;
+        });
+        Interval last = intervals.get(0);
+        for(int i=1; i<intervals.size(); i++){
+            Interval curt = intervalse.get(i);
+            if(curt.start<=last.end){
+                last.end = Math.max(last.end, curt.end);
+            }else{
+                res.add(last);
+                last = curt;
+            }
         }
-            
+        
+        res.add(last);  //--------不能少啊-------------
         return res;
     }
 }
