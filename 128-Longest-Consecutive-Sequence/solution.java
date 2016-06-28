@@ -10,11 +10,13 @@ public class Solution {
         int i=0;
         while(i<nums.length){
             while(fast<nums.length-1&&(nums[fast]+1==nums[fast+1]||nums[fast]==nums[fast+1])){
-                fast++;
                 if(nums[fast]==nums[fast+1]){
+                    fast++;
                     continue;
+                }else{
+                    fast++;
+                    len++;
                 }
-                len++;
             }
             fast++;
             i = fast;
