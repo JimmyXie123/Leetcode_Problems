@@ -15,11 +15,12 @@ public class Solution {
             left[i]=Math.max(left[i-1], prices[i]-min);
         }
         
+        //----------DP from right to left-----------
         int max = prices[len-1];
         right[len-1]=0;
         for(int i=len-2; i>=0; i++){
             max = Math.max(max, prices[i]);
-            right[i] = Math.max(right+1, max-prices[i]); 
+            right[i] = Math.max(right[i+1], max-prices[i]); 
         }
         
         int res = 0;
