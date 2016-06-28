@@ -10,12 +10,12 @@
 public class Solution {
     
     public int kthSmallest(TreeNode root, int k) {
-        ArrayList<TreeNode> res = new ArrayList();
+        ArrayList<Integer> res = new ArrayList();
         helper(root, res, k);
-        return res.get(k-1).val;
+        return res.get(k-1);
     }
     
-    private void helper(TreeNode node, ArrayList<TreeNode> res, int k){
+    private void helper(TreeNode node, ArrayList<Integer> res, int k){
         if(res.size()==k){
             return;
         }
@@ -23,7 +23,7 @@ public class Solution {
             return;
         }
         helper(node.left, res, k);
-        res.add(node);
+        res.add(node.val);
         helper(node.right, res, k);
         
     }
