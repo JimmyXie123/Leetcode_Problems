@@ -14,13 +14,13 @@ public class Solution {
             int curt = (i==height.length)?Integer.MAX_VALUE:height[i];
             while(!stack.isEmpty()&&height[stack.peek()]<curt){
                 Integer num = stack.pop();
-                if(num.intValue()==height.length){
+                if(num.valueOf()==height.length-1&&curt==Integer.MAX_VALUE){
                     break;
                 }
                 int max = 0;
                 if(!stack.isEmpty()){
                     int max_height1 = height[stack.peek()];
-                    int max_height2 = height[i];
+                    int max_height2 = curt;
                     int temp = Math.min(max_height1, max_height2);
                     for(int k=stack.peek()+1; k<i; k++){
                         max = temp-height[k];
