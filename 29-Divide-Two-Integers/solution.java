@@ -8,12 +8,13 @@ public class Solution {
             return 0;
         }
         
-        //---------------下面这个if注意--------------------
+        //---------------下面这个if注意：因为最小负比最大正多一位--------------------
         if (dividend == Integer.MIN_VALUE && divisor == -1) {
             return Integer.MAX_VALUE;
         }
         
         boolean isNegative = (dividend<0&&divisor>0)||(dividend>0&&divisor<0);
+        //---------------这里的(long)不能少----------
         long a = Math.abs((long)dividend);
         long b = Math.abs((long)divisor);
         
