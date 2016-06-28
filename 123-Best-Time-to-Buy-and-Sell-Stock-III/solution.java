@@ -20,7 +20,6 @@ public class Solution {
         right[len-1]=0;
         for(int i=len-2; i>=0; i--){
             max = Math.max(max, prices[i]);
-            System.out.println(len);
             right[i] = Math.max(right[i+1], max-prices[i]); 
         }
         
