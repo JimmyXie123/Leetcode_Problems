@@ -13,7 +13,7 @@ public class Solution {
             }
         }
         int sum = 0;
-        i = n;
+        int i = n;
         while(i>=0){
             sum = sum+times[i];
             if(sum>=i){
