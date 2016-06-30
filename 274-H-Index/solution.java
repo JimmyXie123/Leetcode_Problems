@@ -6,10 +6,10 @@ public class Solution {
             return 0;
         }
         for(int i:citations){
-            if(citations[i]>=n){
+            if(i>=n){
                 times[n]++;
             }else{
-                times[citations[i]]++;   
+                times[i]++;   
             }
         }
         int sum = 0;
