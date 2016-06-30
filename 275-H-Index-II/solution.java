@@ -9,8 +9,10 @@ public class Solution {
         
         while(start+1<end){
             int mid = start+(end-start)/2;
-            if(citations[mid]>=len-mid){   //-----------这里一定是citations的长度，而不是变化的end
-                end = mid; 
+            if(citations[mid]==len-mid){   //-----------这里一定是citations的长度，而不是变化的end--------
+                return len-mid; 
+            }else if(citations[mid]>len-mid){
+                end = mid;                 //-----------find the first one--------------
             }else{
                 start = mid;
             }
