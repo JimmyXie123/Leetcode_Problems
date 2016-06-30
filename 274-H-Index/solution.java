@@ -19,7 +19,7 @@ public class Solution {
             if(sum>=i){
                 return i;
             }
-            i--
+            i--;
         }
         return 0;
     }
