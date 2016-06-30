@@ -19,6 +19,7 @@ public class Solution {
             if(sum>=i){
                 return i;
             }
+            i--
         }
         return 0;
     }
