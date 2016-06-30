@@ -6,7 +6,7 @@ public class Solution {
             return 0;
         }
         for(int i:citations){
-            if(i>=n){
+            if(citations[i]>=n){
                 times[n]++;
             }else{
                 times[citations[i]]++;   
