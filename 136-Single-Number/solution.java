@@ -8,7 +8,7 @@ public class Solution {
                 set.add(i);
             }
         }
-        int res;
+        int res=0;
         for(int i:set){
             res = i;
         }
