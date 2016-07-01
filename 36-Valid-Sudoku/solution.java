@@ -24,15 +24,14 @@ public class Solution {
             }
         }
         
+        System.out.println("123");
         //subgrid
-        for(int i=1; i<9; i+= 3){
+        for(int i=1; i<9; i=i+3){
             Arrays.fill(visited, false);
-            for(int j=1; j<9; j+= 3){
+            for(int j=1; j<9; j=j+3){
                 for(int w=0; w<9; w++){
-                    int nextX = i+dX[w];
-                    int nextY = j+dY[w];
-                    if(!process(visited, board, nextX, nextY)){
-                        return false;
+                    if(!process(visited, board, i + k/3, j + k%3))
+                    return false;        
                     }
                 }
             }
@@ -49,7 +48,7 @@ public class Solution {
         if(tmp<=0||tmp>=10||visited[tmp-1]){
             return false;
         }
-        visited[tmp] = true; 
+        visited[tmp-1] = true; 
         return true;
     }
 }
