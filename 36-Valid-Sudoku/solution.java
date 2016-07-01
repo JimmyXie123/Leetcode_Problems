@@ -31,11 +31,11 @@ public class Solution {
             for(int j=1; j<9; j=j+3){
                 for(int w=0; w<9; w++){
                     if(!process(visited, board, i + w/3, j + w%3))
-                    return false;        
+                        return false;        
                     }
-                }
             }
         }
+        
         return true;
     
     }
