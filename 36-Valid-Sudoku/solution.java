@@ -42,8 +42,11 @@ public class Solution {
     }
     
     private boolean process(boolean[] visited, char[][] board, int i, int j){
+        if(board[i][j]=='.'){
+            return true;
+        }
         int tmp =board[i][j]-'0';
-        if(tmp<=0||tmp>=10||visited[tmp]){
+        if(tmp<=0||tmp>=10||visited[tmp-1]){
             return false;
         }
         visited[tmp] = true; 
