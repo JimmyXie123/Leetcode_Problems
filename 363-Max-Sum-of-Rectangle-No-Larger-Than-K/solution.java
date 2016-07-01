@@ -7,6 +7,8 @@ public class Solution {
         int n = matrix[0].length;
         
         int ans = Integer.MIN_VALUE;
+        
+//-----------------three dimension enumeration with memoration, sick!------------------
         for(int i=0; i<n; i++){
             int[] sum = new int[m];
             for(int j=i; j<n; j++){
