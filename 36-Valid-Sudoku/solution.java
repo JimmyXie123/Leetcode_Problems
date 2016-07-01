@@ -26,16 +26,18 @@ public class Solution {
         
         System.out.println("123");
         //subgrid
-        for(int i=0; i<9; i=i+3){
-            Arrays.fill(visited, false);
-            for(int j=0; j<9; j=j+3){
-                
-                    if(!process(visited, board, i + w/3, j + w%3))
-                        return false;        
-                    
+        for(int i=1; i<9; i+= 3){
+            for(int j=1; j<9; j+= 3){
+                Arrays.fill(visited, false);
+                for(int w=0; w<9; w++){
+                    int nextX = i+dX[w];
+                    int nextY = j+dY[w];
+                    if(!process(visited, board, nextX, nextY)){
+                        return false;
+                    }
+                }
             }
         }
-        
         return true;
     
     }
