@@ -12,9 +12,9 @@ public class Solution {
             for(int j=i; j<n; j++){
                 int num = 0;
                 TreeSet<Integer> set = new TreeSet();
-                for(int k=0; k<m; k++){
-                    sum[k] += matrix[k][j];
-                    num += sum[k];
+                for(int p=0; p<m; p++){
+                    sum[p] += matrix[p][j];
+                    num += sum[p];
                     if(num<=k){
                         ans = Math.max(ans, num);
                     }
