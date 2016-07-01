@@ -19,7 +19,7 @@ public class Solution {
             if(index<0){
                 index = -(index+1);
             }
-            dp[index] = envelope[1];
+            dp[index] = envelope[1];  //----------think about why this is here   
             if(index==len){
                 len++;
             }
