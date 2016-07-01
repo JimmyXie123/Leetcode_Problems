@@ -8,7 +8,7 @@ public class Solution {
         for(int i=0; i<9; i++){
             Arrays.fill(visited, false);
             for(int j=0; j<9; j++){
-                if(!process(visited, board, i, j){
+                if(!process(visited, board, i, j)){
                     return false;
                 }
             }
