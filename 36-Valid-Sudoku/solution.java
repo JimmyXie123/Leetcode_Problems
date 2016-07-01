@@ -16,7 +16,7 @@ public class Solution {
         
         //every col
         for(int i=0; i<9; i++){
-            Array.fill(visited, false);
+            Arrays.fill(visited, false);
             for(int j=0; j<9; j++){
                 if(!process(visited, board, j, i)){
                     return false;
