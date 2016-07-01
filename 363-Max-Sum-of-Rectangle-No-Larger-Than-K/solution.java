@@ -18,9 +18,9 @@ public class Solution {
                     if(num<=k){
                         ans = Math.max(ans, num);
                     }
-                    Integer i = set.ceiling(num-k);
-                    if(i!=null){
-                        ans = Math.max(ans, num-i);
+                    Integer tmp = set.ceiling(num-k);
+                    if(tmp!=null){
+                        ans = Math.max(ans, num-tmp);
                     }
                     set.add(num);
                 }
