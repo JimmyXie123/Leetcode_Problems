@@ -3,7 +3,8 @@ public class Solution {
         if(wordList==null){
             return 0;
         }
-    
+        
+        System.out.println(wordList.contains(endWord));
         HashSet<String> graph = new HashSet();
         Queue<String> queue = new LinkedList();
         queue.add(beginWord);
