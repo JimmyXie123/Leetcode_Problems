@@ -10,7 +10,7 @@ public class Solution {
         
         bfs(ladders, graph, distance, beginWord, wordList);
         List<String> path = new ArrayList();
-        dfs(ladders, path, graph, distance, endWord, beginWord);
+        dfs(ladders, path, graph, distance, beginWord, endWord);
         return ladders;
         
     }
@@ -37,16 +37,16 @@ public class Solution {
         }
     }
     
-    private void dfs(List<List<String>> ladders, List<String> path, HashMap<String, ArrayList<String>> graph, HashMap<String, Integer> distance, String crt, String start){
+    private void dfs(List<List<String>> ladders, List<String> path, HashMap<String, ArrayList<String>> graph, HashMap<String, Integer> distance, String crt, String end){
         path.add(crt);
-        if(crt.equals(start)){
-            Collections.reverse(path);
+        if(crt.equals(end)){
+            //Collections.reverse(path);
             ladders.add(new ArrayList(path));
-            Collections.reverse(path);
+            //Collections.reverse(path);
         }else{
             for(String next:graph.get(crt)){
-                if(distance.containsKey(next)&&distance.get(next)==distance.get(crt)-1){
-                    dfs(ladders, path, graph, distance, next, start);
+                if(distance.containsKey(next)&&distance.get(next)==distance.get(crt)+1){
+                    dfs(ladders, path, graph, distance, next, end);
                 }
             }
         }
