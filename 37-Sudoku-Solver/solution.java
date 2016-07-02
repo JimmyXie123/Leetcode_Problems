@@ -31,7 +31,7 @@ public class Solution {
                 return false;
             }
              if(board[a][j]>'0' && board[a][j]<='9')
-                contained.add(board[a][j]);
+                set.add(board[a][j]);
         }
         set.clear();
         for(int i=0; i<9; i++){
@@ -39,7 +39,7 @@ public class Solution {
                 return false;
             }
             if(board[i][b]>'0' && board[i][b]<='9')
-                contained.add(board[i][b]);
+                set.add(board[i][b]);
         }
         
         set.clear();
@@ -52,7 +52,7 @@ public class Solution {
                 return false;
             }
              if(board[nextX][nextY]>'0' && board[nextX][nextY]<='9')
-                contained.add(board[nextX][nextY]);
+                set.add(board[nextX][nextY]);
         }
         return true;
     }
