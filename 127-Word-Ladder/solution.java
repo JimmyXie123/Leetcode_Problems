@@ -5,6 +5,7 @@ public class Solution {
         }
         
         System.out.println(wordList.contains(endWord));
+        System.out.println(wordList.contains(startWord));
         HashSet<String> graph = new HashSet();
         Queue<String> queue = new LinkedList();
         queue.add(beginWord);
