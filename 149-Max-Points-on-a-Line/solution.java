@@ -9,7 +9,10 @@
  */
 public class Solution {
     public int maxPoints(Point[] points) {
-        int max = 0;
+        if(points==null||points.length==0){
+            return 0;
+        }
+        int max = 1;
         HashMap<Integer, Integer> map = new HashMap();
         for(int i= 0; i<points.length; i++){
             map.clear();
@@ -20,17 +23,17 @@ public class Solution {
                     dup++;
                     continue;
                 }
-                int key = (points[j].x-points[i].x==0)?Integer.MAX_VALUE:(points[j].y-points[i].y)/(points[j].x-points[i].x);
-                if(map.contiansKey(key)){
+                int key = (points[j].x-points[i].x==0)?Integer.MAX_VALUE:(double)(points[j].y-points[i].y)/(double)(points[j].x-points[i].x);
+                if(map.containsKey(key)){
                     map.put(key, map.get(key)+1);
                 }else{
                     map.put(key, 2);
                 }
             }
             
-            int temp = 0;
+            int temp = 1;
             for(int ele:map.values()){
-                temp += ele;
+                temp = Math.max(temp, ele);
             }
             if(temp+dup>max){
                 max = temp+dup;
