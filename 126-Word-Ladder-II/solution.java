@@ -45,7 +45,7 @@ public class Solution {
             //Collections.reverse(path);
         }else{
             for(String next:graph.get(crt)){
-                if(distance.containsKey(next)&&distance.get(next)==distance.get(crt)+1){
+                if(distance.get(next)==distance.get(crt)+1){
                     dfs(ladders, path, graph, distance, next, end);
                 }
             }
