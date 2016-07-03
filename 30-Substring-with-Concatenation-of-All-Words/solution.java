@@ -4,7 +4,7 @@ public class Solution {
         int m = words.length;
         int n = words[0].length;
         HashMap<String, Integer> toFind = new HashMap();
-        HashMap<String, Integer> Found = new HashMap;
+        HashMap<String, Integer> Found = new HashMap();
         
         for(String word:words){
             if(toFind.containsKey(word)){
