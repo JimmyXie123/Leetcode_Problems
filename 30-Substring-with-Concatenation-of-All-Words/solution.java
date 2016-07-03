@@ -1,41 +1,35 @@
 public class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
-        List<Integer> res = new ArrayList();
-        int m = words.length;
-        int n = words[0].length();
-        HashMap<String, Integer> toFind = new HashMap();
-        HashMap<String, Integer> Found = new HashMap();
-        
-        for(String word:words){
-            if(toFind.containsKey(word)){
-                toFind.put(word, toFind.get(word)+1);
-            }else{
-                toFind.put(word, 1);
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        HashMap<String, Integer> toFind = new HashMap<String, Integer>();
+        HashMap<String, Integer> found = new HashMap<String, Integer>();
+        int m = L.length, n = L[0].length();
+        for (int i = 0; i < m; i ++){
+            if (!toFind.containsKey(L[i])){
+                toFind.put(L[i], 1);
+            }
+            else{
+                toFind.put(L[i], toFind.get(L[i]) + 1);
             }
         }
-        
-        for(int i=0; i<=s.length()-m*n; i++){
-            Found.clear();
-            int j=0;
-            for(j=0; j<m; j++){
-                int k = i+j*n;
-                String temp = s.substring(k, k+n);
-                if(!toFind.containsKey(temp)){
-                    break;
+        for (int i = 0; i <= S.length() - n * m; i ++){
+            found.clear();
+            int j;
+            for (j = 0; j < m; j ++){
+                int k = i + j * n;
+                String stub = S.substring(k, k + n);
+                if (!toFind.containsKey(stub)) break;
+                if(!found.containsKey(stub)){
+                    found.put(stub, 1);
                 }
-                if(Found.containsKey(temp)){
-                    Found.put(temp, Found.get(temp)+1);
-                }else{
-                    Found.put(temp, 1);
+                else{
+                    found.put(stub, found.get(stub) + 1);
                 }
-                if(Found.get(temp)>toFind.get(temp)){
-                    break;
-                }
+                if (found.get(stub) > toFind.get(stub)) break;
             }
-            if(j==m) res.add(i);
+            if (j == m) result.add(i);
         }
-        
-        return res;
+        return result;
         
     }
 }
