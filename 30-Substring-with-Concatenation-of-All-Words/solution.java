@@ -2,7 +2,7 @@ public class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
         List<Integer> res = new ArrayList();
         int m = words.length;
-        int n = words[0].length;
+        int n = words[0].length();
         HashMap<String, Integer> toFind = new HashMap();
         HashMap<String, Integer> Found = new HashMap();
         
