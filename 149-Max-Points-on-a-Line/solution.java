@@ -23,7 +23,7 @@ public class Solution {
                     dup++;
                     continue;
                 }
-                int key = (points[j].x-points[i].x==0)?Integer.MAX_VALUE:0.0+(double)(points[j].y-points[i].y)/(double)(points[j].x-points[i].x);
+                double key = (points[j].x-points[i].x==0)?Integer.MAX_VALUE:0.0+(double)(points[j].y-points[i].y)/(double)(points[j].x-points[i].x);
                 if(map.containsKey(key)){
                     map.put(key, map.get(key)+1);
                 }else{
