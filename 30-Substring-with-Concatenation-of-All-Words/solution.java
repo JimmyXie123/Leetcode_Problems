@@ -14,12 +14,12 @@ public class Solution {
             }
         }
         
-        for(int i=0; i<=s.length-m*n; i++){
+        for(int i=0; i<=s.length()-m*n; i++){
             Found.clear();
             int j=0;
             for(j=0; j<m; j++){
                 int k = i+j*n;
-                String temp = s.substring(k, k+m);
+                String temp = s.substring(k, k+n);
                 if(!toFind.containsKey(temp)){
                     break;
                 }
