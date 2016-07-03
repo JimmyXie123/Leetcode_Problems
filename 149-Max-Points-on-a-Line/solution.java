@@ -17,7 +17,7 @@ public class Solution {
         for(int i= 0; i<points.length; i++){
             map.clear();
             int dup = 0;
-            map.put((double)Integer.MIN_VALUE, 1);
+            map.put((double)Integer.MIN_VALUE, 1);   //---------if all the points are the same-----------
 
             
             for(int j=i+1; j<points.length; j++){
