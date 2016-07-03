@@ -13,10 +13,12 @@ public class Solution {
             return 0;
         }
         int max = 1;
-        HashMap<Integer, Integer> map = new HashMap();
+        HashMap<Double, Integer> map = new HashMap();
         for(int i= 0; i<points.length; i++){
             map.clear();
             int dup = 0;
+            map.put((double)Integer.MIN_VALUE, 1);
+
             
             for(int j=i+1; j<points.length; j++){
                 if(points[j].y==points[i].y&&points[j].x==points[i].x){
