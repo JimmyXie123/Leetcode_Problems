@@ -1,5 +1,5 @@
 public class Solution {
-    public List<Integer> findSubstring(String s, String[] words) {
+    public List<Integer> findSubstring(String s, String[] L) {
         ArrayList<Integer> result = new ArrayList<Integer>();
         HashMap<String, Integer> toFind = new HashMap<String, Integer>();
         HashMap<String, Integer> found = new HashMap<String, Integer>();
