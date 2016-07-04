@@ -22,13 +22,12 @@ public class Solution {
         }
         
         for(char ch:toFind.keySet()){
+            if(!Found.containsKey(ch)){
+                return false;
+            }
             int a1 = Found.get(ch);
             int a2 = toFind.get(ch);
-            if((!Found.containsKey(ch))||a1!=a2){
-                /*System.out.println(ch);
-                System.out.println(Found.get(ch)+" "+toFind.get(ch));
-                System.out.println(Found.get(ch)!=toFind.get(ch));
-                System.out.println(!Found.containsKey(ch));*/
+            if(a1!=a2){
                 return false;
             }
         }
