@@ -3,24 +3,13 @@ public class Solution {
         if(source.length()!=target.length()){
             return false;
         }
-        HashMap<Character, Integer> toFind = new HashMap();
-        HashMap<Character, Integer> Found = new HashMap();
-        for(int i=0; i<source.length(); i++){
-            char ch1 = source.charAt(i);
-            if(toFind.containsKey(ch1)){
-                toFind.put(ch1, toFind.get(ch1)+1);
-            }else{
-                toFind.put(ch1, 1);
-            }
-            char ch2 = target.charAt(i);
-            if(Found.containsKey(ch2)){
-                Found.put(ch2, Found.get(ch2)+1);
-            }else{
-                Found.put(ch2, 1);
-            }
+        int[] hash = new int[256];
+        for(char ch:source.toCharArray()){
+            hash[ch]++;
         }
-        for(char ch:toFind.keySet()){
-            if(!toFind.get(ch).equals(Found.get(ch))){
+        for(char ch:target.toCharArray()){
+            hash[ch]--;
+            if(hash[ch]<0){
                 return false;
             }
         }
