@@ -1,12 +1,9 @@
 public class Solution {
     public boolean wordPattern(String pattern, String str) {
-        HashMap<Characeter, String> map = new HashMap();
+        HashMap<Character, String> map = new HashMap();
         int slow = 0, fast = 0;
         for(int i=0; i<pattern.length(); i++){
-            if(fast>=str.length()&&i<pattern.length()){
-                return false;
-            }
-            while(str.charAt(fast)!=' '){
+            while(fast<str.length()&&str.charAt(fast)!=' '){
                 fast++;
             }
             String tmp = str.substring(slow, fast);
