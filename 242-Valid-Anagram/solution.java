@@ -30,7 +30,7 @@ public class Solution {
             int a2 = toFind.get(ch);
             if(a1!=a2){
                 return false;
-            }*/
+            }
             
         }
         return true;
