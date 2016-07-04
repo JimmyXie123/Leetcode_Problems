@@ -5,7 +5,7 @@ public class Solution {
             char[] ch = str.toCharArray();
             Arrays.sort(ch);
             String tmp = new String(ch);
-            if(!map.containsKey(temp)){
+            if(!map.containsKey(tmp)){
                 map.put(ch, new ArrayList<String>());
             }
             map.get(ch).add(tmp);//------------这句话必须有
