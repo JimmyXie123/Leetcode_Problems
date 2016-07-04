@@ -8,6 +8,8 @@ public class Solution {
         for(int i=2; i<n; i++){
             if(isPrime[i]==false){
                 count++;
+            }else{
+                continue;
             }
             for(int j=2; j*i<n; j++){
                 isPrime[i*j] = true;
