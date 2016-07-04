@@ -1,22 +1,18 @@
 public class Solution {
-    private boolean isPrime(int w){
-        if(w==2){
-            return true;
-        }
-        for(int i=2; i<Math.sqrt(w)+1; i++){
-            if(w%i==0){
-                return false;
-            }
-        }
-        return true;
-    }
     public int countPrimes(int n) {
-        HashSet<Integer> set = new HashSet();
+        if(n<=2){
+            return 0;
+        }
+        int count = 0;
+        boolean[] isPrime = new boolean[n];
         for(int i=2; i<n; i++){
-            if(isPrime(i)){
-                set.add(i);
+            if(isPrime[i]==false){
+                count++;
+            }
+            for(int j=2; j*i<n; j++){
+                isPrime[i*j] = true;
             }
         }
-        return set.size();
+        return count;
     }
 }
