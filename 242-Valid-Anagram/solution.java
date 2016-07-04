@@ -3,7 +3,7 @@ public class Solution {
         HashMap<Character, Integer> toFind = new HashMap();
         HashMap<Character, Integer> Found = new HashMap();
         for(char ch:s.toCharArray()){
-            if(toFind.contains(ch)){
+            if(toFind.containsKey(ch)){
                 toFind.put(ch, toFind.get(ch)+1);
             }else{
                 toFInd.put(ch, 1);
@@ -11,7 +11,7 @@ public class Solution {
         }
         
         for(char ch:t.toCharArray()){
-            if(Found.contains(ch)){
+            if(Found.containsKey(ch)){
                 Found.put(ch, toFind.get(ch)+1);
             }else{
                 Found.put(ch, 1);
