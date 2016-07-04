@@ -25,11 +25,13 @@ public class Solution {
             if(!Found.containsKey(ch)){
                 return false;
             }
+            
             int a1 = Found.get(ch);
             int a2 = toFind.get(ch);
             if(a1!=a2){
                 return false;
-            }
+            }*/
+            
         }
         return true;
     }
