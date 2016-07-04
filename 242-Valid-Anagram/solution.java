@@ -6,7 +6,7 @@ public class Solution {
             if(toFind.containsKey(ch)){
                 toFind.put(ch, toFind.get(ch)+1);
             }else{
-                toFInd.put(ch, 1);
+                toFind.put(ch, 1);
             }
         }
         
