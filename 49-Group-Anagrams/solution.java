@@ -6,9 +6,9 @@ public class Solution {
             Arrays.sort(ch);
             String tmp = new String(ch);
             if(!map.containsKey(tmp)){
-                map.put(ch, new ArrayList<String>());
+                map.put(tmp, new ArrayList<String>());
             }
-            map.get(ch).add(tmp);//------------这句话必须有
+            map.get(tmp).add(str);//------------这句话必须有
             
         }
         return new ArrayList<List<String>>(map.values());
