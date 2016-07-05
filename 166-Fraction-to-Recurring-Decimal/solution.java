@@ -3,35 +3,31 @@ public class Solution {
         if(numerator==0){
             return "0";
         }
-        StringBuilder str = new StringBuilder();
-        str.append(((numerator>0)^(denominator>0))?"-":"");
+        StringBuilder res = new StringBuilder();
+        res.append((numerator>0)^(denominator>0)?"-":"");
         long num = Math.abs((long)numerator);
         long den = Math.abs((long)denominator);
-        long tmp = num/den;
-        str.append(tmp);
+        res.append(num/den);
         num = num%den;
         if(num==0){
-            return new String(str);
+            return new String(res);
         }
         
+        res.append(".");
         HashMap<Long, Integer> map = new HashMap();
-        str.append(".");
         while(num!=0){
             num *= 10;
-            tmp = num/den;
+            long tmp = num/den;
             if(map.containsKey(num)){
-                System.out.println(num);
-                str.insert(map.get(num), "(");
-                str.append(")");
+                res.insert(map.get(num), "(");
+                res.append(")");
                 break;
             }else{
-                map.put(num, str.length());
-                str.append(tmp);
+                map.put(num, res.length());
                 num = num%den;
+                res.append(tmp);
             }
-            
         }
-        return new String(str);
-        
+        return new String(res);
     }
 }
