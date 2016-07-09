@@ -14,7 +14,7 @@ public class Solution {
         
         int advance = 0;
         for(int i=0; i<len; i++){
-            int sum = (int)(a1.charAt(i)+b1.charAt(i)-'0'-'0')+advance;
+            int sum = (a1.charAt(i)+b1.charAt(i)-'0'-'0')+advance;  //---------char '0' <-> int 48---
             if(sum>=2){
                 sum = sum-2;
                 advance =1;
