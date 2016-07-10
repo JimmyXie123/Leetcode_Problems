@@ -3,12 +3,7 @@ public class Solution {
         if(n<=0){
             return false;
         }
-        while(n!=1){
-            if(n%3!=0){
-                return false;
-            }
-            n /= 3;
-        }
-        return true;
+        double a = Math.log10(n)/Math.log10(3);
+        return a-Math.floor(a)==0;
     }
 }
