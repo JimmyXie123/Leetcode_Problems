@@ -17,7 +17,7 @@ public class Codec {
             int slash = s.indexOf('/', i);
             int size = Integer.parseInt(s.substring(i, slash));
             res.add(s.substring(slash+1, slash+size+1));
-            i = slash+size+1;
+            i = slash+size+1;        //----------slash+size+1而不是+2---------
         }
         return res;
     }
