@@ -8,17 +8,14 @@ public class Solution {
         map.put('9', '6');
         map.put('1', '1');
         
-        List<String> res = new ArrayList();
-        if(n==0){
-            res.add("0");
-            return res;
-        }
-        if(n==1){
-            res.add("0");
+        List<String> res = new ArrayList();                                      
+                                                                //-----------1的异常情况--------------
+       /* if(n==1){
+            res.add("0");       
             res.add("1");
             res.add("8");
             return res;
-        }
+        }*/
         
         char[] tmp = new char[n];
         
@@ -27,16 +24,16 @@ public class Solution {
     }
     
     private void helper(List<String> res, char[] tmp, int pos, int n){
-        if(pos>(n+1)/2-1){
+        if(pos>(n+1)/2-1){                            //-----------坐标问题，别忘减一-------------
             res.add(new String(tmp));
             return;
         }
         
         for(char ch:map.keySet()){
-            if(pos==0&&ch=='0'){
+            if(n!=1&&pos==0&&ch=='0'){
                 continue;
             }
-            if((n%2==1&&pos==(n+1)/2-1)&&(ch=='6'||ch=='9')){
+            if(((n==1)||(n%2==1&&pos==(n+1)/2-1))&&(ch=='6'||ch=='9')){      //-----------坐标问题同上--------------
                 continue;
             }
             tmp[pos] = ch;
