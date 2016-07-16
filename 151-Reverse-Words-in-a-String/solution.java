@@ -13,8 +13,8 @@ public class Solution {
             res.append(strs[i]).append(" ");
         }
         
-        String ans = res.toString();
-        return ans.length()==0?"":ans.substring(0, ans.length()-1);
+        //String ans = res.toString();
+        return res.length()==0?"":res.substring(0, res.length()-1);
         
         
     }
