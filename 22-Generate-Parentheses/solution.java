@@ -11,12 +11,12 @@ public class Solution {
             res.add(new String(path));
         }
         
-        if(left>0){
-            helper(res, path+"(", left-1, right);
-        }
-        
         if(right>0&&right>left){
             helper(res, path+")", left, right-1);
+        }
+        
+        if(left>0){
+            helper(res, path+"(", left-1, right);
         }
     }
 }
