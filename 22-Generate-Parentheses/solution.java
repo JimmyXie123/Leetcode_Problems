@@ -11,7 +11,7 @@ public class Solution {
             res.add(new String(path));
         }
         
-        if(right>0&&right>left){
+        if(right>left){
             helper(res, path+")", left, right-1);
         }
         
