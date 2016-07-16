@@ -15,7 +15,7 @@ public class Solution {
             helper(res, path+"(", left-1, right);
         }
         
-        if(right>left){
+        if(right>0&&right>left){
             helper(res, path+")", left, right-1);
         }
     }
