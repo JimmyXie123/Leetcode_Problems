@@ -20,7 +20,7 @@ public class Solution {
             return;
         }
         
-        for(int i=start; i<s.length()&&i<=start+2; i++){
+        for(int i=start; i<s.length()&&i<=start+3; i++){
             String temp = s.substring(start, i+1);
             if(isValid(temp)){
                 list.add(temp);
