@@ -18,22 +18,18 @@
 public class Solution {
     int sum = 0;
     public int depthSum(List<NestedInteger> nestedList) {
-        if(nestedList==null){
-            return 0;
-        }
-        for(NestedInteger i:nestedList){
-            sum(i, 1);
-        }
+        sum(nestedList, 1);
         return sum;
     }
     
-    private void sum(NestedInteger item, int level){
-        if(item.isInteger()){
-            sum += item.getInteger()*level;
-        }else{
-            for(NestedInteger sub:item.getList()){
-                sum(sub, level+1);
+    private void sum(List<NestedInteger> list, int level){
+        for(NestedInteger item:list){
+            if(item.isInteger()){
+                sum += item.getInteger()*level;
+            }else{
+                sum(item.getList(), level+1);
             }
         }
+        
     }
 }
