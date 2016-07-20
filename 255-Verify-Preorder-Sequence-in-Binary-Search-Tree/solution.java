@@ -4,13 +4,13 @@ public class Solution {
             return true;
         }
         Stack<Integer> stack = new Stack();
-        int last = Integer.MIN_VALUE;
+        int low = Integer.MIN_VALUE;
         for(int i:preorder){
-            if(i<last){
+            if(i<low){
                     return false;
             }
             while(!stack.isEmpty()&&stack.peek()<i){
-                last = stack.pop();
+                low = stack.pop();
             }
             stack.push(i);
         }
