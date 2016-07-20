@@ -7,10 +7,10 @@ public class Solution {
         }
         int l, r;
         if(nums.length%2==0){
-            r = 1;
-            l = nums.length-2;
-            for(int i=0; i<nums.length; i++){
-                if(nums[i]>mid){
+            r = 1;                                              //----   if l=0, r= nums.length-2
+            l = nums.length-2;                                  //--------[1,5,1,1,6,4]-->[6,1,5,1,4,1]
+            for(int i=0; i<nums.length; i++){                   //-----  if l=nums.length-2, r=0
+                if(nums[i]>mid){                                //---------[1,5,1,1,6,4]-->[4,1,5,1,6,1]
                     ans[r] = nums[i];
                     r = r+2;
                 }else if(nums[i]<mid){
@@ -19,8 +19,8 @@ public class Solution {
                 }
             }
         }else{
-            l=0;
-            r = nums.length-2;
+            l=0;                                                //------if l=0, r=nums.length-2
+            r = nums.length-2;                                  //--------[1,1,2,1,2,2,1]-->[1,1,2,1,2,1,2]
             for(int i=0; i<nums.length; i++){
                 if(nums[i]>mid){
                     ans[r] = nums[i];
