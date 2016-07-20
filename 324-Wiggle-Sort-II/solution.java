@@ -7,8 +7,8 @@ public class Solution {
         }
         int l, r;
         if(nums.length%2==0){
-            r = 1;                                              //----   if l=0, r= nums.length-2
-            l = nums.length-2;                                  //--------[1,5,1,1,6,4]-->[6,1,5,1,4,1]
+            l = nums.length-2;                                  //----   if l=0, r= nums.length-1
+            r = 1;                                              //--------[4,5,5,6]-->[4,5,5,6]
             for(int i=0; i<nums.length; i++){                   //-----  if l=nums.length-2, r=0
                 if(nums[i]>mid){                                //---------[1,5,1,1,6,4]-->[4,1,5,1,6,1]
                     ans[r] = nums[i];
