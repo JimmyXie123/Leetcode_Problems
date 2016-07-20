@@ -31,13 +31,13 @@ public class NestedIterator implements Iterator<Integer> {
     @Override
     public boolean hasNext() {
         while(!stack.isEmpty()) {
-            NestedInteger curr = stack.peek();
-            if(curr.isInteger()) {
+            if(stack.peek().isInteger()) {
                 return true;
-            }
-            stack.pop();
-            for(int i = curr.getList().size() - 1; i >= 0; i--) {
-                stack.push(curr.getList().get(i));
+            }else{
+                NestedInteger curr = stack.pop();
+                for(int i = curr.getList().size() - 1; i >= 0; i--) {
+                    stack.push(curr.getList().get(i));
+                }
             }
         }
         return false;
