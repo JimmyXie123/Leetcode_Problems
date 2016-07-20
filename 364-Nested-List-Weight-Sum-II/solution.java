@@ -21,35 +21,28 @@ public class Solution {
         if(nestedList==null){
             return 0;
         }
-        int level = 0;
-        for(NestedInteger item:nestedList){
-            level = Math.max(level, getLevel(item));
-        }
-        
-        for(NestedInteger item:nestedList){
-            sum(item, level);
-        }
+        sum(nestedList, getLevel(nestedList));
         return sum;
     }
     
-    private int getLevel(NestedInteger item){
-        if(item.isInteger()){
-            return 1;
-        }else{
-            int res = 0;
-            for(NestedInteger sub:item.getList()){
-                res = Math.max(getLevel(sub), res);
+    private int getLevel(List<NestedInteger> list){
+        int res = 0;
+        for(NestedInteger item:list){
+            if(item.isInteger()){
+                res = Math.max(1, res);
+            }else{
+                res = Math.max(getLevel(item.getList())+1, res);
             }
-            return res+1;
         }
+        return res;
     }
     
-    private void sum(NestedInteger item, int level){
-        if(item.isInteger()){
-            sum += level*item.getInteger();
-        }else{
-            for(NestedInteger num:item.getList()){
-                sum(num, level-1);
+    private void sum(List<NestedInteger> list, int level){
+        for(NestedInteger item:list){
+            if(item.isInteger()){
+                sum += level*item.getInteger();
+            }else{
+                sum(item.getList(), level-1);
             }
         }
     }
