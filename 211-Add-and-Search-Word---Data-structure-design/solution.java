@@ -1,34 +1,31 @@
-class Node{
-    HashMap<Character, Node> kids;
-    boolean hasWord;
-    public Node(){
-        kids = new HashMap();
-        hasWord = false;
-    }
-}
-
 public class WordDictionary {
     Node root = new Node();
     // Adds a word into the data structure.
     public void addWord(String word) {
-        Node now = root;
-        for(int i=0; i<word.length(); i++){
-            Character tmp = word.charAt(i);
-            if(!now.kids.containsKey(tmp)){
-                now.kids.put(tmp, new Node());
-            }
-            now = now.kids.get(tmp);
+        addWord(word, 0, root);
+    }
+    
+    private void addWord(String word, int index, Node now){
+        int idx = word.charAt(index)-'a';
+        if(now.kids[idx]==null){
+            now.kids[idx] = new Node();
         }
-        now.hasWord = true;
+        
+        if(index==word.length()-1){
+            now.kids[idx].hasWord = true;
+            return;
+        }
+        
+        addWord(word, index+1, now.kids[idx]);
     }
 
     // Returns if the word is in the data structure. A word could
     // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
-        return find(word, 0, root);
+        return search(word, 0, root);
     }
     
-    private boolean find(String word, int index, Node node){
+    private boolean search(String word, int index, Node now){
         if(word.length()==index){
             if(word.length()==0){
                 return true;
@@ -36,19 +33,18 @@ public class WordDictionary {
                 return false;
             }
         }
-        
-        Character c = word.charAt(index);
-        if(node.kids.containsKey(c)){
-            if(index == word.length()-1&&node.kids.get(c).hasWord){
+        int idx = word.charAt(index) - 'a';
+        if(idx>=0&&idx<26&&now.kids[idx]!=null){
+            if(index==word.length()-1&&now.kids[idx].hasWord){
                 return true;
             }
-            return find(word, index+1, node.kids.get(c));
-        }else if(c=='.'){
-            for(Map.Entry<Character, Node> entry:node.kids.entrySet()){
-                if(word.length()==index+1&&entry.getValue().hasWord){
+            return search(word, index+1, now.kids[idx]);
+        }else if(word.charAt(index)=='.'){
+            for(int i=0; i<26; i++){
+                if(index==word.length()-1&&now.kids[i]!=null&&now.kids[i].hasWord){
                     return true;
                 }
-                if(find(word, index+1, entry.getValue())){
+                if(now.kids[i]!=null&&search(word, index+1, now.kids[i])){
                     return true;
                 }
             }
@@ -59,6 +55,14 @@ public class WordDictionary {
     }
 }
 
+class Node{
+    boolean hasWord;
+    Node[] kids;
+    public Node(){
+        this.hasWord = false;
+        this.kids = new Node[26];
+    }
+}
 // Your WordDictionary object will be instantiated and called as such:
 // WordDictionary wordDictionary = new WordDictionary();
 // wordDictionary.addWord("word");
