@@ -1,26 +1,27 @@
-import java.util.Deque;
 public class SnakeGame {
     Deque<Integer> body;
     HashSet<Integer> set;
-    int[][] food;
-    int height;
     int width;
+    int height;
+    int[][] food;
     int score;
-    int foodIndex = 0;
+    int foodIndex;
+    
     /** Initialize your data structure here.
         @param width - screen width
         @param height - screen height 
         @param food - A list of food positions
         E.g food = [[1,1], [1,0]] means the first food is positioned at [1,1], the second is at [1,0]. */
     public SnakeGame(int width, int height, int[][] food) {
-        body = new LinkedList();
-        set = new HashSet();
-        this.food = food;
         this.width = width;
         this.height = height;
+        this.food = food;
+        body = new LinkedList();
+        set = new HashSet();
         body.offer(0);
         set.add(0);
         score = 0;
+        foodIndex = 0;
     }
     
     /** Moves the snake.
@@ -61,7 +62,6 @@ public class SnakeGame {
         
         body.pollLast();
         return score;
-        
     }
 }
 
