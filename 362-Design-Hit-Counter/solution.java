@@ -9,7 +9,6 @@ public class HitCounter {
         @param timestamp - The current timestamp (in seconds granularity). */
     public void hit(int timestamp) {
         hits.addLast(timestamp);
-        if(hits.size()>300) hits.pollFirst();
     }
     
     /** Return the number of hits in the past 5 minutes.
