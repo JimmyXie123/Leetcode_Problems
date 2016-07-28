@@ -25,7 +25,7 @@ public class WordDictionary {
         return search(word, 0, root);
     }
     
-    private boolean search(String word, int index, Node now){
+    private boolean search(String word, int index, Node now){   //--------index and now--------
         if(word.length()==index){
             if(word.length()==0){
                 return true;
@@ -57,7 +57,7 @@ public class WordDictionary {
 
 class Node{
     boolean hasWord;
-    Node[] kids;
+    Node[] kids;                  //------------用array非常之快---------------
     public Node(){
         this.hasWord = false;
         this.kids = new Node[26];
