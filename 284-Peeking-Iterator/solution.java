@@ -1,13 +1,12 @@
 // Java Iterator interface reference:
 // https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
 class PeekingIterator implements Iterator<Integer> {
-    Integer next=null;
+    Integer next;
     Iterator<Integer> iter;
 	public PeekingIterator(Iterator<Integer> iterator) {
 	    // initialize any member here.
 	    iter = iterator;
-	    if (iter.hasNext())
-            next = iter.next();
+	    next = iter.hasNext()?iter.next():null;
 	}
 
     // Returns the next element in the iteration without advancing the iterator.
