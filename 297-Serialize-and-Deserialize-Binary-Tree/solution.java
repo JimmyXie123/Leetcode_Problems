@@ -11,49 +11,44 @@ public class Codec {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        if (root == null) {
+        String res = "";
+        if(root==null){
             return "{}";
         }
-
-        ArrayList<TreeNode> queue = new ArrayList<TreeNode>();
+        ArrayList<TreeNode> queue = new ArrayList(); 
         queue.add(root);
-
-        for (int i = 0; i < queue.size(); i++) {
-            TreeNode node = queue.get(i);
-            if (node == null) {
+        for(int i=0; i<queue.size(); i++){
+            TreeNode tmp = queue.get(i);
+            if(tmp==null){
                 continue;
             }
-            queue.add(node.left);
-            queue.add(node.right);
+            queue.add(tmp.left);
+            queue.add(tmp.right);
         }
-
-        while (queue.get(queue.size() - 1) == null) {
-            queue.remove(queue.size() - 1);
+        
+        while(queue.get(queue.size()-1)==null){
+            queue.remove(queue.size()-1);
         }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("{");
-        sb.append(queue.get(0).val);
-        for (int i = 1; i < queue.size(); i++) {
-            if (queue.get(i) == null) {
-                sb.append(",#");
-            } else {
-                sb.append(",");
-                sb.append(queue.get(i).val);
+        
+        res += "{"+queue.get(0).val;
+        for(int i=1; i<queue.size(); i++){
+            if(queue.get(i)==null){
+                res += ",#";
+            }else{
+                res += ","+queue.get(i).val;
             }
         }
-        sb.append("}");
-        return sb.toString();
+        res += "}";
+        return res;
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        if (data.equals("{}")) {
-            return null;
-        }
         ArrayList<TreeNode> queue = new ArrayList();
         String vals[] = data.substring(1, data.length()-1).split(",");
-        System.out.println(data);
+        if(data.length()==2){
+            return null;
+        }
         TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
         queue.add(root);
         int index = 0;
