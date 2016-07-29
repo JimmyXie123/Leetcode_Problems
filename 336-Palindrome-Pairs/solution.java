@@ -1,80 +1,70 @@
 public class Solution {
-public List<List<Integer>> palindromePairs(String[] words) {
-    List<List<Integer>> res = new ArrayList<List<Integer>>();
-    if(words == null || words.length == 0){
+    public List<List<Integer>> palindromePairs(String[] words) {
+        List<List<Integer>> res = new ArrayList();
+        if(words==null||words.length==0){
+            return res;
+        }
+        HashMap<String, Integer> map = new HashMap();
+        int len = words.length;
+        for(int i=0; i<len; i++){
+            map.put(words[i], i);
+        }
+        
+        for(int i=0; i<len; i++){
+            if(isPalindrome(words[i])&&map.containsKey("")){
+                    int found = map.get("");
+                    if(i==found){
+                        continue;
+                    }
+                    res.add(Arrays.asList(found, i));
+                    res.add(Arrays.asList(i, found));
+                    
+            }
+        }
+        
+        for(int i=0; i<len; i++){
+            String rev = rev(words[i]);
+            if(map.containsKey(rev)){
+                int found = map.get(rev);
+                if(found==i){
+                    continue;
+                }
+                res.add(Arrays.asList(i, found));
+                
+            }
+        }
+        
+        for(int i=0; i<len; i++){
+            for(int j=1; j<words[i].length(); j++){
+                String tmp1 = words[i].substring(0, j);
+                String tmp2 = words[i].substring(j, words[i].length());
+                if(map.containsKey(rev(tmp1))&&isPalindrome(tmp2)){
+                    res.add(Arrays.asList(i, map.get(rev(tmp1))));
+                }
+                if(map.containsKey(rev(tmp2))&&isPalindrome(tmp1)){
+                    res.add(Arrays.asList(map.get(rev(tmp2)), i));
+                }
+            }
+        }
+        
+        
         return res;
     }
-    //build the map save the key-val pairs: String - idx
-    HashMap<String, Integer> map = new HashMap<>();
-    for(int i = 0; i < words.length; i++){
-        map.put(words[i], i);
+    
+    private String rev(String cur){
+        StringBuilder tmp = new StringBuilder(cur);
+        return tmp.reverse().toString();
     }
     
-    //special cases: "" can be combine with any palindrome string
-    if(map.containsKey("")){
-        int blankIdx = map.get("");
-        for(int i = 0; i < words.length; i++){
-            if(isPalindrome(words[i])){
-                if(i == blankIdx) continue;
-                res.add(Arrays.asList(blankIdx, i));
-                res.add(Arrays.asList(i, blankIdx));
+    private boolean isPalindrome(String str){
+        int i=0, j=str.length()-1;
+        while(i<j){
+            if(str.charAt(i)!=str.charAt(j)){
+                return false;
             }
+            i++;
+            j--;
         }
+        return true;
     }
-    
-    //find all string and reverse string pairs
-    for(int i = 0; i < words.length; i++){
-        String cur_r = reverseStr(words[i]);
-        if(map.containsKey(cur_r)){
-            int found = map.get(cur_r);
-            if(found == i) continue;
-            res.add(Arrays.asList(i, found));
-        }
-    }
-    
-    //find the pair s1, s2 that 
-    //case1 : s1[0:cut] is palindrome and s1[cut+1:] = reverse(s2) => (s2, s1)
-    //case2 : s1[cut+1:] is palindrome and s1[0:cut] = reverse(s2) => (s1, s2)
-    for(int i = 0; i < words.length; i++){
-        String cur = words[i];
-        for(int cut = 1; cut < cur.length(); cut++){
-            if(isPalindrome(cur.substring(0, cut))){
-                String cut_r = reverseStr(cur.substring(cut));
-                if(map.containsKey(cut_r)){
-                    int found = map.get(cut_r);
-                    if(found == i) continue;
-                    res.add(Arrays.asList(found, i));
-                }
-            }
-            if(isPalindrome(cur.substring(cut))){
-                String cut_r = reverseStr(cur.substring(0, cut));
-                if(map.containsKey(cut_r)){
-                    int found = map.get(cut_r);
-                    if(found == i) continue;
-                    res.add(Arrays.asList(i, found));
-                }
-            }
-        }
-    }
-    
-    return res;
-}
-
-public String reverseStr(String str){
-    StringBuilder sb= new StringBuilder(str);
-    return sb.reverse().toString();
-}
-
-public boolean isPalindrome(String s){
-    int i = 0;
-    int j = s.length() - 1;
-    while(i <= j){
-        if(s.charAt(i) != s.charAt(j)){
-            return false;
-        }
-        i++;
-        j--;
-    }
-    return true;
-}
 }
