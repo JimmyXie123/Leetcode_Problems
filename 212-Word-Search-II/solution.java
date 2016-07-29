@@ -11,7 +11,7 @@ public class Solution {
     Node root = new Node();
     int dX[] = {-1, 1, 0, 0};
     int dY[] = {0, 0, -1, 1};
-    int m, n;
+    int m, n;           //-----------matrix height and width---------------
     private void AddWord(String word){
         Node traverse = root;
         for(int i=0; i<word.length(); i++){
@@ -28,15 +28,14 @@ public class Solution {
         if(words.length<=0||board==null||board.length==0||board[0].length==0){
             return res;
         }
+        
         m = board.length;
         n = board[0].length;
         for(String word: words){
             AddWord(word);
         }
-        
         HashSet<String> set = new HashSet();
         String path = "";
-        boolean visited[][] = new boolean[m][n];
         
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
@@ -45,7 +44,6 @@ public class Solution {
         }
         
         return res;
-        
     }
     
     private void helper(char[][] board, int i, int j, Node now, List<String> res, String path, HashSet<String> set){
@@ -57,13 +55,12 @@ public class Solution {
             return;
         }
         
-        path = path+board[i][j];
         char tmp = board[i][j];
         board[i][j] = 0;
         for(int k=0; k<4; k++){
             int nextX = i+dX[k];
             int nextY = j+dY[k];
-            helper(board, nextX, nextY, now.kids[tmp-'a'], res, path, set);
+            helper(board, nextX, nextY, now.kids[tmp-'a'], res, path+tmp, set);
         }
         board[i][j] = tmp;
     }
