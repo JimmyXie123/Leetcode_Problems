@@ -24,14 +24,13 @@ public class Solution {
         }
         
         for(Character ch:map.keySet()){
-            //if(c.length!=1&&ch=='0') {
-            //    continue;
-            //}
-            //if(c.length%2==1&&left==right&&(ch=='6'||ch=='9')) continue;
+            if(c.length!=1&&ch=='0'&&left==0) {
+                continue;
+            }
+            if(c.length%2==1&&left==right&&(ch=='6'||ch=='9')) continue;
             c[left] = ch;
             c[right] = map.get(ch);
-            if(c.length != 1 && c[0] == '0') continue;
-		   if(left < right || left == right && ch==map.get(ch)) dfs(low, high, c, left + 1, right - 1, map);
+            dfs(low, high, c, left+1, right-1, map);
         }
     }
 }
