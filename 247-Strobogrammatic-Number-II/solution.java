@@ -9,7 +9,7 @@ public class Solution {
         map.put('1', '1');
         
         List<String> res = new ArrayList();                                      
-                                                                //-----------1的异常情况--------------
+                                                                //-----------注意1的异常情况--------------
        /* if(n==1){
             res.add("0");       
             res.add("1");
@@ -33,7 +33,7 @@ public class Solution {
             if(n!=1&&pos==0&&ch=='0'){
                 continue;
             }
-            if(((n==1)||(n%2==1&&pos==(n+1)/2-1))&&(ch=='6'||ch=='9')){      //-----------坐标问题同上--------------
+            if(((n%2==1&&pos==(n+1)/2-1))&&(ch=='6'||ch=='9')){      //-----------坐标问题同上--------------
                 continue;
             }
             tmp[pos] = ch;
