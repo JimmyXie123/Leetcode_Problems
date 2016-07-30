@@ -21,7 +21,7 @@ private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
         }else if(num<100){
             return TENS[num/10]+" "+helper(num%10);
         }else{
-            return LESS_THAN_20[num/100]+" Hundred "+helper(num%100);
+            return LESS_THAN_20[num/100]+" Hundred "+helper(num%100);   
         }
         
     }
