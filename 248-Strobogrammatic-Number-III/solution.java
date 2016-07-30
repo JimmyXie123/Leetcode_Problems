@@ -24,7 +24,7 @@ public class Solution {
         }
         
         for(Character ch:map.keySet()){
-            if(c.length!=1&&ch=='0'&&left==0) {
+            if(c.length!=1&&ch=='0'&&left==0) {      
                 continue;
             }
             if(c.length%2==1&&left==right&&(ch=='6'||ch=='9')) continue;
