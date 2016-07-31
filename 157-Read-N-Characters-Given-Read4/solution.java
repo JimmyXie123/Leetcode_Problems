@@ -12,7 +12,7 @@ public class Solution extends Reader4 {
         boolean eof = false;
         int total = 0;
         
-        while(!eof && total<n){
+        while(!eof&&total<n){
             int num = read4(tmp);
             if(num<4){
                 eof = true;
@@ -22,6 +22,7 @@ public class Solution extends Reader4 {
             for(int i=0; i<len; i++){
                 buf[total++] = tmp[i];
             }
+            
         }
         return total;
     }
