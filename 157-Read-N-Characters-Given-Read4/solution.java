@@ -20,7 +20,7 @@ public class Solution extends Reader4 {
             
             int len = Math.min(n-total, num);
             for(int i=0; i<len; i++){
-                buf[total++]=tmp[i];
+                buf[total++] = tmp[i];
             }
         }
         return total;
