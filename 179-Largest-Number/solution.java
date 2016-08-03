@@ -9,7 +9,7 @@ public class Solution {
                 return (s2+s1).compareTo(s1+s2);
             }
         });
-        StringBuilder res = new StringBuilder();
+        StringBuilder res = new StringBuilder();   
         for(int i=0; i<strs.length; i++){
             res.append(strs[i]);
         }
