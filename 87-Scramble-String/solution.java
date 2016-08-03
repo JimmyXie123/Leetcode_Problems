@@ -1,14 +1,26 @@
 public class Solution {
     public boolean isScramble(String s1, String s2) {
-        if(s1.length()!=s2.length()){
+        if(s1.length()!=s2.length()) return false;
+        int[][][] visited=new int[s1.length()][s1.length()][s1.length()+1];
+        return checkScramble(s1, 0, s2, 0, s1.length(), visited);
+    }
+    
+    public boolean checkScramble(String s1, int start1, String s2, int start2, int k, int[][][] visited) {
+        if(visited[start1][start2][k]==1){
+            return true;
+        }
+        
+        if(visited[start1][start2][k]==-1){
             return false;
         }
         
         if(s1.length()==0||s1.equals(s2)){
+            visited[start1][start2][k] = 1;
             return true;
         }
         
         if(!isValid(s1, s2)){
+            visited[start1][start2][k] = -1;
             return false;
         }
         
@@ -22,9 +34,16 @@ public class Solution {
             String s23 = s2.substring(0, s2.length()-i);
             String s24 = s2.substring(s2.length()-i, s2.length());
             
-            if(isScramble(s11, s21)&&isScramble(s12, s22)) return true;
-            if(isScramble(s11, s24)&&isScramble(s12, s23)) return true;
+            if(checkScramble(s11, start1, s21, start2, i, visited)&&checkScramble(s12, start1+i, s22, start2+i, s1.length()-i, visited)) {
+                visited[start1][start2][k] = 1;
+                return true;
+            }
+            if(checkScramble(s11, start1, s24, start2+s1.length()-i, i, visited)&&checkScramble(s12, start1+i, s23, start2, s1.length()-i, visited)) {
+                visited[start1][start2][k] = 1;
+                return true;
+            }
         }
+        visited[start1][start2][k] = -1;
         return false;
     }
     
