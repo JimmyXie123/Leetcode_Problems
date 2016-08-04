@@ -15,7 +15,7 @@ public class SummaryRanges {
     }
     
     public void addNum(int val) {
-        if(map.containsKey(val)) return;
+        if(map.containsKey(val)) return;     //----------necessary--------------------
         Integer l = map.lowerKey(val);
         Integer h = map.higherKey(val);
         if(l!=null&&h!=null&&map.get(l).end+1==val&&map.get(h).start==val+1){
