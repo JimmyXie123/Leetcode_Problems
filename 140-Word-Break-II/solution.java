@@ -1,31 +1,30 @@
 public class Solution {
-    public ArrayList<String> wordBreak(String s, Set<String> dict) {
-        // Note: The Solution object is instantiated only once and is reused by each test case.
-        Map<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
-        return wordBreakHelper(s,dict,map);
-    }
-
-    public ArrayList<String> wordBreakHelper(String s, Set<String> dict, Map<String, ArrayList<String>> memo){
-        if(memo.containsKey(s)) return memo.get(s);
-        ArrayList<String> result = new ArrayList<String>();
-        int n = s.length();
-        if(n <= 0) return result;
-        for(int len = 1; len <= n; ++len){
-            String subfix = s.substring(0,len);
-            if(dict.contains(subfix)){
-                if(len == n){
-                    result.add(subfix);
+    private List<String> helper(String s, Set<String> wordDict, HashMap<String, ArrayList<String>> map) {
+        if(map.containsKey(s))  return map.get(s);
+        ArrayList<String> res = new ArrayList();
+        if(s.length()==0)  {
+            return res;
+        }
+        for(int i=1; i<=s.length(); i++){
+            String value = s.substring(0, i);
+            if(wordDict.contains(value)){
+                if(i==s.length()){
+                    res.add(value);
                 }else{
-                    String prefix = s.substring(len);
-                    ArrayList<String> tmp = wordBreakHelper(prefix, dict, memo);
-                    for(String item:tmp){
-                        item = subfix + " " + item;
-                        result.add(item);
+                    List<String> tmp = helper(s.substring(i), wordDict, map);
+                    //------if tmp is null, this loop will never be executed, so invalid results will be ruled out
+                    for(String str:tmp){
+                        String path = value+" "+str;
+                        res.add(path);
                     }
                 }
             }
         }
-        memo.put(s, result);
-        return result;
+        map.put(s, res);
+        return res;
+    }
+    public List<String> wordBreak(String s, Set<String> wordDict) {
+        HashMap<String, ArrayList<String>> map = new HashMap();
+        return helper(s, wordDict, map);
     }
 }
