@@ -1,15 +1,13 @@
 public class Solution {
     public int countComponents(int n, int[][] edges) {
         UnionFind uf = new UnionFind(n);
+        int count = n;
         for(int i=0; i<edges.length; i++){
-            uf.Union(edges[i][0], edges[i][1]);
-        }
-        int res[] = new int[n];
-        int count = 0;
-        for(int i=0; i<n; i++){
-            if(res[uf.Find(i)]==0){
-                count++;
-                res[uf.Find(i)]=1;
+            int parent1 = uf.Find(edges[i][0]);
+            int parent2 = uf.Find(edges[i][1]);
+            if(parent1!=parent2){
+                count--;
+                uf.Union(parent1, parent2);
             }
         }
         return count;
