@@ -9,61 +9,83 @@
  */
 public class Solution {
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
-        List<Integer> series = helper(root);
-        List<Integer> ans = new ArrayList();
-        if(series.get(0)>=target){
-            for(int i=0; i<k; i++){
-                ans.add(series.get(i));
-            }
-            return ans;
-        }else if(series.get(series.size()-1)<=target){
-            for(int i=series.size()-1; i>=series.size()-k; i--){
-                ans.add(series.get(i));
-            }
-            return ans;
+        Stack<TreeNode> pre = new Stack();
+        Stack<TreeNode> suc = new Stack();
+        initializePredecessor(pre, root, target);
+        initializeSuccessor(suc, root, target);
+        
+        List<Integer> res = new ArrayList();
+        
+        if(!pre.isEmpty()&&!suc.isEmpty()&&pre.peek().val==suc.peek().val){
+            getPredecessor(pre);              //-----if root.val ==target--------------
         }
         
-        int start = 0;
-        
-        while(series.get(start)<target&&series.get(start+1)<target){
-            start++;
-        }
-        int end = start+1;
-        
-        int index = 0;
-        while(index<k){
-            if(start>=0&&end<series.size()){
-                if(series.get(start)+series.get(end)>target*2){
-                    ans.add(series.get(start));
-                    start--;
+        while(k>0){
+            if(!pre.isEmpty()&&!suc.isEmpty()){
+                int high = suc.peek().val;    //--------peek not pop--------------- 
+                int low = pre.peek().val;     //--------peek not pop------------
+                if(Math.abs(high-target)>Math.abs(target-low)){
+                    res.add(getPredecessor(pre));
                 }else{
-                    ans.add(series.get(end));
-                    end++;
+                    res.add(getSuccessor(suc));
                 }
-            }else if(start<0){
-                ans.add(series.get(end));
-                end++;
-            }else if(end>=series.size()){
-                ans.add(series.get(start));
-                start--;
+            }else if(!suc.isEmpty()){
+                res.add(getSuccessor(suc));
+            }else if(!pre.isEmpty()){
+                res.add(getPredecessor(pre));
             }
-            index++;
+            k--;
         }
-        
-        return ans;
+        return res;
     }
     
-    private List<Integer> helper(TreeNode root){
-        List<Integer> res = new ArrayList();
-        if(root==null)  return res;
-        
-        List<Integer> left = helper(root.left);
-        List<Integer> right = helper(root.right);
-        
-        res.addAll(left);
-        res.add(root.val);
-        res.addAll(right);
-        
+    private void initializePredecessor(Stack<TreeNode> stack, TreeNode node, double target){
+        while(node!=null){
+            if(node.val==target){
+                stack.push(node);
+                break;
+            }else if(node.val<target){
+                stack.push(node);
+                node = node.right;
+            }else{
+                node = node.left;
+            }
+        }
+    }
+    
+    private void initializeSuccessor(Stack<TreeNode> stack, TreeNode node, double target){
+        while(node!=null){
+            if(node.val==target){
+                stack.push(node);
+                break;
+            }else if(node.val>target){
+                stack.push(node);
+                node = node.left;
+            }else{
+                node = node.right;
+            }
+        }
+    }
+    
+    private int getPredecessor(Stack<TreeNode> stack){
+        TreeNode curr = stack.pop();
+        int res = curr.val;
+        curr = curr.left;
+        while(curr!=null){
+            stack.push(curr);
+            curr = curr.right;
+        }
+        return res;
+    }
+    
+    private int getSuccessor(Stack<TreeNode> stack){
+        TreeNode curr = stack.pop();
+        int res = curr.val;
+        curr = curr.right;
+        while(curr!=null){
+            stack.push(curr);
+            curr = curr.left;
+        }
         return res;
     }
 }
