@@ -17,8 +17,8 @@ public class Solution {
         
         while(root!=null||!stack.isEmpty()) {
             while(root!=null) {
-                if(prev!=null&&root.val<=prev.val) {System.out.println(1); return false;}
-                if(!stack.isEmpty()&&root.val>=stack.peek().val) {System.out.println(2); return false;}
+                if(prev!=null&&root.val<=prev.val) return false;
+                if(!stack.isEmpty()&&root.val>=stack.peek().val) return false;
                 
                 stack.push(root);
                 root = root.left;
@@ -30,8 +30,8 @@ public class Solution {
             }else{
                 higher = null;
             }
-            if(prev.right!=null&&prev.right.val<=prev.val)  {System.out.println(3); return false;}
-            if(prev.right!=null&&higher!=null&&prev.right.val>=higher.val)  {System.out.println(4); return false;}
+            if(prev.right!=null&&prev.right.val<=prev.val)  return false;
+            if(prev.right!=null&&higher!=null&&prev.right.val>=higher.val)  return false;
             root = prev.right;
         }
         
