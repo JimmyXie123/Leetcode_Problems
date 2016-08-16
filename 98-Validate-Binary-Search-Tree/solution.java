@@ -9,25 +9,21 @@
  */
 public class Solution {
     public boolean isValidBST(TreeNode root) {
+        if(root==null) return true;
         Stack<TreeNode> stack = new Stack();
-        if(root==null)  return true;
-        TreeNode pre = null;
-        while(root!=null){
-            stack.push(root);
-            root = root.left;
-        }
-        
-        while(!stack.isEmpty()){
+        TreeNode curt = root;
+        TreeNode prev = null;
+        while(curt!=null||!stack.isEmpty()){
+            while(curt!=null){
+                stack.push(curt);
+                curt = curt.left;
+            }
             TreeNode tmp = stack.pop();
-            if(pre!=null&&tmp.val<=pre.val){
+            if(prev!=null&&prev.val>=tmp.val){
                 return false;
             }
-            pre = tmp;
-            tmp = tmp.right;
-            while(tmp!=null){
-                stack.push(tmp);
-                tmp = tmp.left;
-            }
+            prev = tmp;
+            curt = tmp.right;
         }
         
         return true;
