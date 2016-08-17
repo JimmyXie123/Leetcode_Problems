@@ -9,42 +9,29 @@
  */
 public class Solution {
     public List<TreeNode> generateTrees(int n) {
-        return helper(n, 0);
+        if(n==0){
+            return new ArrayList();
+        }
+        return helper(1, n);
     }
     
-    private List<TreeNode> helper(int n, int makeup){
+    private List<TreeNode> helper(int start, int end){
         List<TreeNode> res = new ArrayList();
-        if(n==0){
+        if(start>end){
+            res.add(null);   //-----------tricky way to escape complex cases----------
             return res;
         }
         
-        for(int i=1; i<=n; i++){
-            List<TreeNode> left = helper(i-1, makeup);
-            List<TreeNode> right = helper(n-i, makeup+i);
-            if(!left.isEmpty()&&!right.isEmpty()){
-                for(TreeNode l:left){
-                    for(TreeNode r:right){
-                        TreeNode root = new TreeNode(i+makeup);
-                        root.left = l;
-                        root.right = r;
-                        res.add(root);
-                    }
-                }
-            }else if(!left.isEmpty()&&right.isEmpty()){
-                for(TreeNode l:left){
-                    TreeNode root = new TreeNode(i+makeup);
-                    root.left = l;
-                    res.add(root);
-                }
-            }else if(left.isEmpty()&&!right.isEmpty()){
+        for(int i=start; i<=end; i++){
+            List<TreeNode> left = helper(start, i-1);
+            List<TreeNode> right = helper(i+1, end);
+            for(TreeNode l:left){
                 for(TreeNode r:right){
-                    TreeNode root = new TreeNode(i+makeup);
+                    TreeNode root = new TreeNode(i);   //-------------every turn should have a new root..---------
+                    root.left = l;
                     root.right = r;
                     res.add(root);
                 }
-            }else{
-                TreeNode root = new TreeNode(i+makeup);
-                res.add(root);
             }
         }
         return res;
