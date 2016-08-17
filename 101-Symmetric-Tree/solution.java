@@ -9,10 +9,7 @@
  */
 public class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if(root==null)  return true;
-        if(root.left==null&&root.right==null)   return true;
-        if(root.left==null||root.right==null)   return false;
-        return helper(root.left, root.right);
+        return helper(root, root);
     }
     
     private boolean helper(TreeNode p, TreeNode q){
