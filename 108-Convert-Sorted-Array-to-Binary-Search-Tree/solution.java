@@ -8,30 +8,20 @@
  * }
  */
 public class Solution {
-    int pos;
-    int[] current;
-    
     public TreeNode sortedArrayToBST(int[] nums) {
-        if(nums==null){
-            return null;
-        }
-        current = nums;
-        pos = 0;
-        return helper(nums.length);
+        return helper(nums, 0, nums.length-1);
     }
     
-    private TreeNode helper(int size){
-        if(size<=0){
+    private TreeNode helper(int[] nums, int start, int end){
+        if(start>end){
             return null;
         }
-        
-        TreeNode left = helper(size/2);
-        TreeNode root = new TreeNode(current[pos++]);
-        TreeNode right = helper(size-1-size/2);
+        int mid = start+(end-start)/2;
+        TreeNode root = new TreeNode(nums[mid]);
+        TreeNode left = helper(nums, start, mid-1);
+        TreeNode right = helper(nums, mid+1, end);
         root.left = left;
         root.right = right;
         return root;
     }
-    
-    
 }
