@@ -9,23 +9,12 @@
  */
 public class Solution {
     public boolean isValidBST(TreeNode root) {
-        if(root==null) return true;
-        Stack<TreeNode> stack = new Stack();
-        TreeNode curt = root;
-        TreeNode prev = null;
-        while(curt!=null||!stack.isEmpty()){
-            while(curt!=null){
-                stack.push(curt);
-                curt = curt.left;
-            }
-            TreeNode tmp = stack.pop();
-            if(prev!=null&&prev.val>=tmp.val){
-                return false;
-            }
-            prev = tmp;
-            curt = tmp.right;
-        }
-        
-        return true;
+        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    private boolean helper(TreeNode node, long min, long max){
+        if(node==null)  return true;
+        if(node.val>=max||node.val<=min)  return false;
+        return helper(node.left, min, node.val)&&helper(node.right, node.val, max);
     }
 }
