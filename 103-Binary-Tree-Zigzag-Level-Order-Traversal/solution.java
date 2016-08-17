@@ -15,13 +15,17 @@ public class Solution {
             return result;
         }
         queue.offer(root);
-        int order = 0;
+        int level = 0;
         while(!queue.isEmpty()){
             List<Integer> temp = new ArrayList();
             int size = queue.size();
             for(int i=0; i<size; i++){
                 TreeNode node = queue.poll();
-                temp.add(node.val);
+                if(level%2==0){
+                    temp.add(node.val);
+                }else{
+                    temp.add(0, node.val);
+                }
                 if(node.left!=null){
                     queue.offer(node.left);
                 }
@@ -29,16 +33,7 @@ public class Solution {
                     queue.offer(node.right);
                 }
             }
-            if(order==1){
-                List<Integer> reverse = new ArrayList();
-                for(int i=temp.size()-1; i>=0; i--){
-                    reverse.add(temp.get(i));
-                }
-                temp =reverse;
-                order=0;
-            }else{
-                order=1;
-            }
+            level++;
             result.add(temp);
         }
         return result;
