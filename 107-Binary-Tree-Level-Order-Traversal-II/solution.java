@@ -28,13 +28,9 @@ public class Solution {
                     queue.add(node.right);
                 }
             }
-            result.add(temp);
+            result.add(0, temp);
         }
-        List<List<Integer>> best = new ArrayList();
-        for(int i=result.size()-1; i>=0; i--){
-            best.add(result.get(i));
-        }
-        return best;
+        return result;
         
     }
 }
