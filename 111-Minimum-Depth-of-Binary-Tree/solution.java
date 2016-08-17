@@ -8,26 +8,18 @@
  * }
  */
 public class Solution {
-     public int minDepth(TreeNode root) {
-        if (root == null) {
+    public int minDepth(TreeNode root) {
+        if(root==null){
             return 0;
         }
-        return getMin(root);
-        /*
-        if(Math.min(minDepth(root.left), minDepth(root.right))>0){
-            return Math.min(minDepth(root.left), minDepth(root.right))+1;   想想为什么会time limited
-        }else{
-            return Math.max(minDepth(root.left), minDepth(root.right))+1;
-        }*/  
-    }
-    
-    private int getMin(TreeNode node){
-        if(node==null){
-            return Integer.MAX_VALUE;
-        }
-        if(node.left==null&&node.right==null){
+        
+        if(root.left==null&&root.right==null){
             return 1;
         }
-        return Math.min(getMin(node.left), getMin(node.right))+1;
+        
+        if(root.left==null) return minDepth(root.right)+1;
+        if(root.right==null)    return minDepth(root.left)+1;
+        
+        return Math.min(minDepth(root.left), minDepth(root.right))+1;
     }
 }
