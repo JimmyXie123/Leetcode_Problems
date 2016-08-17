@@ -8,28 +8,31 @@
  * }
  */
 public class Solution {
-    private int findPosition(int[] arr, int start, int end, int key){
-        for(int i=start; i<=end; i++){
-            if(key==arr[i]){
-                return i;
-            }
-        }
-        return -1;
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        return helper(inorder, postorder, 0, inorder.length-1, 0, postorder.length-1);
     }
     
-    private TreeNode myBuildTree(int[] inorder, int instart, int inend, int[] postorder, int poststart, int postend){
-        if(instart>inend){
+    private TreeNode helper(int[] inorder, int[] postorder, int istart, int iend, int pstart, int pend){
+        if(istart>iend){
             return null;
         }
         
-        int pos = findPosition(inorder, instart, inend, postorder[postend]);
-        TreeNode root = new TreeNode(postorder[postend]);
-        root.left = myBuildTree(inorder, instart, pos-1, postorder, poststart, poststart+pos-1-instart);
-        root.right = myBuildTree(inorder, pos+1, inend, postorder, poststart+pos-instart, postend-1);
+        int in_pos = findPosition(inorder, postorder[pend]);
+        
+        TreeNode root = new TreeNode(postorder[pend]);
+        TreeNode left = helper(inorder, postorder, istart, in_pos-1, pstart, pstart+in_pos-1-istart);
+        TreeNode right = helper(inorder, postorder, in_pos+1, iend, pstart+in_pos-istart, pend-1);
+        root.left = left;
+        root.right = right;
         return root;
     }
     
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
-        return myBuildTree(inorder, 0, inorder.length-1, postorder, 0, postorder.length-1);
+    private int findPosition(int inorder[], int key){
+        for(int i=0; i<inorder.length; i++){
+            if(inorder[i]==key){
+                return i;
+            }
+        }
+        return inorder.length;
     }
 }
