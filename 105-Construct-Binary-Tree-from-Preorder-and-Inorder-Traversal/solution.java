@@ -13,12 +13,8 @@ public class Solution {
     }
     
     private TreeNode helper(int[] preorder, int[] inorder, int pstart, int pend, int istart, int iend){
-        if(pstart==pend){
-            return new TreeNode(preorder[pstart]);
-        }
-        
         if(pstart>pend){
-            return null;
+            return null;       //-----------------corner test cases, í ¼í¼²æ˜¯ç©ºçš„æ—¶å€™----------------------
         }
         
         int in_pos = findPosition(inorder, preorder[pstart]);
