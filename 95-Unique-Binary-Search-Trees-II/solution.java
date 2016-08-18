@@ -9,31 +9,32 @@
  */
 public class Solution {
     public List<TreeNode> generateTrees(int n) {
-        if(n==0){
-            return new ArrayList();
-        }
-        return helper(1, n);
-    }
-    
-    private List<TreeNode> helper(int start, int end){
-        List<TreeNode> res = new ArrayList();
-        if(start>end){
-            res.add(null);   //-----------tricky way to escape complex cases----------
-            return res;
-        }
-        
-        for(int i=start; i<=end; i++){
-            List<TreeNode> left = helper(start, i-1);
-            List<TreeNode> right = helper(i+1, end);
-            for(TreeNode l:left){
-                for(TreeNode r:right){
-                    TreeNode root = new TreeNode(i);   //-------------every turn should have a new root..---------
-                    root.left = l;
-                    root.right = r;
-                    res.add(root);
+        if(n==0)    return new ArrayList();
+        List<TreeNode>[] ary = new List[n+1];
+        ary[0] = new ArrayList();
+        ary[0].add(null);
+        for(int len=1; len<=n; len++){
+            ary[len] = new ArrayList();
+            for(int i=0; i<len; i++){
+                for(TreeNode l:ary[i]){
+                    for(TreeNode r:ary[len-1-i]){
+                        TreeNode root = new TreeNode(i+1);
+                        root.left = l;
+                        root.right = clone(r, i+1);
+                        ary[len].add(root);
+                    }
                 }
             }
         }
-        return res;
+        
+        return ary[n];
+    }
+    
+    private TreeNode clone(TreeNode node, int offset) {
+        if(node==null)  return null;
+        TreeNode root = new TreeNode(node.val+offset);
+        root.left = clone(node.left, offset);
+        root.right = clone(node.right, offset);
+        return root;
     }
 }
