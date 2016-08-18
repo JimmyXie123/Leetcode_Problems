@@ -9,30 +9,28 @@
  */
 public class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        return helper(inorder, postorder, 0, inorder.length-1, 0, postorder.length-1);
-    }
-    
-    private TreeNode helper(int[] inorder, int[] postorder, int istart, int iend, int pstart, int pend){
-        if(istart>iend){
-            return null;
-        }
+        if(postorder==null||postorder.length==0)    return null;
+        Stack<TreeNode> stack = new Stack();
+        int len = postorder.length;
+        TreeNode root = new TreeNode(postorder[len-1]) ;
+        stack.push(root);
+        int index = len-1;
         
-        int in_pos = findPosition(inorder, postorder[pend]);
-        
-        TreeNode root = new TreeNode(postorder[pend]);
-        TreeNode left = helper(inorder, postorder, istart, in_pos-1, pstart, pstart+in_pos-1-istart);
-        TreeNode right = helper(inorder, postorder, in_pos+1, iend, pstart+in_pos-istart, pend-1);
-        root.left = left;
-        root.right = right;
-        return root;
-    }
-    
-    private int findPosition(int inorder[], int key){
-        for(int i=0; i<inorder.length; i++){
-            if(inorder[i]==key){
-                return i;
+        for(int i=len-2; i>=0; i--){
+            TreeNode curr = stack.peek();
+            if(curr.val!=inorder[index]){
+                curr.right = new TreeNode(postorder[i]);
+                stack.push(curr.right);
+            }else{
+                while(!stack.isEmpty()&&stack.peek().val==inorder[index]){
+                    curr = stack.pop(); 
+                    index--;
+                }
+                
+                curr.left = new TreeNode(postorder[i]);
+                stack.push(curr.left);
             }
         }
-        return inorder.length;
+        return root;
     }
 }
