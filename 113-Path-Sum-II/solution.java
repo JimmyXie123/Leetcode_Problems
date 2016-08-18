@@ -9,25 +9,24 @@
  */
 public class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        List<List<Integer>> result = new ArrayList();
-        List<Integer> path = new ArrayList();
-        traverse(root, sum, path, result);
-        return result;
+        List<Integer> list = new ArrayList();
+        List<List<Integer>> res = new ArrayList();
+        traverse(root, sum, list, res);
+        return res;
     }
     
-    private void traverse(TreeNode node, int sum, List<Integer> path, List<List<Integer>> result){
+    private void traverse(TreeNode node, int sum, List<Integer> list, List<List<Integer>> res){
         if(node==null){
             return;
         }
-        path.add(node.val);
-        if(node.left==null&&node.right==null){
-            if(sum==node.val){
-                result.add(new ArrayList(path));
-            }
+        
+        list.add(node.val);
+        if(node!=null&&node.left==null&&node.right==null&&node.val==sum){
+            res.add(new ArrayList(list));
         }
         
-        traverse(node.left, sum-node.val, path, result);
-        traverse(node.right, sum-node.val, path, result);
-        path.remove(path.size()-1);
+        traverse(node.left, sum-node.val, list, res);
+        traverse(node.right, sum-node.val, list, res);
+        list.remove(list.size()-1);
     }
 }
