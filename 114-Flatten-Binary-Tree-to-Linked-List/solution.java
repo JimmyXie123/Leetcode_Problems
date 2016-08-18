@@ -8,28 +8,24 @@
  * }
  */
 public class Solution {
-    TreeNode last;
     public void flatten(TreeNode root) {
-        traverse(root);
-        return;
-    }
-    
-    public void traverse(TreeNode node){
-        if(node==null){
-            return;
+        if(root==null)  return;
+        Stack<TreeNode> stack = new Stack();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode curr = stack.pop();
+            if(curr.right!=null){
+                stack.push(curr.right);
+            }
+            if(curr.left!=null){
+                stack.push(curr.left);
+            }
+            curr.left=null;
+            if(stack.isEmpty()){
+                curr.right = null;
+            }else{
+                curr.right = stack.peek();
+            }
         }
-        
-        if(last==null){
-            last = node; 
-        }else{
-            last.left = null;
-            last.right = node;
-        }
-        last = node;
-        TreeNode right = node.right;  /*------------important!!!!!!!!!!!!!!-------
-                                        走完node之后，node变成last，last在下一轮中left，right指针就变了，左指针不再需要，
-                                        而右指针还需在用--------------*/
-        traverse(node.left);
-        traverse(right);
     }
 }
