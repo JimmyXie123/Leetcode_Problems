@@ -20,8 +20,7 @@ public class Solution {
         }
         
         if(node.left==null&&node.right==null){
-            num = num*10 + node.val;
-            sum += num;
+            sum += num*10 + node.val;
             return;
         }else{
             num = num*10 + node.val;
