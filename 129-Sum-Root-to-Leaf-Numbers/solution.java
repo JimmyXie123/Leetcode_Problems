@@ -10,29 +10,22 @@
 public class Solution {
     int sum=0;
     public int sumNumbers(TreeNode root) {
-        List<Integer> num = new ArrayList();
-        traverse(root, num);
+        traverse(root, 0);
         return sum;
     }
     
-    private void traverse(TreeNode node, List<Integer> num){
+    private void traverse(TreeNode node, int num){
         if(node==null){
             return;
         }
         
-        num.add(node.val);
-        if(node.left==null&&node.right==null) sum += count(num);
-        if(node.left!=null) traverse(node.left, num);
-        if(node.right!=null) traverse(node.right, num);
-        num.remove(num.size()-1);
-    }
-    
-    private int count(List<Integer> num){
-        int res = 0;
-        for(int i=0; i<num.size(); i++){
-            res *= 10;
-            res += num.get(i);
+        if(node.left==null&&node.right==null){
+            num = num*10 + node.val;
+            sum += num;
+        }else{
+            num = num*10 + node.val;
+            traverse(node.left, num);
+            traverse(node.right, num);
         }
-        return res;
     }
 }
