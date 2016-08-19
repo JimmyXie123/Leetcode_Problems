@@ -8,41 +8,53 @@
  */
 public class Solution {
     public void connect(TreeLinkNode root) {
-        if(root==null){
-            return;
-        }
-        
-        TreeLinkNode parent = root;
-        TreeLinkNode prev;
-        TreeLinkNode next;
-        while(parent!=null){
-            next=null;
-            prev=null;
-            while(parent!=null){
-                if(next==null){
-                    next = (parent.left!=null) ? parent.left:parent.right;
+        if(root==null)  return;
+        //TreeLinkNode first = null;
+        root.next = null;
+        while(root!=null){
+            TreeLinkNode first = null;
+            TreeLinkNode prev = root;
+            boolean is_First_Left = false;
+            while(prev!=null){
+                if(prev.left==null&&prev.right==null){
+                    prev = prev.next;
+                }else if(prev.left!=null){
+                    first = prev.left;
+                    is_First_Left = true;
+                    break;
+                }else{
+                    first = prev.right;
+                    break;
                 }
-            
-                if(parent.left!=null){
-                    if(prev==null){
-                        prev=parent.left;
-                    }else{
-                        prev.next = parent.left;
-                        prev = prev.next;
-                    }
-                }
-            
-                if(parent.right!=null){
-                    if(prev==null){
-                        prev=parent.right;
-                    }else{
-                        prev.next = parent.right;
-                        prev = prev.next;
-                    }
-                }
-                parent = parent.next;
             }
-            parent = next;
+            
+            if(first==null) break;
+            root = first;
+            
+            if(is_First_Left){
+                if(prev.right!=null){
+                    first.next = prev.right;
+                    first = first.next;
+                }
+            }
+            
+            prev = prev.next;
+            
+            while(prev!=null){
+                if(prev.left!=null){
+                    first.next = prev.left;
+                    first = first.next;
+                }
+                
+                if(prev.right!=null){
+                    first.next = prev.right;
+                    first = first.next;
+                }
+                
+                prev = prev.next;
+            }
+            first.next = null;
+            
         }
     }
 }
