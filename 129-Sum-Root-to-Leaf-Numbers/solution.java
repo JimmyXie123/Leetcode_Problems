@@ -8,26 +8,31 @@
  * }
  */
 public class Solution {
-    private int result = 0;
+    int sum=0;
     public int sumNumbers(TreeNode root) {
-        if(root==null){
-            return 0;
-        }
-        helper(root, 0);
-        return result;
+        List<Integer> num = new ArrayList();
+        traverse(root, num);
+        return sum;
     }
     
-    private void helper(TreeNode node, int sum){
+    private void traverse(TreeNode node, List<Integer> num){
         if(node==null){
             return;
         }
-        if(node.left==null&&node.right==null){
-            result += sum*10 + node.val;
-            return;
-        }else{
-            int pass = sum*10+node.val;
-            helper(node.left, pass);
-            helper(node.right, pass);
+        
+        num.add(node.val);
+        if(node.left==null&&node.right==null) sum += count(num);
+        if(node.left!=null) traverse(node.left, num);
+        if(node.right!=null) traverse(node.right, num);
+        num.remove(num.size()-1);
+    }
+    
+    private int count(List<Integer> num){
+        int res = 0;
+        for(int i=0; i<num.size(); i++){
+            res *= 10;
+            res += num.get(i);
         }
+        return res;
     }
 }
