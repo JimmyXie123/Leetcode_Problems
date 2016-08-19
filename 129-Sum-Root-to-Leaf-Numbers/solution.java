@@ -14,7 +14,7 @@ public class Solution {
         return sum;
     }
     
-    private void traverse(TreeNode node, int num){
+    private void traverse(TreeNode node, int num){    //---------it is stupid to use list here--------
         if(node==null){
             return;
         }
@@ -22,6 +22,7 @@ public class Solution {
         if(node.left==null&&node.right==null){
             num = num*10 + node.val;
             sum += num;
+            return;
         }else{
             num = num*10 + node.val;
             traverse(node.left, num);
