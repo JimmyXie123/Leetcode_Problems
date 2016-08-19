@@ -8,24 +8,24 @@
  * }
  */
 public class Solution {
+    TreeNode last;
     public void flatten(TreeNode root) {
-        if(root==null)  return;
-        Stack<TreeNode> stack = new Stack();
-        stack.push(root);
-        while(!stack.isEmpty()){
-            TreeNode curr = stack.pop();
-            if(curr.right!=null){
-                stack.push(curr.right);
-            }
-            if(curr.left!=null){
-                stack.push(curr.left);
-            }
-            curr.left=null;
-            if(stack.isEmpty()){
-                curr.right = null;
-            }else{
-                curr.right = stack.peek();
-            }
+        if(root==null){
+            return;
         }
+        
+        if(last!=null){
+            last.left = null;
+            last.right = root;
+        }
+        
+        last = root;
+        
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        
+        flatten(left);
+        flatten(right);
+        
     }
 }
