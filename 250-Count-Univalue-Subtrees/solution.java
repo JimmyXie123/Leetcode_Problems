@@ -7,45 +7,43 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+class returnType{
+    boolean valid;
+    int value;
+    public returnType(boolean valid, int value){
+        this.valid = valid;
+        this.value = value;
+    }
+} 
+
 public class Solution {
-    int count = 0;
+    int res = 0;
     public int countUnivalSubtrees(TreeNode root) {
-        if(root==null){
-            return 0;
-        }
-        boolean tmp = isSame(root);
-        return count;
+        if(root==null) return 0;
+        returnType r = helper(root);
+        return res;
     }
     
-    private boolean isSame(TreeNode node){
-        if(node.left==null&&node.right==null){
-            count++;
-            return true;
-        }else if(node.left==null&&node.right!=null){
-            boolean tmp = isSame(node.right);
-            if(node.val==node.right.val&&tmp){
-                count++;
-                return true;
-            }else{
-                return false;
-            }
-        }else if(node.left!=null&&node.right==null){
-            boolean tmp = isSame(node.left);
-            if(node.val==node.left.val&&tmp){
-                count++;
-                return true;
-            }else{
-                return false;
-            }
+    private returnType helper(TreeNode node){
+        returnType left = null;
+        returnType right = null;
+        if(node.left!=null) left = helper(node.left);
+        if(node.right!=null) right = helper(node.right);
+        
+        
+        boolean tmp_valid;
+        int tmp_value;
+        if(left!=null&&right!=null) {
+            tmp_valid = left.valid&&right.valid&&(left.value==right.value)&&(left.value==node.val);
+        }else if(left!=null&&right==null){
+            tmp_valid = (node.val==left.value)&&left.valid;
+        }else if(left==null&&right!=null){
+            tmp_valid = (node.val==right.value)&&right.valid;
         }else{
-            boolean left = isSame(node.left);
-            boolean right = isSame(node.right);
-            if(left&&right&&node.left.val==node.right.val&&node.left.val==node.val){
-                count++;
-                return true;
-            }else{
-                return false;
-            }
+            tmp_valid = true;
         }
+        tmp_value = node.val;
+        if(tmp_valid)   res++;
+        return new returnType(tmp_valid, tmp_value);
     }
 }
