@@ -8,24 +8,19 @@
  * }
  */
 public class Solution {
-    private int curt = 0;
-    private int res = 0;
     public int kthSmallest(TreeNode root, int k) {
-        helper(root, k);
-        return res;
+        int number = count(root.left);
+        if(k==number+1){
+            return root.val;
+        }else if(k<=number){
+            return kthSmallest(root.left, k);
+        }else{
+            return kthSmallest(root.right, k-number-1);
+        }
     }
     
-    private void helper(TreeNode node, int k){
-        if(node==null){
-            return;
-        }
-        helper(node.left, k);
-        curt++;
-        if(curt==k){
-            res = node.val;
-            return;
-        }
-        helper(node.right, k);
-        
+    private int count(TreeNode node){
+        if(node==null)  return 0;
+        return 1+count(node.left)+count(node.right);
     }
 }
