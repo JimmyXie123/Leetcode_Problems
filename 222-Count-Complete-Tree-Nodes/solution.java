@@ -9,21 +9,17 @@
  */
 public class Solution {
     public int countNodes(TreeNode root) {
-        if(root==null){
-            return 0;
-        }
+        if(root==null)  return 0;
         int l = height(root.left);
         int r = height(root.right);
-        
         if(l==r){
-            return countNodes(root.right)+(1<<l);
+            return (1<<l)+countNodes(root.right);
         }else{
-            return countNodes(root.left)+(1<<r);
+            return (1<<r)+countNodes(root.left);
         }
-        
     }
     
-    private int height(TreeNode node){
+    private int height(TreeNode node) {
         int h = 0;
         while(node!=null){
             h++;
