@@ -9,32 +9,30 @@
  */
 public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> result = new ArrayList();
-        if(root==null){
-            return result;
-        }
-        String str = String.valueOf(node.val);
-        //int flag = 0;
-        traverse(root.left, str, result);
-        traverse(root.right, str, result);
-        return result;
+        List<String> res = new ArrayList();
+        String path = "";
+        helper(root, path, res, true);
+        return res;
     }
     
-    private void traverse(TreeNode node, String str, List<String> result){
-        if(node==null){
-            return;
+    private void helper(TreeNode node, String path, List<String> res, boolean isFirst){
+        if(node==null)  return;
+        
+        int tmp_length = path.length();
+        if(isFirst){
+            path += node.val;
+            isFirst = false;
+        }else{
+            path += "->"+node.val;
         }
-        //if(flag==1){
-            str = str+"->"+node.val;
-        //}else{
-        //  str = str+node.val;
-        //    flag = 1;
-        //}
+        
         if(node.left==null&&node.right==null){
-            result.add(new String(str));
+            res.add(path);
+        }else{
+            if(node.left!=null) helper(node.left, path, res, isFirst);
+            if(node.right!=null) helper(node.right, path, res, isFirst);
         }
-        traverse(node.left, str, result);
-        traverse(node.right, str, result);
-        str = str.substring(0, str.length());
+        
+        path = path.substring(0, tmp_length);
     }
 }
