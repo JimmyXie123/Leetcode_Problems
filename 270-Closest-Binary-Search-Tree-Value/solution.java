@@ -14,7 +14,7 @@ public class Solution {
             if(Math.abs(root.val-target)<Math.abs(ret-target)){
                 ret = root.val;
             }
-            root = root.val>target?root.left:root.right;
+            root = (root.val>target)?root.left:root.right;
         }
         return ret;
     }
