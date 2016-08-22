@@ -7,39 +7,29 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+
 public class Solution {
-    int sum = 0;
+    int res = 0;
     public int longestConsecutive(TreeNode root) {
-        int tmp = helper(root);
-        return sum;
+        if(root==null)  return res;
+        helper(root.left, root.val, 1);
+        helper(root.right, root.val, 1);
+        return res;
     }
     
-    private int helper(TreeNode node){
-        int res = 1;
+    private void helper(TreeNode node, int num, int length){
         if(node==null){
-            return 0;
+            res = Math.max(res, length);
+            return;
         }
-        if(node.left==null&&node.right==null){
-            sum = Math.max(res, sum);
-            return res;
+        if(node.val==num+1){
+            length++;
+        }else{
+            length=1;
         }
-    
-        if(node.left!=null){
-            int left = helper(node.left);
-            if(node.val+1==node.left.val){
-                res = Math.max(res, 1+left);
-            }
-        }
-        
-        if(node.right!=null){
-            int right = helper(node.right);
-            if(node.val+1==node.right.val){
-                res = Math.max(res, 1+right);
-            }
-        }
-            
-        
-        sum =Math.max(res, sum);
-        return res;
+        res = Math.max(res, length);
+        helper(node.left, node.val, length);
+        helper(node.right, node.val, length);
     }
 }
