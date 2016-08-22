@@ -15,11 +15,10 @@ public class Solution {
     }
     
     private int helper(TreeNode node){
-        if(node==null){
-            return -1;
-        }
-        int height = Math.max(helper(node.left), helper(node.right))+1;
-        if(res.size()<height+1) res.add(new ArrayList());
+        if(node==null)  return -1;
+        int height = Math.max(helper(node.left), helper(node.right))+1;;
+        if(res.size()<height+1)   res.add(new ArrayList<Integer>());
+        
         res.get(height).add(node.val);
         return height;
     }
