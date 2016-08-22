@@ -10,23 +10,23 @@
 public class Solution {
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         if(root==null||p==null) return null;
-        TreeNode post = null;
+        TreeNode prev = null;
         while(root!=null){
-            if(root.val<p.val){
+            if(root.val>p.val){
+                prev = root;
+                root = root.left;
+            }else if(root.val<p.val){
                 root = root.right;
-            }else if(root.val>p.val){
-                post = root;
-                root= root.left;
             }else{
                 if(root.right!=null){
-                    post = root.right;
-                    while(post.left!=null){
-                        post = post.left;
+                    prev = root.right;
+                    while(prev.left!=null){
+                        prev = prev.left;
                     }
                 }
                 break;
             }
         }
-        return post;
+        return prev;
     }
 }
