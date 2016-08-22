@@ -7,37 +7,29 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+class returnType{
+    int rootSum;
+    int childSum;
+    public returnType(int rootSum, int childSum){
+        this.rootSum = rootSum;
+        this.childSum = childSum;
+    }
+}
+
 public class Solution {
-    private class ReturnType{
-        int sum_self;
-        int sum_lower;
-        public ReturnType(int sum_self, int sum_lower){
-            this.sum_self = sum_self;
-            this.sum_lower = sum_lower;
-        }
-    }
-    
     public int rob(TreeNode root) {
-        ReturnType result = helper(root);
-        return result.sum_self;
+        returnType res = helper(root);
+        return Math.max(res.rootSum, res.childSum);
     }
     
-    private ReturnType helper(TreeNode node){
-        if(node==null){
-            return new ReturnType(0, 0);
-        }
-        
-       /* if(node.left==null&&node.right==null){
-            return new ReturnType(node.val, 0);
-        }
-        */
-        
-        TreeNode left = node.left;
-        TreeNode right = node.right;
-        ReturnType leftReturn = helper(left);
-        ReturnType rightReturn = helper(right);
-        int sum_son = leftReturn.sum_self + rightReturn.sum_self;
-        int sum_self = leftReturn.sum_lower + rightReturn.sum_lower+node.val;
-        return new ReturnType(Math.max(sum_son, sum_self), sum_son);
+    private returnType helper(TreeNode node){
+        if(node==null)  return new returnType(0, 0);
+        returnType left = helper(node.left);
+        returnType right = helper(node.right);
+        int tmp_root = left.childSum+right.childSum+node.val;
+        int left_max = Math.max(left.rootSum, left.childSum);
+        int right_max = Math.max(right.rootSum, right.childSum);
+        int tmp_child = left_max+right_max;
+        return new returnType(tmp_root, tmp_child);
     }
 }
