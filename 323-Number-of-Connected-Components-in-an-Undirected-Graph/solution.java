@@ -3,11 +3,11 @@ public class Solution {
         UnionFind uf = new UnionFind(n);
         int count = n;
         for(int i=0; i<edges.length; i++){
-            int parent1 = uf.Find(edges[i][0]);
-            int parent2 = uf.Find(edges[i][1]);
-            if(parent1!=parent2){
+            int parent_A = uf.find(edges[i][0]);
+            int parent_B = uf.find(edges[i][1]);
+            if(parent_A!=parent_B){
                 count--;
-                uf.Union(parent1, parent2);
+                uf.union(parent_A, parent_B);
             }
         }
         return count;
@@ -15,32 +15,30 @@ public class Solution {
 }
 
 class UnionFind{
-    HashMap<Integer, Integer> map = new HashMap();
+    HashMap<Integer, Integer> father = new HashMap();
     public UnionFind(int n){
         for(int i=0; i<n; i++){
-            map.put(i,i);
+            father.put(i, i);
         }
     }
-    
-    public int Find(int x){
-        int parent = map.get(x);
-        while(parent!=map.get(parent)){
-            parent = map.get(parent);
+    public int find(int n){
+        int parent = n;
+        while(father.get(parent)!=parent){
+            parent = father.get(parent);
         }
-        
-        int temp = -1;
-        int fa = map.get(x);
-        while(fa!=map.get(fa)){
-            temp = map.get(fa);
-            map.put(fa,parent);
-            fa = temp;
+        while(father.get(n)!=parent){
+            int tmp = father.get(n);
+            father.put(n, parent);
+            n = tmp;
         }
         return parent;
     }
     
-    public void Union(int x, int y){
-        int fa1 = Find(x);
-        int fa2 = Find(y);
-        map.put(fa1, fa2);
+    public void union(int x, int y){
+        int parent_x = find(x);
+        int parent_y = find(y);
+        if(parent_x!=parent_y){
+            father.put(parent_x, parent_y);
+        }
     }
 }
