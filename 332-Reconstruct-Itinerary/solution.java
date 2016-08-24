@@ -1,29 +1,22 @@
 public class Solution {
     public List<String> findItinerary(String[][] tickets) {
-        List<String> ans = new ArrayList();
-        if(tickets==null){
-            return ans;
-        }
-        
         HashMap<String, PriorityQueue<String>> map = new HashMap();
-        for(int i=0; i<tickets.length; i++){
-            
-        //--------------注意这里不是if和else---------------
-            if(!map.containsKey(tickets[i][0])){
-                map.put(tickets[i][0], new PriorityQueue());
-            }
-            map.get(tickets[i][0]).add(tickets[i][1]);
+        for(String[] ticket:tickets){
+            if(!map.containsKey(ticket[0])) map.put(ticket[0], new PriorityQueue());
+            map.get(ticket[0]).offer(ticket[1]);
         }
-        dfs("JFK", map, ans);
-        Collections.reverse(ans);
-        return ans;
         
+        List<String> res = new ArrayList();
+        helper(map, "JFK", res);
+        Collections.reverse(res);
+        return res;
     }
     
-    private void dfs(String cur, HashMap<String, PriorityQueue<String>> map, List<String> ans){
-        while(map.containsKey(cur) && !map.get(cur).isEmpty()){
-            dfs(map.get(cur).poll(), map, ans);
+    private void helper(HashMap<String, PriorityQueue<String>> map, String str, List<String> res){
+        while(map.containsKey(str)&&!map.get(str).isEmpty()){
+            helper(map, map.get(str).poll(), res);
         }
-        ans.add(cur);
+        res.add(str);
+        
     }
 }
