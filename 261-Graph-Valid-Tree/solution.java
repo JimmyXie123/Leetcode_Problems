@@ -1,15 +1,18 @@
 public class Solution {
     public boolean validTree(int n, int[][] edges) {
         if(n!=edges.length+1){
-            return false;
+            return false;         //---------好囧－－－－－－－－－－－－－－
         }
         
         UnionFind uf = new UnionFind(n);
         for(int i=0; i<edges.length; i++){
-            if(uf.Find(edges[i][0])==uf.Find(edges[i][1])){
+            int p1 = uf.find(edges[i][0]);
+            int p2 = uf.find(edges[i][1]);
+            if(p1==p2){
                 return false;
+            }else{
+                uf.union(p1, p2);
             }
-            uf.Union(edges[i][0], edges[i][1]);
         }
         return true;
     }
@@ -23,25 +26,24 @@ class UnionFind{
         }
     }
     
-    public int Find(int x){
-        int parent = father.get(x);
+    public int find(int x){
+        int parent = x;
         while(father.get(parent)!=parent){
             parent = father.get(parent);
         }
-        
-        int temp = -1;
-        int fa = father.get(x);
-        while(fa!=father.get(fa)){
-            temp = father.get(fa);
-            father.put(fa, parent);
-            fa = temp;
+        while(father.get(x)!=parent){
+            int tmp = father.get(x);
+            father.put(x, parent);
+            x = tmp;
         }
         return parent;
     }
     
-    public void Union(int x, int y){
-        int fa1 = Find(x);
-        int fa2 = Find(y);
-        father.put(fa1, fa2);
+    public void union(int x, int y){
+        int parent_A = find(x);
+        int parent_B = find(y);
+        if(parent_A!=parent_B){
+            father.put(parent_A, parent_B);
+        }
     }
 }
