@@ -2,62 +2,65 @@ public class Solution {
     int dX[] = {-1, 0, 0, 1};
     int dY[] = {0, -1, 1, 0};
     public List<Integer> numIslands2(int m, int n, int[][] positions) {
+        int[][] grid = new int[m][n];
         UnionFind uf = new UnionFind(m*n);
-        int[][] rectangle = new int[m][n];
         List<Integer> res = new ArrayList();
-        int number = 0;
-        HashSet<Integer> set = new HashSet();
+        int count = 0;
+        
         for(int i=0; i<positions.length; i++){
-            number++;
-            int node = positions[i][0]*n+positions[i][1];     //----------乘n不是乘m啊---------------
-            rectangle[positions[i][0]][positions[i][1]] = 1;
-            for(int j=0; j<4; j++){
-                int nextX = positions[i][0] + dX[j];
-                int nextY = positions[i][1] + dY[j];
-                if(nextX>=0&&nextX<m&&nextY>=0&&nextY<n&&rectangle[nextX][nextY]==1){
-                    //System.out.println(node+" "+(nextX*m+nextY));
-                    int nid = nextX*n+nextY;
-                    int parent1 = uf.find(node);
-                    int parent2 = uf.find(nid);
+            count++;
+            grid[positions[i][0]][positions[i][1]] = 1;
+            for(int k=0; k<4; k++){
+                int nextX = positions[i][0]+dX[k];
+                int nextY = positions[i][1]+dY[k];
+                if(nextX>=0&&nextX<m&&nextY>=0&&nextY<n&&grid[nextX][nextY]==1){
+                    int node1 = getNum(nextX, nextY, n);
+                    int node2 = getNum(positions[i][0], positions[i][1], n);
+                    int parent1 = uf.find(node1);
+                    int parent2 = uf.find(node2);
                     if(parent1!=parent2){
-                        number--;
-                        uf.union(parent1, parent2);       //------union时候一定是两个father union啊-------------
+                        count--;
+                        uf.union(parent1, parent2);
                     }
-                    //take care of the order, it matters in this problem if u dont find() on all nodes
                 }
             }
-            
-            res.add(number);
+            res.add(count);
         }
         return res;
+    }
+    
+    private int getNum(int x, int y, int n){
+        return x*n+y;
     }
 }
 
 class UnionFind{
-    HashMap<Integer, Integer> map = new HashMap();
+    HashMap<Integer, Integer> father = new HashMap();
+    
     public UnionFind(int n){
         for(int i=0; i<n; i++){
-            map.put(i, i);
+            father.put(i, i);
         }
     }
     
-    public int find(int node){
-        int parent = map.get(node);
-        while(parent!=map.get(parent)){
-            parent = map.get(parent);
+    public int find(int x){
+        int parent = x;
+        while(father.get(parent)!=parent){
+            parent = father.get(parent);
         }
-        int mid = map.get(node);
-        while(map.get(mid)!=parent){
-            int tmp = map.get(mid);
-            map.put(mid, parent);
-            mid = tmp;
+        while(father.get(x)!=parent){
+            int tmp = father.get(x);
+            father.put(x, parent);
+            x = tmp;
         }
         return parent;
     }
     
-    public void union(int node1, int node2){
-        int parent1 = find(node1);
-        int parent2 = find(node2);
-        map.put(node1, node2);
+    public void union(int x, int y){
+        int p1 = find(x);
+        int p2 = find(y);
+        if(p1!=p2){
+            father.put(p1, p2);
+        }
     }
 }
