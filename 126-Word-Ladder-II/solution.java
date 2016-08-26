@@ -33,9 +33,11 @@ public class Solution {
     } 
     
     private void dfs(HashMap<String, Integer> distance, HashMap<String, HashSet<String>> graph, List<List<String>> res, List<String> path, String curt, String beginWord, String endWord, Set<String> wordList){
-        path.add(0, curt);
+        path.add(curt);
         if(beginWord.equals(curt)){
+            Collections.reverse(path);
             res.add(new ArrayList(path));
+            Collections.reverse(path);
         }else{
             for(String next:graph.get(curt)){
                 if(distance.containsKey(curt)&&distance.get(curt)+1==distance.get(next)){
@@ -43,7 +45,7 @@ public class Solution {
                 }
             }
         }
-        path.remove(0);
+        path.remove(path.size()-1);
     }
     
     private String replace(String cur, char c, int position){
