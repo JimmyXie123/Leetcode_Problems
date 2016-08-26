@@ -1,78 +1,66 @@
 public class Solution {
     public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
-        List<List<String>> ladders = new ArrayList();
-        HashMap<String, ArrayList<String>> graph = new HashMap();
+        //----------------beginWord and endWord both included in wordList-------------------
         HashMap<String, Integer> distance = new HashMap();
+        HashMap<String, HashSet<String>> graph = new HashMap();
+        List<List<String>> res = new ArrayList();
         
         for(String str:wordList){
-            graph.put(str, new ArrayList());
+           graph.put(str, new HashSet());
         }
         
-        bfs(ladders, graph, distance, beginWord, wordList);
+        bfs(distance, graph, beginWord, endWord, wordList);
         List<String> path = new ArrayList();
-        dfs(ladders, path, graph, distance, beginWord, endWord);
-        return ladders;
+        dfs(distance, graph, res, path, endWord, beginWord, endWord, wordList);
+        return res;
         
     }
     
-    private void bfs(List<List<String>> ladders, HashMap<String, ArrayList<String>> graph, HashMap<String, Integer> distance, String start, Set<String> wordList){
+   private void bfs(HashMap<String, Integer> distance, HashMap<String, HashSet<String>> graph, String beginWord, String endWord, Set<String> wordList){
         Queue<String> queue = new LinkedList();
-        queue.offer(start);
-        distance.put(start, 0);
-        
+        queue.offer(endWord);   //-----have to start from end, because have to keep shortest feature and visited in bfs-----
+        distance.put(endWord, 0);
         while(!queue.isEmpty()){
-            int size = queue.size();
-            
-            for(int i=0; i<size; i++){
-                String crt = queue.poll();
-                for(String next:getWords(crt, wordList)){
-                    graph.get(next).add(crt);
-                    if(!distance.containsKey(next)){
-                        distance.put(next, distance.get(crt)+1);
-                        queue.offer(next);
-                    }
+            String tmp = queue.poll();
+            for(String next:getWords(tmp, wordList)){
+                graph.get(tmp).add(next);
+                if(!distance.containsKey(next)){
+                    distance.put(next, distance.get(tmp)+1);
+                    queue.offer(next);
                 }
             }
-            
         }
-    }
+    } 
     
-    private void dfs(List<List<String>> ladders, List<String> path, HashMap<String, ArrayList<String>> graph, HashMap<String, Integer> distance, String crt, String end){
-        path.add(crt);
-        if(crt.equals(end)){
-            //Collections.reverse(path);
-            ladders.add(new ArrayList(path));
-            //Collections.reverse(path);
+    private void dfs(HashMap<String, Integer> distance, HashMap<String, HashSet<String>> graph, List<List<String>> res, List<String> path, String curt, String beginWord, String endWord, Set<String> wordList){
+        path.add(0, curt);
+        if(beginWord.equals(curt)){
+            res.add(new ArrayList(path));
         }else{
-            for(String next:graph.get(crt)){
-                if(distance.get(next)==distance.get(crt)+1){
-                    dfs(ladders, path, graph, distance, next, end);
+            for(String next:graph.get(curt)){
+                if(distance.containsKey(curt)&&distance.get(curt)+1==distance.get(next)){
+                    dfs(distance, graph, res, path, next, beginWord, endWord, wordList);
                 }
             }
         }
-        path.remove(path.size()-1);
+        path.remove(0);
     }
     
-    private String replace(String word, int index, char c){
-        char[] chars = word.toCharArray();
-        chars[index] = c;
-        return new String(chars);
+    private String replace(String cur, char c, int position){
+        char[] ch = cur.toCharArray();
+        ch[position] = c;
+        return new String(ch);
     }
     
-    private ArrayList<String> getWords(String word, Set<String> wordList){
-        ArrayList<String> neighbors = new ArrayList();
-        for(int i=0; i<word.length(); i++){
+    private HashSet<String> getWords(String cur, Set<String> wordList){
+        HashSet<String> res = new HashSet();
+        for(int i=0; i<cur.length(); i++){
             for(char c='a'; c<='z'; c++){
-                if(c==word.charAt(i)){
-                    continue;
-                }
-                String temp = replace(word, i, c);
-                if(wordList.contains(temp)){
-                    neighbors.add(temp);
-                }
+                if(c==cur.charAt(i)) continue;
+                String tmp = replace(cur, c, i);
+                if(wordList.contains(tmp)&&!res.contains(tmp))  res.add(tmp);
             }
         }
-        
-        return neighbors;
+        return res;
     }
 }
