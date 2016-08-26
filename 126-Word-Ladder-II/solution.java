@@ -2,11 +2,11 @@ public class Solution {
     public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
         //----------------beginWord and endWord both included in wordList-------------------
         HashMap<String, Integer> distance = new HashMap();
-        HashMap<String, HashSet<String>> graph = new HashMap();
+        HashMap<String, ArrayList<String>> graph = new HashMap();
         List<List<String>> res = new ArrayList();
         
         for(String str:wordList){
-           graph.put(str, new HashSet());
+           graph.put(str, new ArrayList());
         }
         
         bfs(distance, graph, beginWord, endWord, wordList);
@@ -16,7 +16,7 @@ public class Solution {
         
     }
     
-   private void bfs(HashMap<String, Integer> distance, HashMap<String, HashSet<String>> graph, String beginWord, String endWord, Set<String> wordList){
+   private void bfs(HashMap<String, Integer> distance, HashMap<String, ArrayList<String>> graph, String beginWord, String endWord, Set<String> wordList){
         Queue<String> queue = new LinkedList();
         queue.offer(endWord);   //-----have to start from end, because have to keep shortest feature and visited in bfs-----
         distance.put(endWord, 0);
@@ -32,7 +32,7 @@ public class Solution {
         }
     } 
     
-    private void dfs(HashMap<String, Integer> distance, HashMap<String, HashSet<String>> graph, List<List<String>> res, List<String> path, String curt, String beginWord, String endWord, Set<String> wordList){
+    private void dfs(HashMap<String, Integer> distance, HashMap<String, ArrayList<String>> graph, List<List<String>> res, List<String> path, String curt, String beginWord, String endWord, Set<String> wordList){
         path.add(curt);
         if(beginWord.equals(curt)){
             Collections.reverse(path);
@@ -54,8 +54,8 @@ public class Solution {
         return new String(ch);
     }
     
-    private HashSet<String> getWords(String cur, Set<String> wordList){
-        HashSet<String> res = new HashSet();
+    private ArrayList<String> getWords(String cur, Set<String> wordList){
+        ArrayList<String> res = new ArrayList();
         for(int i=0; i<cur.length(); i++){
             for(char c='a'; c<='z'; c++){
                 if(c==cur.charAt(i)) continue;
