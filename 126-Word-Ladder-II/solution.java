@@ -1,66 +1,64 @@
 public class Solution {
     public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
-        //----------------beginWord and endWord both included in wordList-------------------
-        HashMap<String, Integer> distance = new HashMap();
-        HashMap<String, ArrayList<String>> graph = new HashMap();
+        HashMap<String, List<String>> graph = new HashMap();   //-------use space to save time--------
+        HashMap<String, Integer> distance = new HashMap();  
         List<List<String>> res = new ArrayList();
         
-        for(String str:wordList){
-           graph.put(str, new ArrayList());
-        }
-        
-        bfs(distance, graph, beginWord, endWord, wordList);
+        for(String str:wordList)  graph.put(str, new ArrayList());
+        bfs(distance, graph, endWord, wordList);
         List<String> path = new ArrayList();
-        dfs(distance, graph, res, path, endWord, beginWord, endWord, wordList);
+        dfs(endWord, res, path, distance, graph, beginWord, endWord);
         return res;
         
     }
     
-   private void bfs(HashMap<String, Integer> distance, HashMap<String, ArrayList<String>> graph, String beginWord, String endWord, Set<String> wordList){
+    private void bfs(HashMap<String, Integer> distance, HashMap<String, List<String>> graph, String endWord, Set<String> wordList){
         Queue<String> queue = new LinkedList();
-        queue.offer(endWord);   //-----have to start from end, because have to keep shortest feature and visited in bfs-----
+        queue.offer(endWord);
         distance.put(endWord, 0);
+        
         while(!queue.isEmpty()){
-            String tmp = queue.poll();
-            for(String next:getWords(tmp, wordList)){
-                graph.get(tmp).add(next);
+            String curr = queue.poll();
+            for(String next:getWords(curr, wordList)){
+                graph.get(curr).add(next);
                 if(!distance.containsKey(next)){
-                    distance.put(next, distance.get(tmp)+1);
+                    distance.put(next, distance.get(curr)+1);
                     queue.offer(next);
                 }
             }
         }
-    } 
+    }
     
-    private void dfs(HashMap<String, Integer> distance, HashMap<String, ArrayList<String>> graph, List<List<String>> res, List<String> path, String curt, String beginWord, String endWord, Set<String> wordList){
-        path.add(curt);
-        if(beginWord.equals(curt)){
+    private void dfs(String curr, List<List<String>> res, List<String> path, HashMap<String, Integer> distance, HashMap<String, List<String>> graph, String beginWord, String endWord){
+        path.add(curr);
+        if(curr.equals(beginWord)){
             Collections.reverse(path);
             res.add(new ArrayList(path));
             Collections.reverse(path);
         }else{
-            for(String next:graph.get(curt)){
-                if(distance.containsKey(curt)&&distance.get(curt)+1==distance.get(next)){
-                    dfs(distance, graph, res, path, next, beginWord, endWord, wordList);
+            for(String next:graph.get(curr)){
+                if(distance.containsKey(next)&&distance.get(next)==distance.get(curr)+1){
+                    dfs(next, res, path, distance, graph, beginWord, endWord);
                 }
             }
         }
-        path.remove(path.size()-1);
+        path.remove(path.size()-1);  //---------plz dont forget about it---------------
+        
     }
     
-    private String replace(String cur, char c, int position){
+    private String replace(String cur, int position, char c){
         char[] ch = cur.toCharArray();
         ch[position] = c;
         return new String(ch);
     }
     
-    private ArrayList<String> getWords(String cur, Set<String> wordList){
-        ArrayList<String> res = new ArrayList();
+    private List<String> getWords(String cur, Set<String> wordList){
+        List<String> res = new ArrayList();
         for(int i=0; i<cur.length(); i++){
             for(char c='a'; c<='z'; c++){
                 if(c==cur.charAt(i)) continue;
-                String tmp = replace(cur, c, i);
-                if(wordList.contains(tmp)&&!res.contains(tmp))  res.add(tmp);
+                String tmp = replace(cur, i, c);
+                if(wordList.contains(tmp)) res.add(tmp);
             }
         }
         return res;
