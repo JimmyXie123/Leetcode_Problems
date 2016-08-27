@@ -1,76 +1,81 @@
-//------------DFS会爆栈-----------------
 public class Solution {
-    int[] dX = {-1,0,0,1};
-    int[] dY = {0,-1,1,0};
-    int row, col;
-    private static final char FREE = 'F';
-    private static final char VISITED = 'V';
+    int dX[] = {-1, 0, 0, 1};
+    int dY[] = {0, -1, 1, 0};
+    int m, n;
+    public static final char BOARDER = 'B';
+    public static final char REMOVE = 'X';
     
     public void solve(char[][] board) {
-        if(board==null||board.length==0){
-            return;
-        }
-        row = board.length;
-        if(board[0]==null||board[0].length==0){
-            return;
-        }
-        col = board[0].length;
+        if(board==null||board.length==0||board[0].length==0)    return;
+        m=board.length;
+        n=board[0].length;
         
-        for(int i=0; i<row; i++){
-            bfs(board, i, 0);
-            bfs(board, i, col-1);
-        }
-        
-        for(int j=0; j<col; j++){
-            bfs(board, 0, j);
-            bfs(board, row-1, j);
+        for(int i=0; i<m; i++){
+            if(board[i][0]=='O'){
+                bfs(board, i, 0, BOARDER, 'O');
+            }
+            
+            if(board[i][n-1]=='O'){
+                bfs(board, i, n-1, BOARDER, 'O');
+            }
         }
         
-        for(int i=0; i<row; i++){
-            for(int j=0; j<col; j++){
+        for(int j=0; j<n; j++){
+            if(board[0][j]=='O'){
+                bfs(board, 0, j, BOARDER, 'O');
+            }
+            
+            if(board[m-1][j]=='O'){
+                bfs(board, m-1, j, BOARDER, 'O');
+            }
+        }
+        
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
                 if(board[i][j]=='O'){
-                    board[i][j] = 'X';
-                }
-                if(board[i][j]=='F'){
-                    board[i][j] = 'O';
+                    bfs(board, i, j, REMOVE, 'O');
                 }
             }
         }
         
-    }
-    
-    private void bfs(char[][] board, int i, int j){
-        if(board[i][j]!='O'){
-            return;
+        for(int i=0; i<m; i++){
+            if(board[i][0]==BOARDER){
+                bfs(board, i, 0, 'O', BOARDER);
+            }
+            
+            if(board[i][n-1]==BOARDER){
+                bfs(board, i, n-1, 'O', BOARDER);
+            }
         }
         
-        Queue<Node> queue = new LinkedList();
-        queue.offer(new Node(i, j));
+        for(int j=0; j<n; j++){
+            if(board[0][j]==BOARDER){
+                bfs(board, 0, j, 'O', BOARDER);
+            }
+            
+            if(board[m-1][j]==BOARDER){
+                bfs(board, m-1, j, 'O', BOARDER);
+            }
+        }
+    }
+    
+    private void bfs(char[][] board, int x, int y, char sign, char original){
+        board[x][y] = sign;
+        Queue<Integer> queue = new LinkedList();
+        queue.offer(x*n+y);
+        
         while(!queue.isEmpty()){
-            Node temp = queue.poll();
-            board[temp.x][temp.y] = FREE;
-            for(int k=0; k<4; k++){
-                int nextX = temp.x+dX[k];
-                int nextY = temp.y+dY[k];
-                if(nextX>=0 && nextX<row && nextY>=0 && nextY<col){
-                    if(board[nextX][nextY]=='O'){
-                        board[nextX][nextY] = VISITED; //board[nextX][nextY] = FREE;
-//--------上句话意义在于，虽然某个队列中的点最终会被free，但是他在队列里头等待的时候，还有其他的点可能访问他，然后他又会被加进队列。其实直接设成FREE就好。--------------
-                        queue.offer(new Node(nextX, nextY));
-                    }
+            int curr = queue.poll();
+            int curr_x = curr/n;
+            int curr_y = curr%n;
+            for(int i=0; i<4; i++){
+                int nextX = curr_x+dX[i];
+                int nextY = curr_y+dY[i];
+                if(nextX>=0&&nextX<m&&nextY>=0&&nextY<n&&board[nextX][nextY]==original){
+                    board[nextX][nextY] = sign;
+                    queue.offer(nextX*n+nextY);
                 }
             }
         }
-        
     }
-    
-    private class Node{
-        int x;
-        int y;
-        public Node(int x, int y){
-            this.x = x;
-            this.y = y;
-        }
-    }
-    
 }
