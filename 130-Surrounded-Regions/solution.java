@@ -21,7 +21,7 @@ public class Solution {
                     uf.union(getNum(i,j), m*n);
                 }
                 if(i+1<m&&board[i][j]=='O'&&board[i+1][j]=='O') uf.union(getNum(i+1, j), getNum(i, j));
-                if(j+1<n&&board[i][j+1]=='O'&&board[i][j]=='O') uf.union(getNum(i, j), getNum(i, j+1));
+                if(j+1<n&&board[i][j+1]=='O'&&board[i][j]=='O') uf.union(getNum(i, j+1), getNum(i, j));
             }
         }
         
