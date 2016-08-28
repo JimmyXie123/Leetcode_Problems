@@ -1,29 +1,36 @@
 public class Solution {
     public int minTotalDistance(int[][] grid) {
-        int m = grid.length, n=grid[0].length;
+        if(grid==null||grid.length==0||grid[0].length==0)   return 0;
         
-        ArrayList<Integer> I = new ArrayList();
-        ArrayList<Integer> J = new ArrayList();
-        
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++){
+        ArrayList<Integer> row = new ArrayList();
+        ArrayList<Integer> col = new ArrayList();
+        for(int i=0; i<grid.length; i++){
+            for(int j=0; j<grid[0].length; j++){
                 if(grid[i][j]==1){
-                    I.add(i);
-                    J.add(j);
+                    row.add(j);
+                    col.add(i);
                 }
             }
         }
         
-        return getMin(I)+getMin(J);
-    }
-    
-    private int getMin(ArrayList<Integer> List){
+        Collections.sort(row);
+        Collections.sort(col);
+        
         int res = 0;
-        Collections.sort(List);
-        int i=0; 
-        int j=List.size()-1;
-        while(i<j){
-            res += List.get(j--)-List.get(i++);
+        int start = 0;
+        int end = row.size()-1;
+        while(end>start){
+            res += row.get(end)-row.get(start);
+            end--;
+            start++;
+        }
+        
+        start=0;
+        end=col.size()-1;
+        while(end>start){
+            res+=col.get(end)-col.get(start);
+            end--;
+            start++;
         }
         return res;
     }
