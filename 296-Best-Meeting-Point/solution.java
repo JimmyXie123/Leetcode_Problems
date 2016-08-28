@@ -17,8 +17,9 @@ public class Solution {
         Collections.sort(col);
         
         int res = 0;
+        int size = row.size();
         int start = 0;
-        int end = row.size()-1;
+        int end = size-1;
         while(end>start){
             res += row.get(end)-row.get(start);
             end--;
@@ -26,7 +27,7 @@ public class Solution {
         }
         
         start=0;
-        end=col.size()-1;
+        end=size-1;
         while(end>start){
             res+=col.get(end)-col.get(start);
             end--;
