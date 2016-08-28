@@ -2,80 +2,79 @@ public class Solution {
     int dX[] = {-1, 0, 0, 1};
     int dY[] = {0, -1, 1, 0};
     int m, n;
-    public static final char BOARDER = 'B';
-    public static final char REMOVE = 'X';
-    
     public void solve(char[][] board) {
-        if(board==null||board.length==0||board[0].length==0)    return;
-        m=board.length;
-        n=board[0].length;
+        if(board==null||board.length==0||board[0].length==0) return;
+        m = board.length;
+        n = board[0].length;
         
+        UnionFind uf = new UnionFind(m*n);
+        uf.cnt[m*n] = 1;
         for(int i=0; i<m; i++){
-            if(board[i][0]=='O'){
-                bfs(board, i, 0, BOARDER, 'O');
-            }
-            
-            if(board[i][n-1]=='O'){
-                bfs(board, i, n-1, BOARDER, 'O');
-            }
-        }
-        
-        for(int j=0; j<n; j++){
-            if(board[0][j]=='O'){
-                bfs(board, 0, j, BOARDER, 'O');
-            }
-            
-            if(board[m-1][j]=='O'){
-                bfs(board, m-1, j, BOARDER, 'O');
+            for(int j=0; j<n; j++){
+                if(board[i][j]=='O')  uf.cnt[getNum(i, j)] = 1;
             }
         }
         
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
-                if(board[i][j]=='O'){
-                    bfs(board, i, j, REMOVE, 'O');
+                if(board[i][j]=='O'&&(i==0||i==m-1||j==0||j==n-1)) {
+                    uf.union(getNum(i,j), m*n);
                 }
+                if(i+1<m&&board[i][j]=='O'&&board[i+1][j]=='O') uf.union(getNum(i, j), getNum(i+1, j));
+                if(j+1<n&&board[i][j+1]=='O'&&board[i][j]=='O') uf.union(getNum(i, j), getNum(i, j+1));
             }
         }
         
         for(int i=0; i<m; i++){
-            if(board[i][0]==BOARDER){
-                bfs(board, i, 0, 'O', BOARDER);
-            }
-            
-            if(board[i][n-1]==BOARDER){
-                bfs(board, i, n-1, 'O', BOARDER);
+            for(int j=0; j<n; j++){
+                if(board[i][j]=='O'&&uf.find(getNum(i, j))!=uf.find(m*n))  board[i][j] = 'X';
             }
         }
         
-        for(int j=0; j<n; j++){
-            if(board[0][j]==BOARDER){
-                bfs(board, 0, j, 'O', BOARDER);
-            }
-            
-            if(board[m-1][j]==BOARDER){
-                bfs(board, m-1, j, 'O', BOARDER);
-            }
+        
+        
+    }
+    
+    private int getNum(int x, int y){
+        return x*n+y;
+    }
+    
+    private boolean isBoarder(int x, int y){
+        if(x==0||x==m-1||y==0||y==n-1)  return true;
+        else return false;
+    }
+}
+
+class UnionFind{
+    HashMap<Integer, Integer> map = new HashMap();
+    int[] cnt;
+    public UnionFind(int n){
+        cnt = new int[n+1];
+        for(int i=0; i<=n; i++){
+            map.put(i, i);
         }
     }
     
-    private void bfs(char[][] board, int x, int y, char sign, char original){
-        board[x][y] = sign;
-        Queue<Integer> queue = new LinkedList();
-        queue.offer(x*n+y);
+    public int find(int x){
+        int parent = x;
+        while(parent!=map.get(parent)){
+            parent = map.get(parent);
+        }
         
-        while(!queue.isEmpty()){
-            int curr = queue.poll();
-            int curr_x = curr/n;
-            int curr_y = curr%n;
-            for(int i=0; i<4; i++){
-                int nextX = curr_x+dX[i];
-                int nextY = curr_y+dY[i];
-                if(nextX>=0&&nextX<m&&nextY>=0&&nextY<n&&board[nextX][nextY]==original){
-                    board[nextX][nextY] = sign;
-                    queue.offer(nextX*n+nextY);
-                }
-            }
+        while(parent!=map.get(x)){
+            int tmp = map.get(x);
+            map.put(x, parent);
+            x = tmp;
+        }
+        return parent;
+    }
+    
+    public void union(int x, int y){
+        int parent_x = find(x);
+        int parent_y = find(y);
+        if(parent_x!=parent_y){
+            if(cnt[parent_x]<cnt[parent_y]) map.put(parent_x, parent_y);
+            else map.put(parent_y, parent_x);
         }
     }
 }
