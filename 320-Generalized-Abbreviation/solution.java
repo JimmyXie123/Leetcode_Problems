@@ -1,39 +1,23 @@
 public class Solution {
     public List<String> generateAbbreviations(String word) {
         List<String> res = new ArrayList();
-        char[] path = word.toCharArray();
-        DFS(res, path, word, 0);
+        StringBuilder path = new StringBuilder();
+        helper(res, path, word.toCharArray(), 0, 0);
         return res;
     }
     
-    private void DFS(List<String> res, char[] path, String word, int pos){
-        String tmp="";
-        int count = 0;
-        int k=0;
-        while(k<path.length){    //------------跳格的都得用while-----------------
-            if(path[k]!='1'){
-                tmp += path[k];
-                k++;
-            }else{
-                int pointer = 0;
-                while(k+pointer<path.length&&path[pointer+k]=='1'){
-                    pointer++;
-                    count++;
-                }
-                tmp += pointer;
-                k = k+pointer;
-            }
+    private void helper(List<String> res, StringBuilder path, char[] c, int pos, int num){
+        int len = path.length();
+        if(pos==c.length){
+            if(num!=0)  path.append(num);
+            res.add(path.toString());
+        }else{
+            helper(res, path, c, pos+1, num+1);
+            
+            if(num!=0)  path.append(num);
+            helper(res, path.append(c[pos]), c, pos+1, 0);
         }
-        res.add(tmp);
+        path.setLength(len);   
         
-        if(pos==path.length){
-            return;
-        }
-        
-        for(int i=pos; i<path.length; i++){
-            path[i] = '1';
-            DFS(res, path, word, i+1);
-            path[i] = word.charAt(i);
-        }
     }
 }
