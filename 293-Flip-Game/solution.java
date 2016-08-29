@@ -1,18 +1,18 @@
 public class Solution {
     public List<String> generatePossibleNextMoves(String s) {
         List<String> res = new ArrayList();
-        if(s==null||s.length()<=1){
-            return res;
-        }
-        
         char[] tmp = s.toCharArray();
-        for(int i=1; i<s.length(); i++){
-            if(tmp[i-1] == '+'&&tmp[i]== '+'){
-                tmp[i-1] = tmp[i] = '-';
+        int len = s.length();
+        for(int i=0; i<len-1; i++){
+            if(tmp[i]=='+'&&tmp[i+1]=='+') {
+                tmp[i] = '-';
+                tmp[i+1] = '-';
                 res.add(new String(tmp));
-                tmp[i-1] = tmp[i] ='+';
+                tmp[i] = '+';
+                tmp[i+1] = '+';
             }
         }
+        
         return res;
     }
 }
