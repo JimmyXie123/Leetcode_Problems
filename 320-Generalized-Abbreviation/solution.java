@@ -1,39 +1,21 @@
 public class Solution {
     public List<String> generateAbbreviations(String word) {
         List<String> res = new ArrayList();
-        helper(res, word.toCharArray(), 0, word);
+        helper(res, new StringBuilder(), word.toCharArray(), 0, 0);
         return res;
     }
     
-    private void helper(List<String> res, char[] c, int pos, String word){
-        
-            String tmp ="";
-            int k=0;
-            int pointer = 0;
-            while(k<c.length){
-                if(c[k]=='1'){
-                    pointer++;
-                    k++;
-                }else{
-                    if(pointer!=0) {
-                        tmp += pointer;
-                        pointer = 0;
-                    }
-                    tmp += c[k];
-                    k++;
-                }
-            }
-            if(pointer!=0)  tmp+=pointer;
-            res.add(tmp);
+    private void helper(List<String> res, StringBuilder sb, char[] c, int pos, int num){
+        int len = sb.length();
+        if(pos==c.length) {
+            if(num!=0)  sb.append(num);
+            res.add(sb.toString());
+        }else {
+            helper(res, sb, c, pos+1, num+1);
             
-            if(pos==c.length) return;
-        
-            
-            for(int i=pos; i<c.length; i++){
-                c[i] = '1';
-                helper(res, c, i+1, word);
-                c[i] = word.charAt(i);
-            }
-        
+            if(num!=0)  sb.append(num);
+            helper(res, sb.append(c[pos]), c, pos+1, 0);       
+        }
+        sb.setLength(len);
     }
 }
