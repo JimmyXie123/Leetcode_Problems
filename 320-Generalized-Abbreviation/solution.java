@@ -10,14 +10,13 @@ public class Solution {
         String tmp="";
         int count = 0;
         int k=0;
-        int len = path.length;
-        while(k<len){    //------------跳格的都得用while-----------------
+        while(k<path.length){    //------------跳格的都得用while-----------------
             if(path[k]!='1'){
                 tmp += path[k];
                 k++;
             }else{
                 int pointer = 0;
-                while(k+pointer<len&&path[pointer+k]=='1'){
+                while(k+pointer<path.length&&path[pointer+k]=='1'){
                     pointer++;
                     count++;
                 }
@@ -27,15 +26,14 @@ public class Solution {
         }
         res.add(tmp);
         
-        if(pos==len){
+        if(pos==path.length){
             return;
         }
         
-        for(int i=pos; i<len; i++){
-            char temp = path[i];
+        for(int i=pos; i<path.length; i++){
             path[i] = '1';
             DFS(res, path, word, i+1);
-            path[i] = temp;
+            path[i] = word.charAt(i);
         }
     }
 }
