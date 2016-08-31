@@ -8,8 +8,7 @@ public class Solution {
     }
     
     private void helper(List<List<String>> res, List<Integer> col, int n){
-        int len = col.size();
-        if(len==n) {
+        if(col.size()==n) {
             res.add(draw(col, n));
             return;
         }
@@ -18,7 +17,7 @@ public class Solution {
             if(isValid(col, i, n)){
                 col.add(i);
                 helper(res, col, n);
-                col.remove(len);
+                col.remove(col.size()-1);
             }
         }
     }
