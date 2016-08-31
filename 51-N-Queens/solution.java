@@ -1,57 +1,51 @@
 public class Solution {
-    private List<String> draw(List<Integer> cols){
-        List<String> row = new ArrayList();
-        for(int i=0; i<cols.size(); i++){
-            String s = new String();
-            for(int j=0; j<cols.size(); j++){
-                if(j==cols.get(i)){
-                    s += "Q";
-                }else{
-                    s += ".";
-                }
-            }
-            row.add(s);
-        }
-        return row;
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> res = new ArrayList();
+        if(n<=0)  return res;
+        List<Integer> col = new ArrayList();
+        helper(res, col, n);
+        return res;
     }
     
-    private boolean isValid(List<Integer> cols, int col){
-        int row = cols.size();
-        for(int i=0; i<row; i++){
-            if(cols.get(i)==col){
-                return false;
+    private void helper(List<List<String>> res, List<Integer> col, int n){
+        if(col.size()==n) {
+            res.add(draw(col, n));
+            return;
+        }
+        
+        for(int i=0; i<n; i++){
+            if(isValid(col, i, n)){
+                col.add(i);
+                helper(res, col, n);
+                col.remove(col.size()-1);
             }
-            if(cols.get(i)+i==row+col){
-                return false;
-            }
-            if(cols.get(i)-i==col-row){
-                return false;
-            }
+        }
+    }
+    
+    private boolean isValid(List<Integer> col, int curr, int n){
+        int len = col.size();
+        for(int i=0; i<len; i++){
+            int prev = col.get(i);
+            if(curr==prev) return false;
+            if(curr-prev==len-i)   return false;
+            if(curr+len==i+prev)    return false;
         }
         return true;
     }
     
-    private void search(List<List<String>> result, List<Integer> cols, int n){
-        if(cols.size()==n){
-            result.add(draw(cols));
-        }
-        
-        for(int col=0; col<n; col++){
-            if(!isValid(cols, col)){
-                continue;
+    private List<String> draw(List<Integer> col, int n){
+        List<String> res = new ArrayList();
+        for(int i=0; i<n; i++){
+            String tmp = "";
+            int start = 0;
+            int Q = col.get(i);
+            while(start<n){
+                if(start==Q)    tmp += "Q";
+                else    tmp += ".";
+                start++;
             }
-            cols.add(col);
-            search(result, cols, n);
-            cols.remove(cols.size()-1);
+            res.add(tmp);
         }
-    }
-    
-    public List<List<String>> solveNQueens(int n) {
-        List<List<String>> result = new ArrayList();
-        if(n<=0){
-            return result;
-        }
-        search(result, new ArrayList(), n);
-        return result;
+        return res;
     }
 }
