@@ -1,42 +1,33 @@
 public class Solution {
-    int total;
-    private boolean isValid(List<Integer> cols, int col){
-        int row = cols.size();
-        for(int i=0; i<row; i++){
-            if(cols.get(i)==col){
-                return false;
-            }
-            if(cols.get(i)+i==row+col){
-                return false;
-            }
-            if(cols.get(i)-i==col-row){
-                return false;
-            }
+    int total = 0;
+    public int totalNQueens(int n) {
+        if(n<=0)    return 0;
+        List<Integer> cols = new ArrayList();
+        helper(cols, n);
+        return total;
+    }
+    
+    private boolean isValid(List<Integer> cols, int curr, int n){
+        int len = cols.size();
+        for(int i=0; i<len; i++){
+            int prev = cols.get(i);
+            if(prev==curr||prev-i==curr-len||prev+i==curr+len)  return false;
         }
         return true;
     }
     
-    private void search(List<Integer> cols, int n){
-        if(cols.size()==n){
+    private void helper(List<Integer> cols, int n){
+        if(cols.size()==n) {
             total++;
+            return;
         }
         
-        for(int col=0; col<n; col++){
-            if(!isValid(cols, col)){
-                continue;
-            }
-            cols.add(col);
-            search(cols, n);
-            cols.remove(cols.size()-1);
+        for(int i=0; i<n; i++) {
+            if(isValid(cols, i, n)){
+                cols.add(i);
+                helper(cols, n);
+                cols.remove(cols.size()-1);
+            }   
         }
-    }
-    
-    public int totalNQueens(int n) {
-        total = 0;
-        if(n<=0){
-            return 0;
-        }
-        search(new ArrayList(), n);
-        return total;
     }
 }
