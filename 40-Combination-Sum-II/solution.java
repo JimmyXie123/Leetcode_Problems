@@ -1,29 +1,25 @@
 public class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList();
-        if(candidates==null){
-            return result;
-        }
+        List<List<Integer>> res = new ArrayList();
+        if(candidates==null) return res;
+        List<Integer> list = new ArrayList();
         Arrays.sort(candidates);
-        List<Integer> path = new ArrayList();
-        dfs(result, path, 0, target, candidates);
-        return result;
+        helper(res, list, candidates, 0, target);
+        return res;
     }
     
-    private void dfs(List<List<Integer>> result, List<Integer> path, int pos, int sum, int[] nums){
-        if(sum<0){
+    private void helper(List<List<Integer>> res, List<Integer> list, int[] candidates, int pos, int sum){
+        if(sum<0)   return;
+        if(sum==0) {
+            res.add(new ArrayList(list));
             return;
         }
-        if(sum==0){
-            result.add(new ArrayList(path));
-        }
-        for(int i=pos; i<nums.length; i++){
-            if(i!=pos&&nums[i]==nums[i-1]){
-                continue;
-            }
-            path.add(nums[i]);
-            dfs(result, path, i+1, sum-nums[i], nums);
-            path.remove(path.size()-1);
+        
+        for(int i=pos; i<candidates.length; i++) {
+            if(i!=pos&&candidates[i]==candidates[i-1])  continue;
+            list.add(candidates[i]);
+            helper(res, list, candidates, i+1, sum-candidates[i]);
+            list.remove(list.size()-1);
         }
     }
 }
