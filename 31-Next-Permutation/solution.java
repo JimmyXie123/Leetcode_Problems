@@ -6,7 +6,7 @@ public class Solution {
         int len = nums.length;
         for(int i=len-2; i>=0; i--){
             if(nums[i+1]>nums[i]){
-                for(int j=len-1; j>i-1; j--){
+                for(int j=len-1; j>i; j--){
                     if(nums[j]>nums[i]){
                         int temp = nums[j];
                         nums[j] = nums[i];
