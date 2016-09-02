@@ -1,42 +1,41 @@
 public class Solution {
-    int[] dX = {-1, 0, 0, 1};
-    int[] dY = {0, 1, -1, 0};
+    int dX[] = {-1, 0, 0, 1};
+    int dY[] = {0, -1, 1, 0};
     int m, n;
     public boolean exist(char[][] board, String word) {
-        if(board==null||board.length==0){
-            return false;
-        }
+        if(board==null||board.length==0||board[0].length==0)    return false;
         m = board.length;
         n = board[0].length;
-        boolean visited[][] = new boolean[m][n];
+        boolean[][] visited = new boolean[m][n];
+        
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
-                if(dfs(board, i, j, 0, word)){
-                    return true;
-                }
+                if(DFS(board, i, j, word, 0, visited))  return true;
             }
         }
+        
         return false;
     }
     
-    private boolean dfs(char[][] board, int i, int j, int index, String word){
-        if(index>=word.length()){
-            return true;
+    private boolean DFS(char[][] board, int x, int y, String word, int pos, boolean[][] visited){
+        if(pos==word.length())  return true;
+        
+        if(x<0||x>=m||y<0||y>=n)    return false;
+        
+        if(board[x][y]!=word.charAt(pos))   return false;
+        
+        if(visited[x][y])   return false;
+        
+        visited[x][y] = true;
+        
+        for(int i=0; i<4; i++) {
+            int nextX = x+dX[i];
+            int nextY = y+dY[i];
+            if(DFS(board, nextX, nextY, word, pos+1, visited))  return true;
         }
-        if(i<0||i>=m||j<0||j>=n){
-            return false;
-        }
-        if(board[i][j]!=word.charAt(index)){
-            return false;
-        }
-        board[i][j] = 'V';  //----------已访问过，同surrounded regions-----------
-        boolean result = false;
-        for(int k=0; k<4; k++){
-            int nextX = i+dX[k];
-            int nextY = j+dY[k];
-            result = result||dfs(board, nextX, nextY, index+1, word);
-        }
-        board[i][j] = word.charAt(index); //---------backtrack!-----------------
-        return result;
+        visited[x][y] = false;
+        
+        return false;
+        
     }
 }
