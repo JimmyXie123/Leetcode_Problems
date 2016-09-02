@@ -1,32 +1,27 @@
 public class Solution {
+    int count = 0;
     public String getPermutation(int n, int k) {
-        StringBuilder res = new StringBuilder();
-        boolean[] used = new boolean[n];
-        int factor = 1;
-        k= k-1;
-        for(int i=1; i<n; i++){
-            factor *= i;
+        if(k<1) return "";
+        StringBuilder sb = new StringBuilder();
+        boolean[] visited = new boolean[n+1];
+        helper(sb, n, k, visited);
+        return sb.toString();
+    }
+    
+    private void helper(StringBuilder sb, int n, int k, boolean[] visited){
+        if(sb.length()==n) {
+            count++;
+            return;
         }
         
-        for(int i=0; i<n; i++){
-            int index = k/factor;
-            k = k%factor;
-            for(int j=0; j<n; j++){
-                if(used[j]==false){
-                    if(index==0){
-                        used[j] = true;
-                        res.append((char)('0'+j+1));
-                        break;
-                    }else{
-                        index--;
-                    }
-                }
-            }
-            if(n>i+1){
-                factor = factor/(n-i-1);
-            }
+        for(int i=1; i<=n; i++){
+            if(visited[i])  continue;
+            sb.append(i);
+            visited[i] = true;
+            helper(sb, n, k, visited);
+            if(count==k)  break;
+            visited[i] = false;
+            sb.deleteCharAt(sb.length()-1);
         }
-        return res.toString();
-        
     }
 }
