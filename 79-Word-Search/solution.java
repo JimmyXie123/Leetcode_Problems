@@ -21,8 +21,6 @@ public class Solution {
     
     private boolean dfs(char[][] board, int i, int j, int index, String word){
         if(index>=word.length()){
-            System.out.println("i="+i+" j="+j+" index="+index);
-            System.out.println("123");
             return true;
         }
         if(i<0||i>=m||j<0||j>=n){
