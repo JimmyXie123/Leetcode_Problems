@@ -17,6 +17,8 @@ public class Solution {
         return false;
     }
     
+    
+    //--------take care of this goddamn DFS here.------------------------------
     private boolean DFS(char[][] board, int x, int y, String word, int pos, boolean[][] visited){
         if(pos==word.length())  return true;
         
@@ -31,7 +33,10 @@ public class Solution {
         for(int i=0; i<4; i++) {
             int nextX = x+dX[i];
             int nextY = y+dY[i];
-            if(DFS(board, nextX, nextY, word, pos+1, visited))  return true;
+            if(DFS(board, nextX, nextY, word, pos+1, visited))  {
+                visited[x][y] = false;
+                return true;
+            }
         }
         visited[x][y] = false;
         
