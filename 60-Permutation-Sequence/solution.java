@@ -1,7 +1,6 @@
 public class Solution {
     int count = 0;
     public String getPermutation(int n, int k) {
-        if(k<1) return "";
         StringBuilder sb = new StringBuilder();
         boolean[] visited = new boolean[n+1];
         helper(sb, n, k, visited);
@@ -9,10 +8,12 @@ public class Solution {
     }
     
     private void helper(StringBuilder sb, int n, int k, boolean[] visited){
-        if(sb.length()==n) {
+        if(sb.length()==n){
             count++;
             return;
         }
+        
+        if(count==k)    return;
         
         for(int i=1; i<=n; i++){
             if(visited[i])  continue;
